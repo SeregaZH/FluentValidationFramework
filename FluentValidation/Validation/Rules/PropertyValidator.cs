@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using FluentValidation.Validation.Models;
 
+
 namespace FluentValidation.Validation.Rules
 {
   public abstract class PropertyValidator<TModel, TProperty> : Validator<TModel>
