@@ -7,16 +7,12 @@ namespace FluentValidation.Validation.Validators
 {
     public class RequiredValidator<TModel, TProperty> : PropertyValidator<TModel, TProperty>
     {
-        private readonly HashSet<TProperty> _invalidValues;
-
         public RequiredValidator(
             ValidatorDescriptor descriptor,
             int priority,
-            Expression<Func<TModel, TProperty>> propertyGetter,
-            HashSet<TProperty> invalidValues)
+            Expression<Func<TModel, TProperty>> propertyGetter)
             : base(descriptor, priority, propertyGetter)
         {
-            _invalidValues = invalidValues;
         }
 
         protected override PropertyValidationResult ValidateProperty(TProperty property, TModel context,

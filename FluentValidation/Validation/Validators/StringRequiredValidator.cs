@@ -7,15 +7,14 @@ namespace FluentValidation.Validation.Validators
 {
     public sealed class StringRequiredValidator<TModel> : RequiredValidator<TModel, string>
     {
-        private readonly StringValidatorOptions _options;
+        private readonly StringRequiredValidatorOptions _options;
 
         public StringRequiredValidator(
             ValidatorDescriptor descriptor,
             int priority,
             Expression<Func<TModel, string>> propertyGetter,
-            HashSet<string> invalidValues,
-            StringValidatorOptions options)
-            : base(descriptor, priority, propertyGetter, invalidValues)
+            StringRequiredValidatorOptions options)
+            : base(descriptor, priority, propertyGetter)
         {
             _options = options;
         }
