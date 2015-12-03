@@ -1,5 +1,5 @@
 ﻿using System;
-using FluentValidation.Validation.Rules;
+using FluentValidation.Validation.Validators;
 
 namespace FluentValidation.Validation.Models
 {

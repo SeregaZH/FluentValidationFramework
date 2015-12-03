@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using FluentValidation.Validation.Models;
 
-namespace FluentValidation.Validation.Rules
+namespace FluentValidation.Validation.Validators
 {
   public abstract class PropertyValidatorAsync<TModel, TProperty>  : ValidatorAsync<TModel>
   {

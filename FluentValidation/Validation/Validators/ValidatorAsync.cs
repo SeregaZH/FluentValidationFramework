@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using FluentValidation.Validation.Models;
 
-namespace FluentValidation.Validation.Rules
+namespace FluentValidation.Validation.Validators
 {
   public abstract class ValidatorAsync<TModel> : IValidatorAsync<TModel>
   {

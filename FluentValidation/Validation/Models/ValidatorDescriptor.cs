@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FluentValidation.Validation.Rules
+namespace FluentValidation.Validation.Models
 {
   public sealed class ValidatorDescriptor
   {

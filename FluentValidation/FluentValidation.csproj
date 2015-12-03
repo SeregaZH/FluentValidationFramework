@@ -45,16 +45,20 @@
     <Compile Include="Validation\IValidatorExecutor.cs" />
     <Compile Include="Validation\IValidatorExecutorAsync.cs" />
     <Compile Include="Validation\Models\IValidationResult.cs" />
+    <Compile Include="Validation\Models\PropertyValidationResult.cs" />
+    <Compile Include="Validation\Models\StringValidatorOptions.cs" />
     <Compile Include="Validation\Models\ValidationResult.cs" />
-    <Compile Include="Validation\Rules\PropertyValidatorAsync.cs" />
-    <Compile Include="Validation\Rules\ValidatorAsync.cs" />
-    <Compile Include="Validation\Rules\PropertyValidator.cs" />
-    <Compile Include="Validation\Rules\RequiredValidator.cs" />
-    <Compile Include="Validation\Rules\Validator.cs" />
-    <Compile Include="Validation\Rules\ValidatorDescriptor.cs" />
+    <Compile Include="Validation\Validators\PropertyValidatorAsync.cs" />
+    <Compile Include="Validation\Validators\StringRequiredValidator.cs" />
+    <Compile Include="Validation\Validators\ValidatorAsync.cs" />
+    <Compile Include="Validation\Validators\PropertyValidator.cs" />
+    <Compile Include="Validation\Validators\RequiredValidator.cs" />
+    <Compile Include="Validation\Validators\Validator.cs" />
+    <Compile Include="Validation\Models\ValidatorDescriptor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Validation\Aggregators\" />
+    <Folder Include="Validation\Attributes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
