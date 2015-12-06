@@ -44,16 +44,19 @@
     <Compile Include="Validation\IValidatorAsync.cs" />
     <Compile Include="Validation\IValidatorExecutor.cs" />
     <Compile Include="Validation\IValidatorExecutorAsync.cs" />
-    <Compile Include="Validation\Models\BaseStringValidationOptions.cs" />
-    <Compile Include="Validation\Models\IValidationResult.cs" />
-    <Compile Include="Validation\Models\PropertyValidationResult.cs" />
-    <Compile Include="Validation\Models\StringInvalidValuesValidatorOptions.cs" />
-    <Compile Include="Validation\Models\StringRequiredValidatorOptions.cs" />
-    <Compile Include="Validation\Models\ValidationResult.cs" />
+    <Compile Include="Validation\Models\Options\BaseStringValidationOptions.cs" />
+    <Compile Include="Validation\Models\Options\ValueValidationOptions.cs" />
+    <Compile Include="Validation\Models\Results\IValidationResult.cs" />
+    <Compile Include="Validation\Models\Options\IValueValidatorOptions.cs" />
+    <Compile Include="Validation\Models\Results\PropertyValidationResult.cs" />
+    <Compile Include="Validation\Models\Options\StringValuesValidatorOptions.cs" />
+    <Compile Include="Validation\Models\Options\StringRequiredValidatorOptions.cs" />
+    <Compile Include="Validation\Models\Results\ValidationResult.cs" />
+    <Compile Include="Validation\Validators\BaseValueValidator.cs" />
     <Compile Include="Validation\Validators\CollectionRequiredValidator.cs" />
-    <Compile Include="Validation\Validators\InvalidValuesValidator.cs" />
+    <Compile Include="Validation\Validators\DeniedValuesValidator.cs" />
     <Compile Include="Validation\Validators\PropertyValidatorAsync.cs" />
-    <Compile Include="Validation\Validators\StringInvalidValuesValidator.cs" />
+    <Compile Include="Validation\Validators\DeniedStringValuesValidator.cs" />
     <Compile Include="Validation\Validators\StringRequiredValidator.cs" />
     <Compile Include="Validation\Validators\ValidatorAsync.cs" />
     <Compile Include="Validation\Validators\PropertyValidator.cs" />
@@ -62,8 +65,8 @@
     <Compile Include="Validation\Models\ValidatorDescriptor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Validation\Aggregators\" />
     <Folder Include="Validation\Attributes\" />
+    <Folder Include="Validation\Builders\Attributes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

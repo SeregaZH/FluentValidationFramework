@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FluentValidation.Validation.Models
+namespace FluentValidation.Validation.Models.Options
 {
     public sealed class StringRequiredValidatorOptions : BaseStringValidationOptions
     {

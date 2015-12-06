@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentValidation.Validation.Models;
+using FluentValidation.Validation.Models.Results;
 
 namespace FluentValidation.Validation
 {

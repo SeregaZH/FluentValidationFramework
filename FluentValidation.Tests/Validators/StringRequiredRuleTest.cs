@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using FluentValidation.Validation.Models;
+using FluentValidation.Validation.Models.Options;
+using FluentValidation.Validation.Models.Results;
 using FluentValidation.Validation.Validators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

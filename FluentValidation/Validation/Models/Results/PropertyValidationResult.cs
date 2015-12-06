@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FluentValidation.Validation.Models
+﻿namespace FluentValidation.Validation.Models.Results
 {
     public sealed class PropertyValidationResult : ValidationResult
     {

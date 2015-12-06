@@ -1,4 +1,4 @@
-﻿namespace FluentValidation.Validation.Models
+﻿namespace FluentValidation.Validation.Models.Results
 {
   public interface IValidationResult
   {

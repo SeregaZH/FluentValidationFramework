@@ -1,7 +1,6 @@
 ﻿using System;
-using FluentValidation.Validation.Validators;
 
-namespace FluentValidation.Validation.Models
+namespace FluentValidation.Validation.Models.Results
 {
   [Serializable]
   public class ValidationResult : IValidationResult

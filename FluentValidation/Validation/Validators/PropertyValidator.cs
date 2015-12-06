@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 using FluentValidation.Validation.Models;
+using FluentValidation.Validation.Models.Results;
 
 namespace FluentValidation.Validation.Validators
 {
