@@ -40,12 +40,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\IValidationModel.cs" />
+    <Compile Include="Validation\IValidationModelAsync.cs" />
     <Compile Include="Validation\IValidator.cs" />
     <Compile Include="Validation\IValidatorAsync.cs" />
     <Compile Include="Validation\IValidatorExecutor.cs" />
     <Compile Include="Validation\IValidatorExecutorAsync.cs" />
     <Compile Include="Validation\Models\Options\BaseStringValidationOptions.cs" />
     <Compile Include="Validation\Models\Options\ValueValidationOptions.cs" />
+    <Compile Include="Validation\Models\Results\AggregateValidationResult.cs" />
     <Compile Include="Validation\Models\Results\IValidationResult.cs" />
     <Compile Include="Validation\Models\Options\IValueValidatorOptions.cs" />
     <Compile Include="Validation\Models\Results\PropertyValidationResult.cs" />
@@ -67,6 +70,7 @@
   <ItemGroup>
     <Folder Include="Validation\Attributes\" />
     <Folder Include="Validation\Builders\Attributes\" />
+    <Folder Include="Validation\Executors\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,8 +5,8 @@ using FluentValidation.Validation.Models.Results;
 
 namespace FluentValidation.Validation
 {
-  public interface IValidatorExecutorAsync<out TModel>
-  {
-    Task<IEnumerable<ValidationResult>> ExecuteAsync(IEnumerable<IValidatorAsync<TModel>> validators);
-  }
+    public interface IValidatorExecutorAsync<out TModel>
+    {
+        Task<IEnumerable<ValidationResult>> ExecuteAsync(IEnumerable<IValidatorAsync<TModel>> validators);
+    }
 }

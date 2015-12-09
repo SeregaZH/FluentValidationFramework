@@ -4,10 +4,10 @@ using FluentValidation.Validation.Models.Results;
 
 namespace FluentValidation.Validation
 {
-  public interface IValidatorAsync<in TModel>
-  {
-    Task<ValidationResult> ValidateAsync(TModel model);
+    public interface IValidatorAsync<in TModel>
+    {
+        Task<ValidationResult> ValidateAsync(TModel model);
 
-    int Priority { get; }
-  }
+        int Priority { get; }
+    }
 }
