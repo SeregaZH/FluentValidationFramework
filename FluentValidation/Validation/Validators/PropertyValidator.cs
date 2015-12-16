@@ -8,21 +8,22 @@ namespace FluentValidation.Validation.Validators
     public abstract class PropertyValidator<TModel, TValue> : Validator<TModel>
     {
         private readonly Expression<Func<TModel, TValue>> _propertyGetter;
+        private readonly Func<TModel, TValue> _valueResolver;
 
         protected PropertyValidator(ValidatorDescriptor descriptor, int priority,
             Expression<Func<TModel, TValue>> propertyGetter)
             : base(descriptor, priority)
         {
             _propertyGetter = propertyGetter;
+            _valueResolver = propertyGetter.Compile();
         }
 
         protected sealed override ValidationResult ValidateModel(TModel model)
         {
-            var method = _propertyGetter.Compile();
-            return ValidateProperty(method(model), model, ResolvePropertyName(_propertyGetter));
+            return ValidateProperty(_valueResolver(model), model, ResolvePropertyName(_propertyGetter));
         }
 
-        protected abstract PropertyValidationResult ValidateProperty(TValue property, TModel context, string propertyName);
+        protected abstract PropertyValidationResult ValidateProperty(TValue value, TModel context, string propertyName);
 
         private string ResolvePropertyName(Expression<Func<TModel, TValue>> propertyGetter)
         {

@@ -5,24 +5,24 @@ using FluentValidation.Validation.Models;
 
 namespace FluentValidation.Validation.Validators
 {
-    public class RequiredValidator<TModel, TProperty> : PropertyValidator<TModel, TProperty>
+    public class RequiredValidator<TModel, TValue> : PropertyValidator<TModel, TValue>
     {
-        private readonly HashSet<TProperty> _invalidValues;
+        private readonly HashSet<TValue> _invalidValues;
 
         public RequiredValidator(
             ValidatorDescriptor descriptor,
             int priority,
-            Expression<Func<TModel, TProperty>> propertyGetter,
-            HashSet<TProperty> invalidValues)
+            Expression<Func<TModel, TValue>> propertyGetter,
+            HashSet<TValue> invalidValues)
             : base(descriptor, priority, propertyGetter)
         {
             _invalidValues = invalidValues;
         }
 
-        protected override PropertyValidationResult ValidateProperty(TProperty property, TModel context,
+        protected override PropertyValidationResult ValidateProperty(TValue value, TModel context,
             string propertyName)
         {
-            throw new NotImplementedException(propertyName);
+            throw new NotImplementedException();
         }
     }
 }

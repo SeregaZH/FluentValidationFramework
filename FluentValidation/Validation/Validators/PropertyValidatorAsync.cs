@@ -5,22 +5,23 @@ using FluentValidation.Validation.Models;
 
 namespace FluentValidation.Validation.Validators
 {
-  public abstract class PropertyValidatorAsync<TModel, TProperty>  : ValidatorAsync<TModel>
-  {
-    private readonly Expression<Func<TModel, TProperty>> _propertyGetter;
+    public abstract class PropertyValidatorAsync<TModel, TValue> : ValidatorAsync<TModel>
+    {
+        private readonly Expression<Func<TModel, TValue>> _propertyGetter;
+        private readonly Func<TModel, TValue> _valueResolver;
 
-    protected PropertyValidatorAsync(ValidatorDescriptor descriptor, int priority, Expression<Func<TModel, TProperty>> propertyGetter)
+        protected PropertyValidatorAsync(ValidatorDescriptor descriptor, int priority, Expression<Func<TModel, TValue>> propertyGetter)
       : base(descriptor, priority)
-    {
-      _propertyGetter = propertyGetter;
-    }
+        {
+            _propertyGetter = propertyGetter;
+            _valueResolver = _propertyGetter.Compile();
+        }
 
-    protected sealed override async Task<ValidationResult> ValidateModelAsync(TModel model)
-    {
-      var method = _propertyGetter.Compile();
-      return await ValidatePropertyAsync(method(model), model);
-    }
+        protected sealed override async Task<ValidationResult> ValidateModelAsync(TModel model)
+        {
+            return await ValidatePropertyAsync(_valueResolver(model), model);
+        }
 
-    protected abstract Task<ValidationResult> ValidatePropertyAsync(TProperty property, TModel context);
-  }
+        protected abstract Task<ValidationResult> ValidatePropertyAsync(TValue value, TModel context);
+    }
 }

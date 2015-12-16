@@ -22,7 +22,7 @@ namespace FluentValidation.Tests.Validators
                 {
                     Assert.IsFalse(result.IsValid());
                     Assert.IsInstanceOfType(result, typeof (PropertyValidationResult));
-                    Assert.Equals(((PropertyValidationResult) result).PropertyName,
+                    Assert.AreEqual(((PropertyValidationResult) result).PropertyName,
                         nameof(FakeValidationTargetModel.StringValidationTargetProperty));
                 });
         }
@@ -39,7 +39,7 @@ namespace FluentValidation.Tests.Validators
                {
                    Assert.IsFalse(result.IsValid());
                    Assert.IsInstanceOfType(result, typeof(PropertyValidationResult));
-                   Assert.Equals(((PropertyValidationResult)result).PropertyName,
+                   Assert.AreEqual(((PropertyValidationResult)result).PropertyName,
                        nameof(FakeValidationTargetModel.StringValidationTargetProperty));
                });
         }
@@ -56,7 +56,7 @@ namespace FluentValidation.Tests.Validators
                {
                    Assert.IsFalse(result.IsValid());
                    Assert.IsInstanceOfType(result, typeof(PropertyValidationResult));
-                   Assert.Equals(((PropertyValidationResult)result).PropertyName,
+                   Assert.AreEqual(((PropertyValidationResult)result).PropertyName,
                        nameof(FakeValidationTargetModel.StringValidationTargetProperty));
                });
         }
@@ -73,7 +73,7 @@ namespace FluentValidation.Tests.Validators
                {
                    Assert.IsFalse(result.IsValid()); 
                    Assert.IsInstanceOfType(result, typeof(PropertyValidationResult));
-                   Assert.Equals(((PropertyValidationResult)result).PropertyName,
+                   Assert.AreEqual(((PropertyValidationResult)result).PropertyName,
                        nameof(FakeValidationTargetModel.StringValidationTargetProperty));
                });
         }
@@ -90,7 +90,7 @@ namespace FluentValidation.Tests.Validators
                {
                    Assert.IsTrue(result.IsValid());
                    Assert.IsInstanceOfType(result, typeof(PropertyValidationResult));
-                   Assert.Equals(((PropertyValidationResult)result).PropertyName,
+                   Assert.AreEqual(((PropertyValidationResult)result).PropertyName,
                        nameof(FakeValidationTargetModel.StringValidationTargetProperty));
                });
         }
@@ -107,7 +107,7 @@ namespace FluentValidation.Tests.Validators
                {
                    Assert.IsFalse(result.IsValid());
                    Assert.IsInstanceOfType(result, typeof(PropertyValidationResult));
-                   Assert.Equals(((PropertyValidationResult)result).PropertyName,
+                   Assert.AreEqual(((PropertyValidationResult)result).PropertyName,
                        nameof(FakeValidationTargetModel.StringValidationTargetProperty));
                });
         }
@@ -124,7 +124,7 @@ namespace FluentValidation.Tests.Validators
                {
                    Assert.IsFalse(result.IsValid());
                    Assert.IsInstanceOfType(result, typeof(PropertyValidationResult));
-                   Assert.Equals(((PropertyValidationResult)result).PropertyName,
+                   Assert.AreEqual(((PropertyValidationResult)result).PropertyName,
                        nameof(FakeValidationTargetModel.StringValidationTargetProperty));
                });
         }
@@ -141,7 +141,7 @@ namespace FluentValidation.Tests.Validators
                {
                    Assert.IsTrue(result.IsValid());
                    Assert.IsInstanceOfType(result, typeof(PropertyValidationResult));
-                   Assert.Equals(((PropertyValidationResult)result).PropertyName,
+                   Assert.AreEqual(((PropertyValidationResult)result).PropertyName,
                        nameof(FakeValidationTargetModel.StringValidationTargetProperty));
                });
         }
@@ -158,7 +158,7 @@ namespace FluentValidation.Tests.Validators
                {
                    Assert.IsTrue(result.IsValid());
                    Assert.IsInstanceOfType(result, typeof(PropertyValidationResult));
-                   Assert.Equals(((PropertyValidationResult)result).PropertyName,
+                   Assert.AreEqual(((PropertyValidationResult)result).PropertyName,
                        nameof(FakeValidationTargetModel.StringValidationTargetProperty));
                });
         }
