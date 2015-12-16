@@ -12,7 +12,7 @@ namespace FluentValidation.Validation
         /// Validates the specified model.
         /// </summary>
         /// <param name="model">The model to validate.</param>
-        /// <returns>Validation result <see cref="ValidationResult">.</returns>
+        /// <returns>Validation result <see cref="ValidationResult"/>.</returns>
         ValidationResult Validate(TModel model);
 
 
