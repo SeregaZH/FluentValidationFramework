@@ -1,55 +1,96 @@
 ﻿using System;
-using FluentValidation.Validation.Validators;
 
 namespace FluentValidation.Validation.Models
 {
-  [Serializable]
-  public class ValidationResult : IValidationResult
-  {
-    private readonly ValidatorDescriptor _validatorDescriptor;
-    private readonly bool _isValid ;
-
-    public ValidationResult(bool isValid, ValidatorDescriptor validatorDescriptor)
+    /// <summary>
+    /// The validation result.
+    /// Represent result of performing common validation rule.
+    /// </summary>
+    /// <seealso cref="IValidationResult" />
+    /// <seealso cref="Validators.Validator{TModel}" />
+    [Serializable]
+    public class ValidationResult : IValidationResult
     {
-      _validatorDescriptor = validatorDescriptor;
-      _isValid = isValid;
-    }
+        private readonly ValidatorDescriptor _validatorDescriptor;
+        private readonly bool _isValid;
 
-    public bool IsValid()
-    {
-      return _isValid;
-    }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValidationResult"/> class.
+        /// </summary>
+        /// <param name="isValid">if set to <c>true</c> validator was valid otherwise validation was failed.</param>
+        /// <param name="validatorDescriptor">The validator descriptor.</param>
+        public ValidationResult(bool isValid, ValidatorDescriptor validatorDescriptor)
+        {
+            _validatorDescriptor = validatorDescriptor;
+            _isValid = isValid;
+        }
 
-    public Guid Id
-    {
-      get
-      {
-        return _validatorDescriptor.Id;
-      }
-    }
+        /// <summary>
+        /// Returns <c>true</c> if validator is valid, otherwise <c>false</c>.
+        /// </summary>
+        /// <returns><see cref="bool"/>Validation result.</returns>
+        public bool IsValid()
+        {
+            return _isValid;
+        }
 
-    public string Key
-    {
-      get
-      {
-        return _validatorDescriptor.Key;
-      }
-    }
+        /// <summary>
+        /// Gets the validator identifier.
+        /// </summary>
+        /// <value>
+        /// The validator identifier.
+        /// Each validator instance should have unique identifier.
+        /// </value>
+        public Guid Id
+        {
+            get
+            {
+                return _validatorDescriptor.Id;
+            }
+        }
 
-    public string ErrorMessage
-    {
-      get
-      {
-        return _validatorDescriptor.ErrorMessage;
-      }
-    }
+        /// <summary>
+        /// Gets the validator key.
+        /// </summary>
+        /// <value>
+        /// The validator key.
+        /// Each group of validator should have same key.
+        /// </value>
+        public string Key
+        {
+            get
+            {
+                return _validatorDescriptor.Key;
+            }
+        }
 
-    public string Description
-    {
-      get
-      {
-        return _validatorDescriptor.Description;
-      }
+        /// <summary>
+        /// Gets the error message.
+        /// </summary>
+        /// <value>
+        /// The error message.
+        /// </value>
+        public string ErrorMessage
+        {
+            get
+            {
+                return _validatorDescriptor.ErrorMessage;
+            }
+        }
+
+        /// <summary>
+        /// Gets the validator description.
+        /// </summary>
+        /// <value>
+        /// The validator description.
+        /// Some validator description.
+        /// </value>
+        public string Description
+        {
+            get
+            {
+                return _validatorDescriptor.Description;
+            }
+        }
     }
-  }
 }

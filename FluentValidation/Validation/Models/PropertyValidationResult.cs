@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FluentValidation.Validation.Models
+﻿namespace FluentValidation.Validation.Models
 {
+    /// <summary>
+    /// Specific validation result for property validators
+    /// </summary>
+    /// <seealso cref="ValidationResult" />
+    /// <seealso cref="Validators.PropertyValidator{TModel, TValue}" />
     public sealed class PropertyValidationResult : ValidationResult
     {
         public PropertyValidationResult(bool isValid, ValidatorDescriptor validatorDescriptor, string propertyName)
@@ -14,6 +13,12 @@ namespace FluentValidation.Validation.Models
             PropertyName = propertyName;
         }
 
+        /// <summary>
+        /// Gets the name of the property to validate.
+        /// </summary>
+        /// <value>
+        /// The name of the property to validate.
+        /// </value>
         public string PropertyName { get; private set; }
     }
 }
