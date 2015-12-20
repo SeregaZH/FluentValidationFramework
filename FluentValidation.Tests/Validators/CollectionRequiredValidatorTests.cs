@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using FluentValidation.Validation.Models.Results;
 using FluentValidation.Validation.Validators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentValidation.Validation.Models;
 
 namespace FluentValidation.Tests.Validators
 {

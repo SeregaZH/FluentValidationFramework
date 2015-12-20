@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="FluentValidation.Validation.Models.PropertyValidationResult">
+    <Position X="11.5" Y="5.5" Width="6.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Validation\Models\PropertyValidationResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FluentValidation.Validation.Models.StringValidatorOptions">
+    <Position X="26.25" Y="7.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Validation\Models\StringValidatorOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FluentValidation.Validation.Models.ValidationResult">
+    <Position X="11.5" Y="0.5" Width="6.5" />
+    <TypeIdentifier>
+      <HashCode>AQACAAAAAAAgAAQAAAgAAAAAAAAAAAAAAEAAAgAAAAA=</HashCode>
+      <FileName>Validation\Models\ValidationResult.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FluentValidation.Validation.Models.ValidatorDescriptor">
+    <Position X="26.25" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AQACAAAAAAAgAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validation\Models\ValidatorDescriptor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FluentValidation.Validation.Validators.PropertyValidator&lt;TModel, TValue&gt;">
+    <Position X="18.5" Y="3.25" Width="7" />
+    <TypeIdentifier>
+      <HashCode>AACAAAABAAAAAAAAAEAAAAAAAAEAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Validation\Validators\PropertyValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FluentValidation.Validation.Validators.PropertyValidatorAsync&lt;TModel, TValue&gt;" Collapsed="true">
+    <Position X="0.75" Y="2.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAQAAAAAAAAAAAAAEAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Validation\Validators\PropertyValidatorAsync.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FluentValidation.Validation.Validators.RequiredValidator&lt;TModel, TValue&gt;">
+    <Position X="18.5" Y="6.25" Width="7" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validation\Validators\RequiredValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FluentValidation.Validation.Validators.StringRequiredValidator&lt;TModel&gt;">
+    <Position X="18.5" Y="8.75" Width="7" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validation\Validators\StringRequiredValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FluentValidation.Validation.Validators.Validator&lt;TModel&gt;">
+    <Position X="18.5" Y="0.75" Width="7" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAECAAAAEAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validation\Validators\Validator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FluentValidation.Validation.Validators.ValidatorAsync&lt;TModel&gt;" Collapsed="true">
+    <Position X="0.75" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEQAAAAEAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Validation\Validators\ValidatorAsync.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="FluentValidation.Validation.IValidator&lt;TModel&gt;">
+    <Position X="26.25" Y="2.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validation\IValidator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FluentValidation.Validation.IValidatorAsync&lt;TModel&gt;" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Validation\IValidatorAsync.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FluentValidation.Validation.IValidatorExecutor&lt;TModel&gt;" Collapsed="true">
+    <Position X="0.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validation\IValidatorExecutor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FluentValidation.Validation.IValidatorExecutorAsync&lt;TModel&gt;" Collapsed="true">
+    <Position X="0.5" Y="4" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Validation\IValidatorExecutorAsync.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FluentValidation.Validation.Models.IValidationResult">
+    <Position X="26.25" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validation\Models\IValidationResult.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

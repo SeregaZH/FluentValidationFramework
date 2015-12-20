@@ -1,12 +1,25 @@
 ﻿namespace FluentValidation.Validation.Models.Options
 {
-    public abstract class BaseStringValidationOptions
+    /// <summary>
+    /// Validation options which are common for all string validators.
+    /// </summary>
+    public class BaseStringValidationOptions
     {
-        protected BaseStringValidationOptions(bool isTrimmed)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseStringValidationOptions"/> class.
+        /// </summary>
+        /// <param name="isTrimmed">if set to <c>true</c> spaces leading and trailing spaces must be trimmed.</param>
+        public BaseStringValidationOptions(bool isTrimmed)
         {
             IsTrimmed = isTrimmed;
         }
 
-        public bool IsTrimmed { get; }
+        /// <summary>
+        /// Gets a value indicating whether validated string is trimmed.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if leading and trailing spaces must be trimmed; otherwise, <c>false</c> string is not changed.
+        /// </value>
+        public bool IsTrimmed { get; private set; }
     }
 }

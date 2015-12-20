@@ -48,6 +48,7 @@
     <Compile Include="Validation\IValidatorExecutor.cs" />
     <Compile Include="Validation\IValidatorExecutorAsync.cs" />
     <Compile Include="Validation\Models\Options\BaseStringValidationOptions.cs" />
+    <Compile Include="Validation\Models\Options\StringValidationOptions.cs" />
     <Compile Include="Validation\Models\Options\ValueValidationOptions.cs" />
     <Compile Include="Validation\Models\Results\AggregateValidationResult.cs" />
     <Compile Include="Validation\Models\Results\IValidationResult.cs" />
@@ -72,6 +73,9 @@
     <Folder Include="Validation\Attributes\" />
     <Folder Include="Validation\Builders\Attributes\" />
     <Folder Include="Validation\Executors\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ValidationClassDiagramm.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
