@@ -16,5 +16,7 @@ namespace FluentValidation.Validation.Configuration
         public Type TargetType { get { return typeof(TModel); } }
 
         public IEnumerable<IValidator<TModel>> Validators { get; private set; }
+
+        public IEnumerable<IValidatorAsync<TModel>> AsyncValidators { get; private set; }
     }
 }
