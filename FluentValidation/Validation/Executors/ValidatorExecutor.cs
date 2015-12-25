@@ -10,7 +10,7 @@ namespace FluentValidation.Validation.Executors
     /// </summary>
     /// <typeparam name="TModel">The type of the model.</typeparam>
     /// <seealso cref="IValidatorExecutor{TModel}" />
-    public class ValidatorExecutor<TModel> : IValidatorExecutor<TModel>
+    public class ValidatorExecutor<TModel> : IValidatorExecutor<TModel> 
         where TModel : class
     {
         /// <summary>

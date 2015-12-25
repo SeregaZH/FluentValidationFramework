@@ -41,11 +41,11 @@
   <ItemGroup>
     <Compile Include="Helpers\Guard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\Configuration\ValidationModelConfig.cs" />
     <Compile Include="Validation\Configuration\ValidatorsConfig.cs" />
     <Compile Include="Validation\Executors\ValidatorExecutor.cs" />
     <Compile Include="Validation\Executors\ValidatorExecutorAsync.cs" />
     <Compile Include="Validation\IValidationModel.cs" />
-    <Compile Include="Validation\IValidationModelAsync.cs" />
     <Compile Include="Validation\IValidator.cs" />
     <Compile Include="Validation\IValidatorAsync.cs" />
     <Compile Include="Validation\IValidatorExecutor.cs" />
@@ -60,6 +60,8 @@
     <Compile Include="Validation\Models\Options\StringValuesValidatorOptions.cs" />
     <Compile Include="Validation\Models\Options\StringRequiredValidatorOptions.cs" />
     <Compile Include="Validation\Models\Results\ValidationResult.cs" />
+    <Compile Include="IValidationModel.cs" />
+    <Compile Include="Validation\ValidationModel\GenericValidationModel.cs" />
     <Compile Include="Validation\Validators\BaseValueValidator.cs" />
     <Compile Include="Validation\Validators\CollectionRequiredValidator.cs" />
     <Compile Include="Validation\Validators\DeniedValuesValidator.cs" />

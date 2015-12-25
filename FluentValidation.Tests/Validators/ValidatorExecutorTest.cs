@@ -36,7 +36,7 @@ namespace FluentValidation.Tests.Validators
 
             IEnumerable<ValidationResult> validationResults = target.Execute(null, validators);
 
-            // Expected excuption
+            // Expected exception
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace FluentValidation.Tests.Validators
 
             IEnumerable<ValidationResult> validationResults = target.Execute(fakeModel, null);
 
-            // Expected excuption
+            // Expected exception
         }
 
         [TestMethod]
@@ -88,12 +88,12 @@ namespace FluentValidation.Tests.Validators
             var validators = new List<IValidatorAsync<FakeValidationTargetModel>> { CreateAsyncValidator(true) };
             var target = new ValidatorExecutorAsync<FakeValidationTargetModel>();
 
-            IEnumerable<Task<ValidationResult>> validationResults = target.ExecuteAsync(fakeModel, validators);
+            var validationResults = target.ExecuteAsync(fakeModel, validators).Result;
 
             Assert.IsNotNull(validationResults);
             var failedValidatorTask = validationResults.SingleOrDefault();
             Assert.IsNotNull(failedValidatorTask);
-            var failedValidator = failedValidatorTask.Result;
+            var failedValidator = failedValidatorTask;
             Assert.IsNotNull(failedValidator);
             Assert.IsTrue(failedValidator.IsValid());
         }
@@ -105,12 +105,12 @@ namespace FluentValidation.Tests.Validators
             var validators = new List<IValidatorAsync<FakeValidationTargetModel>> { CreateAsyncValidator(false) };
             var target = new ValidatorExecutorAsync<FakeValidationTargetModel>();
 
-            IEnumerable<Task<ValidationResult>> validationResults = target.ExecuteAsync(fakeModel, validators);
+            var validationResults = target.ExecuteAsync(fakeModel, validators).Result;
 
             Assert.IsNotNull(validationResults);
             var failedValidatorTask = validationResults.SingleOrDefault();
             Assert.IsNotNull(failedValidatorTask);
-            var failedValidator = failedValidatorTask.Result;
+            var failedValidator = failedValidatorTask;
             Assert.IsNotNull(failedValidator);
             Assert.IsFalse(failedValidator.IsValid());
         }
@@ -122,31 +122,31 @@ namespace FluentValidation.Tests.Validators
             var validators = new List<IValidatorAsync<FakeValidationTargetModel>>();
             var target = new ValidatorExecutorAsync<FakeValidationTargetModel>();
 
-            IEnumerable<Task<ValidationResult>> validationResults = target.ExecuteAsync(fakeModel, validators);
+            var validationResults = target.ExecuteAsync(fakeModel, validators).Result;
 
             Assert.IsNotNull(validationResults);
             Assert.IsFalse(validationResults.Any());
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(AggregateException))]
         public void TestExecuteAsyncWithNullModel()
         {
             var validators = new List<IValidatorAsync<FakeValidationTargetModel>>();
             var target = new ValidatorExecutorAsync<FakeValidationTargetModel>();
 
-            IEnumerable<Task<ValidationResult>> validationResults = target.ExecuteAsync(null, validators);
+            var validationResults = target.ExecuteAsync(null, validators).Result;
 
             // expected exception.
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(AggregateException))]
         public void TestExecuteAsyncWithNullCollection()
         {
             var target = new ValidatorExecutorAsync<FakeValidationTargetModel>();
 
-            IEnumerable<Task<ValidationResult>> validationResults = target.ExecuteAsync(new FakeValidationTargetModel(), null);
+            var validationResults = target.ExecuteAsync(new FakeValidationTargetModel(), null).Result;
 
             // expected exception.
         }

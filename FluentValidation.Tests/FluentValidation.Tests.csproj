@@ -60,6 +60,7 @@
     <Compile Include="Validators\AggregateValidationResultTests.cs" />
     <Compile Include="Validators\CollectionRequiredValidatorTests.cs" />
     <Compile Include="Validators\FakeValidationTargetModel.cs" />
+    <Compile Include="Validators\GenericValidationModelTests.cs" />
     <Compile Include="Validators\StringRequiredValidatorTest.cs" />
     <Compile Include="Validators\ValidatorExecutorTest.cs" />
     <Compile Include="Validators\ValidatorTestHelper.cs" />

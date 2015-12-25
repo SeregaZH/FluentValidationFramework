@@ -7,19 +7,27 @@ namespace FluentValidation.Validation.Models.Results
     [Serializable]
     public sealed class AggregateValidationResult : IValidationResult
     {
-        private readonly IEnumerable<ValidationResult> _rules;
+        private readonly IEnumerable<ValidationResult> _validationResults;
 
-        public AggregateValidationResult(IEnumerable<ValidationResult> rules)
+        public AggregateValidationResult(IEnumerable<ValidationResult> validationResults)
         {
-            _rules = rules;
-            FailedRules = _rules.Where(x => !x.IsValid());
+            _validationResults = validationResults;
+            FailedValidators = _validationResults.Where(x => !x.IsValid());
+        }
+
+        public AggregateValidationResult(IEnumerable<ValidationResult> validationResults, params IEnumerable<ValidationResult>[] additionalValidationResults)
+        {
+            _validationResults = validationResults
+                .Union(additionalValidationResults
+                .SelectMany(x => x));
+            FailedValidators = _validationResults.Where(x => !x.IsValid());
         }
 
         public bool IsValid()
         {
-            return !FailedRules.Any();
+            return !FailedValidators.Any();
         }
 
-        public IEnumerable<ValidationResult> FailedRules { get; }
+        public IEnumerable<ValidationResult> FailedValidators { get; }
     }
 }

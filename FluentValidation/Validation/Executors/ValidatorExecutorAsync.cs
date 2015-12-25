@@ -19,11 +19,12 @@ namespace FluentValidation.Validation.Executors
         /// <param name="model">The model to validate.</param>
         /// <param name="validators">The validators collection.</param>
         /// <returns>Validation results task.</returns>
-        public IEnumerable<Task<ValidationResult>> ExecuteAsync(TModel model, IEnumerable<IValidatorAsync<TModel>> validators)
+        public async Task<IEnumerable<ValidationResult>> ExecuteAsync(TModel model, IEnumerable<IValidatorAsync<TModel>> validators)
         {
             Guard.ArgumentNull(model, nameof(model));
             Guard.ArgumentNull(validators, nameof(validators));
-            return validators.Select(async x => await x.ValidateAsync(model));
+            return await Task.WhenAll(validators
+                .Select(async x => await x.ValidateAsync(model)));
         }
     }
 }

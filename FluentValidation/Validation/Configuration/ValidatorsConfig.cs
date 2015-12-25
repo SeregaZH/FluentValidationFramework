@@ -1,22 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace FluentValidation.Validation.Configuration
 {
     public class ValidatorsConfig<TModel>
     {
-        public ValidatorsConfig(string rulesetName, IEnumerable<IValidator<TModel>> validators)
+        public ValidatorsConfig(
+            string rulesetName,
+            ValidationModelConfig<TModel> validationModelConfig)
         {
             RulesetName = rulesetName;
-            Validators = validators;
+            ValidationModelConfig = validationModelConfig;
         }
 
         public string RulesetName { get; private set; }
 
         public Type TargetType { get { return typeof(TModel); } }
 
-        public IEnumerable<IValidator<TModel>> Validators { get; private set; }
-
-        public IEnumerable<IValidatorAsync<TModel>> AsyncValidators { get; private set; }
+        public ValidationModelConfig<TModel> ValidationModelConfig { get; private set; }
     }
 }

@@ -17,6 +17,6 @@ namespace FluentValidation.Validation
         /// <param name="model">The model to validate.</param>
         /// <param name="validators">The validators collection.</param>
         /// <returns>Validation results task.</returns>
-        IEnumerable<Task<ValidationResult>> ExecuteAsync(TModel model, IEnumerable<IValidatorAsync<TModel>> validators);
+        Task<IEnumerable<ValidationResult>> ExecuteAsync(TModel model, IEnumerable<IValidatorAsync<TModel>> validators);
     }
 }

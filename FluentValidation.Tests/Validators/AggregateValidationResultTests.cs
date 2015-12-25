@@ -27,8 +27,8 @@ namespace FluentValidation.Tests.Validators
             var result = target.IsValid();
 
             Assert.IsFalse(result);
-            Assert.IsTrue(target.FailedRules.Any());
-            Assert.AreEqual(target.FailedRules.First().Id, failedRuleId);
+            Assert.IsTrue(target.FailedValidators.Any());
+            Assert.AreEqual(target.FailedValidators.First().Id, failedRuleId);
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace FluentValidation.Tests.Validators
             var result = target.IsValid();
 
             Assert.IsTrue(result);
-            Assert.IsFalse(target.FailedRules.Any());
+            Assert.IsFalse(target.FailedValidators.Any());
         }
     }
 }
