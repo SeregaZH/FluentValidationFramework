@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentValidation.Validation.Models.Results;
+using FluentValidation.Validation.Models;
 
 namespace FluentValidation.Validation
 {
@@ -15,8 +16,8 @@ namespace FluentValidation.Validation
         /// Apply all validators to the model asynchronously.
         /// </summary>
         /// <param name="model">The model to validate.</param>
-        /// <param name="validators">The validators collection.</param>
+        /// <param name="validators">The validator containers collection.</param>
         /// <returns>Validation results task.</returns>
-        Task<IEnumerable<ValidationResult>> ExecuteAsync(TModel model, IEnumerable<IValidatorAsync<TModel>> validators);
+        Task<IEnumerable<ValidationResult>> ExecuteAsync(TModel model, IEnumerable<ValidatorContainerAsync<TModel>> validatorContainers);
     }
 }

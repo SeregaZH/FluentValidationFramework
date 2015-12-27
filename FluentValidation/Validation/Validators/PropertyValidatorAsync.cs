@@ -11,8 +11,8 @@ namespace FluentValidation.Validation.Validators
         private readonly Expression<Func<TModel, TValue>> _propertyGetter;
         private readonly Func<TModel, TValue> _valueResolver;
 
-        protected PropertyValidatorAsync(ValidatorDescriptor descriptor, int priority, Expression<Func<TModel, TValue>> propertyGetter)
-      : base(descriptor, priority)
+        protected PropertyValidatorAsync(ValidatorDescriptor descriptor, Expression<Func<TModel, TValue>> propertyGetter)
+                 : base(descriptor)
         {
             _propertyGetter = propertyGetter;
             _valueResolver = _propertyGetter.Compile();

@@ -9,8 +9,8 @@ namespace FluentValidation.Validation.Validators
 {
     public sealed class DeniedStringValuesValidator<TModel> : DeniedValuesValidator<TModel, string>
     {
-        public DeniedStringValuesValidator(ValidatorDescriptor descriptor, int priority, Expression<Func<TModel, string>> propertyGetter, HashSet<string> deniedValues, StringValuesValidatorOptions options) 
-            : base(descriptor, priority, propertyGetter, new ValueValidationOptions<string>(new HashSet<string>(deniedValues.Select(x => options.IsTrimmed ? x?.Trim() : x)), options.Comparer))
+        public DeniedStringValuesValidator(ValidatorDescriptor descriptor, Expression<Func<TModel, string>> propertyGetter, HashSet<string> deniedValues, StringValuesValidatorOptions options) 
+            : base(descriptor, propertyGetter, new ValueValidationOptions<string>(new HashSet<string>(deniedValues.Select(x => options.IsTrimmed ? x?.Trim() : x)), options.Comparer))
         {
             
         }

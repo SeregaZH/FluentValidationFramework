@@ -15,14 +15,5 @@ namespace FluentValidation.Validation
         /// <param name="model">The model to validate.</param>
         /// <returns>Validation result <see cref="ValidationResult"/>.</returns>
         ValidationResult Validate(TModel model);
-
-
-        /// <summary>
-        /// Gets the validator priority.
-        /// </summary>
-        /// <value>
-        /// The validator priority.
-        /// </value>
-        int Priority { get; }
     }
 }

@@ -11,10 +11,9 @@ namespace FluentValidation.Validation.Validators
     {
         public DeniedValuesValidator(
             ValidatorDescriptor descriptor, 
-            int priority, 
             Expression<Func<TModel, TProperty>> propertyGetter, 
             ValueValidationOptions<TProperty> options) 
-            : base(descriptor, priority, propertyGetter, options)
+             : base(descriptor, propertyGetter, options)
         {
 
         }

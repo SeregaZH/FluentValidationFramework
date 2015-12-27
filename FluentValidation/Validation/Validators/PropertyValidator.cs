@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using FluentValidation.Validation.Models;
 using FluentValidation.Validation.Models.Results;
+using FluentValidation.Helpers;
 
 namespace FluentValidation.Validation.Validators
 {
@@ -23,11 +24,10 @@ namespace FluentValidation.Validation.Validators
         /// Initializes a new instance of the <see cref="PropertyValidator{TModel, TValue}"/> class.
         /// </summary>
         /// <param name="descriptor">The validator descriptor <see cref="ValidatorDescriptor" /> (nested <see cref="Validator{TModel}" />).</param>
-        /// <param name="priority">The validator priority (nested <see cref="Validator{TModel}" />).</param>
         /// <param name="propertyGetter">The property value getter.</param>
-        protected PropertyValidator(ValidatorDescriptor descriptor, int priority,
+        protected PropertyValidator(ValidatorDescriptor descriptor,
             Expression<Func<TModel, TValue>> propertyGetter)
-            : base(descriptor, priority)
+            : base(descriptor)
         {
             _propertyGetter = propertyGetter;
             _valueResolver = propertyGetter.Compile();
@@ -40,7 +40,7 @@ namespace FluentValidation.Validation.Validators
         /// <returns></returns>
         protected sealed override ValidationResult ValidateModel(TModel model)
         {
-            return ValidateProperty(_valueResolver(model), model, ResolvePropertyName(_propertyGetter));
+            return ValidateProperty(_valueResolver(model), model, _propertyGetter.ResolvePropertyName());
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FluentValidation.Validation.Models.Results;
+using FluentValidation.Validation.Models;
 
 namespace FluentValidation.Validation
 {
@@ -14,8 +15,8 @@ namespace FluentValidation.Validation
         /// Apply all validators to the model.
         /// </summary>
         /// <param name="model">The model to validate.</param>
-        /// <param name="validators">The validators collection.</param>
+        /// <param name="validatorContainers">The validators containers.</param>
         /// <returns>The collection of validation results.</returns>
-        IEnumerable<ValidationResult> Execute(TModel model, IEnumerable<IValidator<TModel>> validators);
+        IEnumerable<ValidationResult> Execute(TModel model, IEnumerable<ValidatorContainer<TModel>> validatorContainers);
     }
 }

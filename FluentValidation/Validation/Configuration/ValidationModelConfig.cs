@@ -1,19 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using FluentValidation.Validation.Models;
+using System.Collections.Generic;
 
 namespace FluentValidation.Validation.Configuration
 {
     public class ValidationModelConfig<TModel>
     {
         public ValidationModelConfig(
-            IEnumerable<IValidator<TModel>> validators,
-            IEnumerable<IValidatorAsync<TModel>> asyncValidators)
+            IEnumerable<ValidatorContainer<TModel>> validators,
+            IEnumerable<ValidatorContainerAsync<TModel>> asyncValidators)
         {
             Validators = validators;
             AsyncValidators = asyncValidators;
         } 
 
-        public IEnumerable<IValidator<TModel>> Validators { get; private set; }
+        public IEnumerable<ValidatorContainer<TModel>> Validators { get; private set; }
 
-        public IEnumerable<IValidatorAsync<TModel>> AsyncValidators { get; private set; }
+        public IEnumerable<ValidatorContainerAsync<TModel>> AsyncValidators { get; private set; }
     }
 }

@@ -169,8 +169,7 @@ namespace FluentValidation.Tests.Validators
         {
             var validationTarget = validationTargetFactory();
             var ruleDescriptor = CreateDefaultValidationDescriptor();
-            var targetRule = new StringRequiredValidator<TModel>(ruleDescriptor, 0,
-                propertyToValidate, optionsFactory());
+            var targetRule = new StringRequiredValidator<TModel>(ruleDescriptor, propertyToValidate, optionsFactory());
 
             ValidationResult result = targetRule.Validate(validationTarget);
 

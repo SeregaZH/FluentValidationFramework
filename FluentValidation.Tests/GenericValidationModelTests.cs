@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using FluentValidation.Validation.Configuration;
 
-namespace FluentValidation.Tests.Validators
+namespace FluentValidation.Tests
 {
     [TestClass]
     public class GenericValidationModelTests
@@ -53,11 +53,11 @@ namespace FluentValidation.Tests.Validators
                 arrange: (model, mockExecutor, mockAsyncExecutor) =>
                 {
                     mockExecutor
-                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<IValidator<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
                     .Returns(() => new List<ValidationResult> { CreateValidationResult(false, failedRuleId) });
 
                     mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<IValidatorAsync<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
                     .Returns(() => Task.FromResult(Enumerable.Empty<ValidationResult>()));
                 },
                 act: SyncValidationModelAct,
@@ -75,11 +75,11 @@ namespace FluentValidation.Tests.Validators
                 arrange: (model, mockExecutor, mockAsyncExecutor) =>
                 {
                     mockExecutor
-                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<IValidator<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
                     .Returns(() => Enumerable.Empty<ValidationResult>());
 
                     mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<IValidatorAsync<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
                     .Returns(() => Task.FromResult(new List<ValidationResult> { CreateValidationResult(false, failedRuleId) }.AsEnumerable()));
                 },
                 act: SyncValidationModelAct,
@@ -95,11 +95,11 @@ namespace FluentValidation.Tests.Validators
                 arrange: (model, mockExecutor, mockAsyncExecutor) =>
                 {
                     mockExecutor
-                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<IValidator<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
                     .Returns(() => Enumerable.Empty<ValidationResult>());
 
                     mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<IValidatorAsync<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
                     .Returns(() => Task.FromResult(new List<ValidationResult> { CreateValidationResult(true) }.AsEnumerable()));
                 },
                 act: SyncValidationModelAct,
@@ -115,11 +115,11 @@ namespace FluentValidation.Tests.Validators
                 arrange: (model, mockExecutor, mockAsyncExecutor) =>
                 {
                     mockExecutor
-                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<IValidator<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
                     .Returns(() => new List<ValidationResult> { CreateValidationResult(true) });
 
                     mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<IValidatorAsync<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
                     .Returns(() => Task.FromResult(new List<ValidationResult> { CreateValidationResult(true) }.AsEnumerable()));
                 },
                 act: SyncValidationModelAct,
@@ -135,11 +135,11 @@ namespace FluentValidation.Tests.Validators
                 arrange: (model, mockExecutor, mockAsyncExecutor) =>
                 {
                     mockExecutor
-                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<IValidator<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
                     .Returns(() => new List<ValidationResult> { CreateValidationResult(true) });
 
                     mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<IValidatorAsync<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
                     .Returns(() => Task.FromResult(new List<ValidationResult> { CreateValidationResult(true) }.AsEnumerable()));
                 },
                 act: AsyncValidationModelAct,
@@ -155,11 +155,11 @@ namespace FluentValidation.Tests.Validators
                 arrange: (model, mockExecutor, mockAsyncExecutor) =>
                 {
                     mockExecutor
-                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<IValidator<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
                     .Returns(() => Enumerable.Empty<ValidationResult>());
 
                     mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<IValidatorAsync<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
                     .Returns(() => Task.FromResult(new List<ValidationResult> { CreateValidationResult(true) }.AsEnumerable()));
                 },
                 act: AsyncValidationModelAct,
@@ -176,11 +176,11 @@ namespace FluentValidation.Tests.Validators
                 arrange: (model, mockExecutor, mockAsyncExecutor) =>
                 {
                     mockExecutor
-                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<IValidator<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
                     .Returns(() => Enumerable.Empty<ValidationResult>());
 
                     mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<IValidatorAsync<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
                     .Returns(() => Task.FromResult(new List<ValidationResult> { CreateValidationResult(false, failedRuleId) }.AsEnumerable()));
                 },
                 act: AsyncValidationModelAct,
@@ -197,11 +197,11 @@ namespace FluentValidation.Tests.Validators
                 arrange: (model, mockExecutor, mockAsyncExecutor) =>
                 {
                     mockExecutor
-                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<IValidator<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
                     .Returns(() => new List<ValidationResult> { CreateValidationResult(false, failedRuleId) });
 
                     mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<IValidatorAsync<FakeValidationTargetModel>>>()))
+                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
                     .Returns(() => Task.FromResult(Enumerable.Empty<ValidationResult>()));
                 },
                 act: AsyncValidationModelAct,
@@ -242,8 +242,8 @@ namespace FluentValidation.Tests.Validators
         private ValidationModelConfig<FakeValidationTargetModel> CreateFakeConfig()
         {
             return new ValidationModelConfig<FakeValidationTargetModel>(
-                Enumerable.Empty<IValidator<FakeValidationTargetModel>>(),
-                Enumerable.Empty<IValidatorAsync<FakeValidationTargetModel>>());
+                Enumerable.Empty<ValidatorContainer<FakeValidationTargetModel>>(),
+                Enumerable.Empty<ValidatorContainerAsync<FakeValidationTargetModel>>());
         }
 
         private Action<AggregateValidationResult,

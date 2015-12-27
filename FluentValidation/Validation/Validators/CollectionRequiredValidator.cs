@@ -9,8 +9,8 @@ namespace FluentValidation.Validation.Validators
 {
     public sealed class CollectionRequiredValidator<TModel, TCollection> : RequiredValidator<TModel, IEnumerable<TCollection>>
     {
-        public CollectionRequiredValidator(ValidatorDescriptor descriptor, int priority, Expression<Func<TModel, IEnumerable<TCollection>>> propertyGetter) 
-            : base(descriptor, priority, propertyGetter)
+        public CollectionRequiredValidator(ValidatorDescriptor descriptor, Expression<Func<TModel, IEnumerable<TCollection>>> propertyGetter) 
+            : base(descriptor, propertyGetter)
         {
         }
 

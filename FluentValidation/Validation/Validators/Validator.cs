@@ -16,11 +16,9 @@ namespace FluentValidation.Validation.Validators
         /// Initializes a part of the <see cref="Validator{TModel}"/> class.
         /// </summary>
         /// <param name="descriptor">The validator descriptor <see cref="ValidatorDescriptor" />.</param>
-        /// <param name="priority">The validator priority.</param>
-        protected Validator(ValidatorDescriptor descriptor, int priority)
+        protected Validator(ValidatorDescriptor descriptor)
         {
             Descriptor = descriptor;
-            Priority = priority;
         }
 
         /// <summary>
@@ -50,13 +48,5 @@ namespace FluentValidation.Validation.Validators
         {
             return ValidateModel(model);
         }
-
-        /// <summary>
-        /// Gets the validator priority.
-        /// </summary>
-        /// <value>
-        /// The validator priority.
-        /// </value>
-        public int Priority { get; private set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using FluentValidation.Validation.Models.Results;
 using FluentValidation.Helpers;
 using System.Linq;
+using FluentValidation.Validation.Models;
 
 namespace FluentValidation.Validation.Executors
 {
@@ -19,12 +20,13 @@ namespace FluentValidation.Validation.Executors
         /// <param name="model">The model to validate.</param>
         /// <param name="validators">The validators collection.</param>
         /// <returns>Validation results task.</returns>
-        public async Task<IEnumerable<ValidationResult>> ExecuteAsync(TModel model, IEnumerable<IValidatorAsync<TModel>> validators)
+        public async Task<IEnumerable<ValidationResult>> ExecuteAsync(TModel model, IEnumerable<ValidatorContainerAsync<TModel>> validators)
         {
             Guard.ArgumentNull(model, nameof(model));
             Guard.ArgumentNull(validators, nameof(validators));
             return await Task.WhenAll(validators
-                .Select(async x => await x.ValidateAsync(model)));
+                .OrderBy(x => x.Priority)
+                .Select(async x => await x.Validator.ValidateAsync(model)));
         }
     }
 }

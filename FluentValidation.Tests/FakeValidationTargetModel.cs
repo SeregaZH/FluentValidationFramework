@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FluentValidation.Tests.Validators
+namespace FluentValidation.Tests
 {
     public class FakeValidationTargetModel
     {

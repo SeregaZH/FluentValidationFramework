@@ -16,14 +16,12 @@ namespace FluentValidation.Validation.Validators
         /// Initializes a new instance of the <see cref="RequiredValidator{TModel, TValue}"/> class.
         /// </summary>
         /// <param name="descriptor">The validator descriptor <see cref="ValidatorDescriptor" /> (nested <see cref="PropertyValidator{TModel, TValue}" />).</param>
-        /// <param name="priority">The validator priority (nested <see cref="PropertyValidator{TModel, TValue}" />).</param>
         /// <param name="propertyGetter">The property getter (nested <see cref="PropertyValidator{TModel, TValue}" />).</param>
         /// <param name="invalidValues">The set of invalid values.</param>
         public RequiredValidator(
             ValidatorDescriptor descriptor,
-            int priority,
             Expression<Func<TModel, TValue>> propertyGetter)
-            : base(descriptor, priority, propertyGetter)
+            : base(descriptor, propertyGetter)
         {
         }
 

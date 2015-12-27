@@ -10,10 +10,9 @@ namespace FluentValidation.Validation.Validators
     {
         protected BaseValueValidator
             (ValidatorDescriptor descriptor, 
-            int priority, 
             Expression<Func<TModel, TProperty>> propertyGetter,
             ValueValidationOptions<TProperty> options) 
-            : base(descriptor, priority, propertyGetter)
+            : base(descriptor, propertyGetter)
         {
             Options = options;
         }
