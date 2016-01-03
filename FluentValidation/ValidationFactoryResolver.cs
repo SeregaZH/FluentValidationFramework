@@ -6,10 +6,10 @@ namespace FluentValidation
 {
     public static class ValidationFactoryResolver
     {
-        private static volatile IValidationConfigFactory _validatorConfigFactory;
+        private static volatile IValidationModelFactory _validatorConfigFactory;
         private static object syncRoot = new Object();
 
-        public static IValidationConfigFactory Resolve()
+        public static IValidationModelFactory Resolve()
         {
             if (_validatorConfigFactory == null)
             {
@@ -17,7 +17,7 @@ namespace FluentValidation
                 {
                     if (_validatorConfigFactory == null)
                     {
-                        _validatorConfigFactory = new ValidationConfigFactory();
+                        _validatorConfigFactory = new ValidationModelFactory();
                     }
                 }
             }

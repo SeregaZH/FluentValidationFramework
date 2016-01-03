@@ -1,5 +1,4 @@
-﻿using FluentValidation.Tests.Validators;
-using FluentValidation.Validation;
+﻿using FluentValidation.Validation;
 using FluentValidation.Validation.Executors;
 using FluentValidation.Validation.Models;
 using FluentValidation.Validation.Models.Results;
@@ -10,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FluentValidation.Tests.Executors
+namespace FluentValidation.UnitTests.Executors
 {
     [TestClass]
     public class ValidatorExecutorTest

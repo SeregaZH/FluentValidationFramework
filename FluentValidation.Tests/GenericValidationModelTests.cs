@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using FluentValidation.Validation.Configuration;
 
-namespace FluentValidation.Tests
+namespace FluentValidation.UnitTests
 {
     [TestClass]
     public class GenericValidationModelTests

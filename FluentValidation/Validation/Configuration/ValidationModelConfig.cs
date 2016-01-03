@@ -11,6 +11,12 @@ namespace FluentValidation.Validation.Configuration
         {
             Validators = validators;
             AsyncValidators = asyncValidators;
+        }
+
+        public ValidationModelConfig()
+        {
+            Validators = new List<ValidatorContainer<TModel>>();
+            AsyncValidators = new List<ValidatorContainerAsync<TModel>>();
         } 
 
         public IEnumerable<ValidatorContainer<TModel>> Validators { get; private set; }

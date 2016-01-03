@@ -28,7 +28,7 @@ namespace FluentValidation.Validation.Builders.Fluent
             return this;
         }
 
-        public ValidationModelConfig<TModel> Build(TModel model)
+        public ValidationModelConfig<TModel> Build()
         {
             return new ValidationModelConfig<TModel>(_validatorContainers, _asyncValidatorContainers);
         }

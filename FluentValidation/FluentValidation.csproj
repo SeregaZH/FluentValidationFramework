@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Helpers\ExpressionHelper.cs" />
     <Compile Include="Helpers\Guard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,18 +52,19 @@
     <Compile Include="Validation\Builders\Fluent\ValidatorExecutorsConfigBuilder.cs" />
     <Compile Include="Validation\Builders\Fluent\ValidatorsConfigBuilder.cs" />
     <Compile Include="Validation\Configuration\ValidationModelConfig.cs" />
+    <Compile Include="Validation\Configuration\ValidatorsConfigBase.cs" />
     <Compile Include="Validation\Configuration\ValidatorExecutorsConfig.cs" />
     <Compile Include="Validation\Configuration\ValidatorsConfig.cs" />
     <Compile Include="Validation\Executors\ValidatorExecutor.cs" />
     <Compile Include="Validation\Executors\ValidatorExecutorAsync.cs" />
-    <Compile Include="Validation\Factories\ValidationConfigFactory.cs" />
+    <Compile Include="Validation\Factories\ValidationModelFactory.cs" />
     <Compile Include="Validation\Builders\Fluent\IValidationModelConfigBuilder.cs" />
     <Compile Include="Validation\IValidationModel.cs" />
     <Compile Include="Validation\IValidator.cs" />
     <Compile Include="Validation\IValidatorAsync.cs" />
     <Compile Include="Validation\IValidatorExecutor.cs" />
     <Compile Include="Validation\IValidatorExecutorAsync.cs" />
-    <Compile Include="Validation\IValidationConfigFactory.cs" />
+    <Compile Include="Validation\IValidationModelFactory.cs" />
     <Compile Include="Validation\Builders\Fluent\IValidatorsConfigBuilder.cs" />
     <Compile Include="Validation\Models\Options\BaseStringValidationOptions.cs" />
     <Compile Include="Validation\Models\Options\StringValidationOptions.cs" />

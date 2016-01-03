@@ -2,6 +2,8 @@
 using FluentValidation.Validation.Configuration;
 using FluentValidation.Helpers;
 using FluentValidation.Validation.Fluent;
+using System.Collections.Generic;
+using FluentValidation.Validation.Models;
 
 namespace FluentValidation.Validation.Builders.Fluent
 {
@@ -11,10 +13,16 @@ namespace FluentValidation.Validation.Builders.Fluent
         private Func<IValidationModelConfigBuilder<TModel>, ValidationModelConfig<TModel>> _validationConfigModelBuilder;
         private Func<IValidatorExecutorsConfigBuilder<TModel>, ValidatorExecutorsConfig<TModel>> _validatorExecutorsConfigBuilder;
 
-        public ValidatorsConfig<TModel> Build(string rulesetName = null)
+        public ValidatorsConfig<TModel> Build(string rulesetName = Constants.DefaultRulestName)
         {
-            var validatorConfigModel = _validationConfigModelBuilder(new ValidationModelConfigBuilder<TModel>());
-            var validatorExecutorsConfig = _validatorExecutorsConfigBuilder(new ValidatorExecutorsConfigBuilder<TModel>());
+            var validatorConfigModel = _validationConfigModelBuilder != null
+                ? _validationConfigModelBuilder(new ValidationModelConfigBuilder<TModel>())
+                : new ValidationModelConfig<TModel>();
+
+            var validatorExecutorsConfig = _validatorExecutorsConfigBuilder != null
+                ? _validatorExecutorsConfigBuilder(new ValidatorExecutorsConfigBuilder<TModel>())
+                : new ValidatorExecutorsConfig<TModel>();
+
             return new ValidatorsConfig<TModel>(rulesetName, validatorConfigModel, validatorExecutorsConfig);
         }
 

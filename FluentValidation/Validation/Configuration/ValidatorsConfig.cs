@@ -2,20 +2,18 @@
 
 namespace FluentValidation.Validation.Configuration
 {
-    public sealed class ValidatorsConfig<TModel>
+    public sealed class ValidatorsConfig<TModel> : ValidatorsConfigBase
         where TModel : class
     {
         public ValidatorsConfig(
             string rulesetName,
             ValidationModelConfig<TModel> validationModelConfig,
             ValidatorExecutorsConfig<TModel> validatorExecutorsConfig)
+            :base(rulesetName)
         {
-            RulesetName = rulesetName;
             ValidationModelConfig = validationModelConfig;
             ValidatorExecutorsConfig = validatorExecutorsConfig;
         }
-
-        public string RulesetName { get; private set; }
 
         public Type TargetType { get { return typeof(TModel); } }
 

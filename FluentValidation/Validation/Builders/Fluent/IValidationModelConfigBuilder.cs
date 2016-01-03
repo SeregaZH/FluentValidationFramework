@@ -5,7 +5,7 @@ namespace FluentValidation.Validation.Fluent
 {
     public interface IValidationModelConfigBuilder<TModel>
     {
-        ValidationModelConfig<TModel> Build(TModel model);
+        ValidationModelConfig<TModel> Build();
 
         IValidationModelConfigBuilder<TModel> AddValidator(ValidatorContainer<TModel> validatorContainer);
 

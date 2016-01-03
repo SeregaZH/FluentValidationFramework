@@ -11,6 +11,6 @@ namespace FluentValidation.Validation.Fluent
 
         IValidatorsConfigBuilder<TModel> WithValidatorExecutors(Func<IValidatorExecutorsConfigBuilder<TModel>, ValidatorExecutorsConfig<TModel>> configBuilder);
 
-        ValidatorsConfig<TModel> Build(string rulesetName);
+        ValidatorsConfig<TModel> Build(string rulesetName = Constants.DefaultRulestName);
     }
 }

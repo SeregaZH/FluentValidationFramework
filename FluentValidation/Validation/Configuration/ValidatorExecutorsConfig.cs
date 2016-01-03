@@ -1,4 +1,6 @@
-﻿namespace FluentValidation.Validation.Configuration
+﻿using FluentValidation.Validation.Executors;
+
+namespace FluentValidation.Validation.Configuration
 {
     public sealed class ValidatorExecutorsConfig<TModel>
         where TModel: class
@@ -9,6 +11,12 @@
         {
             Executor = executor;
             ExecutorAsync = executorAsync;
+        }
+
+        public ValidatorExecutorsConfig()
+        {
+            Executor = new ValidatorExecutor<TModel>();
+            ExecutorAsync = new ValidatorExecutorAsync<TModel>();
         }
 
         public IValidatorExecutor<TModel> Executor { get; private set; }

@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentValidation.Validation.Models.Options;
 using FluentValidation.Validation.Models.Results;
 
-namespace FluentValidation.Tests.Validators
+namespace FluentValidation.UnitTests.Validators
 {
     [TestClass]
     public sealed class StringRequiredValidatorTest

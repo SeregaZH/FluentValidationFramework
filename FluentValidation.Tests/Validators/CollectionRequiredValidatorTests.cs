@@ -7,7 +7,7 @@ using FluentValidation.Validation.Validators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentValidation.Validation.Models;
 
-namespace FluentValidation.Tests.Validators
+namespace FluentValidation.UnitTests.Validators
 {
     [TestClass]
     public class CollectionRequiredValidatorTests

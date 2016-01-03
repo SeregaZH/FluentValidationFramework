@@ -6,7 +6,7 @@ using FluentValidation.Validation.Models.Results;
 using FluentValidation.Validation.Models;
 using System.Linq;
 
-namespace FluentValidation.Tests
+namespace FluentValidation.UnitTests
 {
     [TestClass]
     public class AggregateValidationResultTests

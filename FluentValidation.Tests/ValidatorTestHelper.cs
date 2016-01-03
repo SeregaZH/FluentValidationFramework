@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.Validation.Models;
 
-namespace FluentValidation.Tests.Validators
+namespace FluentValidation.UnitTests.Validators
 {
     public static class ValidatorTestHelper
     {
