@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FluentValidation.Validation.Configuration
 {
-    public class ValidationModelConfig<TModel>
+    public sealed class ValidationModelConfig<TModel>
     {
         public ValidationModelConfig(
             IEnumerable<ValidatorContainer<TModel>> validators,

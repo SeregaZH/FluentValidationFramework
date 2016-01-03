@@ -2,14 +2,17 @@
 
 namespace FluentValidation.Validation.Configuration
 {
-    public class ValidatorsConfig<TModel>
+    public sealed class ValidatorsConfig<TModel>
+        where TModel : class
     {
         public ValidatorsConfig(
             string rulesetName,
-            ValidationModelConfig<TModel> validationModelConfig)
+            ValidationModelConfig<TModel> validationModelConfig,
+            ValidatorExecutorsConfig<TModel> validatorExecutorsConfig)
         {
             RulesetName = rulesetName;
             ValidationModelConfig = validationModelConfig;
+            ValidatorExecutorsConfig = validatorExecutorsConfig;
         }
 
         public string RulesetName { get; private set; }
@@ -17,5 +20,7 @@ namespace FluentValidation.Validation.Configuration
         public Type TargetType { get { return typeof(TModel); } }
 
         public ValidationModelConfig<TModel> ValidationModelConfig { get; private set; }
+
+        public ValidatorExecutorsConfig<TModel> ValidatorExecutorsConfig { get; private set; }
     }
 }

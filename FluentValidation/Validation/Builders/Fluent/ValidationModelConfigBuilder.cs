@@ -1,15 +1,16 @@
 ﻿using FluentValidation.Validation.Configuration;
+using FluentValidation.Validation.Fluent;
 using FluentValidation.Validation.Models;
 using System.Collections.Generic;
 
 namespace FluentValidation.Validation.Builders.Fluent
 {
-    public class ValidationConfigBuilder<TModel> : IValidationModelConfigBuilder<TModel>
+    public class ValidationModelConfigBuilder<TModel> : IValidationModelConfigBuilder<TModel>
     {
         private readonly List<ValidatorContainerAsync<TModel>> _asyncValidatorContainers;
         private readonly List<ValidatorContainer<TModel>> _validatorContainers;
 
-        public ValidationConfigBuilder()
+        public ValidationModelConfigBuilder()
         {
             _asyncValidatorContainers = new List<ValidatorContainerAsync<TModel>>();
             _validatorContainers = new List<ValidatorContainer<TModel>>();
