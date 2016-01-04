@@ -1,7 +1,11 @@
-﻿namespace FluentValidation.IntegrationTests
+﻿using System.Collections.Generic;
+
+namespace FluentValidation.IntegrationTests
 {
     internal class FakeModel
     {
-        public string RequiredProperty { get; set; }
+        internal string RequiredProperty { get; set; }
+
+        internal IEnumerable<string> RequiredCollection { get; set; }
     }
 }

@@ -10,11 +10,11 @@ namespace FluentValidation.Validation.Factories
 {
     public class ValidationModelFactory : IValidationModelFactory
     {
-        private readonly IDictionary<string, ValidatorsConfigBase> _validatorsConfigContainer;
+        private readonly IDictionary<Tuple<string, string>, ValidatorsConfigBase> _validatorsConfigContainer;
 
         public ValidationModelFactory()
         {
-            _validatorsConfigContainer = new Dictionary<string, ValidatorsConfigBase>();
+            _validatorsConfigContainer = new Dictionary<Tuple<string, string>, ValidatorsConfigBase>();
         }
 
         public IValidationModelFactory RegisterConfig<TModel>(Func<IValidatorsConfigBuilder<TModel>, ValidatorsConfig<TModel>> registrator)
@@ -23,28 +23,35 @@ namespace FluentValidation.Validation.Factories
             Guard.ArgumentNull(registrator, nameof(registrator));
 
             var config = registrator(new ValidatorsConfigBuilder<TModel>());
-            if (_validatorsConfigContainer.ContainsKey(config.RulesetName))
+            var key = CreateKey(config.RulesetName, typeof(TModel).FullName);
+            if (_validatorsConfigContainer.ContainsKey(key))
             {
-                _validatorsConfigContainer.Remove(config.RulesetName);
+                _validatorsConfigContainer.Remove(key);
             }
 
-            _validatorsConfigContainer.Add(config.RulesetName, config);
+            _validatorsConfigContainer.Add(key, config);
             return this;
         }
 
         public IValidationModel<TModel> ResolveModel<TModel>(string rulesetName = Constants.DefaultRulestName)
             where TModel : class
         {
-            if (!_validatorsConfigContainer.ContainsKey(rulesetName))
+            var key = CreateKey(rulesetName, typeof(TModel).FullName);
+            if (!_validatorsConfigContainer.ContainsKey(key))
             {
                 throw new ArgumentOutOfRangeException(nameof(rulesetName), "Ruleset doesn't exist");
             }
 
-            var config = (ValidatorsConfig<TModel>)_validatorsConfigContainer[rulesetName];
+            var config = (ValidatorsConfig<TModel>)_validatorsConfigContainer[key];
             return new GenericValidationModel<TModel>(
                 config.ValidatorExecutorsConfig.Executor,
                 config.ValidatorExecutorsConfig.ExecutorAsync,
                 config.ValidationModelConfig);
+        }
+
+        private Tuple<string, string> CreateKey(string rulesetName, string fullTypeName)
+        {
+            return new Tuple<string, string>(rulesetName, fullTypeName);
         }
     }
 }

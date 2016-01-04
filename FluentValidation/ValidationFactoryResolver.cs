@@ -17,12 +17,17 @@ namespace FluentValidation
                 {
                     if (_validatorConfigFactory == null)
                     {
-                        _validatorConfigFactory = new ValidationModelFactory();
+                        _validatorConfigFactory = ResolveInstance();
                     }
                 }
             }
 
             return _validatorConfigFactory;
+        }
+
+        public static IValidationModelFactory ResolveInstance()
+        {
+            return new ValidationModelFactory();
         }
     }
 }
