@@ -12,28 +12,28 @@ namespace FluentValidation.UnitTests.Validators
     public sealed class StringRequiredValidatorTest
     {
         [TestMethod]
-        public void TestStringRequiredRuleForNullString()
+        public void TestStringRequiredValidatorForNullStringShouldBeFailed()
         {
-            RequiredStringRuleTestTemplate(
+            RequiredStringValidatorTestTemplate(
                 validationTargetFactory: () => new FakeValidationTargetModel(),
                 propertyToValidate: x => x.StringValidationTargetProperty,
-                optionsFactory: () => new StringRequiredValidatorOptions(true, StringComparison.InvariantCulture),
+                optionsFactory: () => new BaseStringValidationOptions(true),
                 asserts: result =>
                 {
                     Assert.IsFalse(result.IsValid());
                     Assert.IsInstanceOfType(result, typeof(PropertyValidationResult));
-                    Assert.Equals(((PropertyValidationResult)result).PropertyName,
+                    Assert.AreEqual(((PropertyValidationResult)result).PropertyName,
                         nameof(FakeValidationTargetModel.StringValidationTargetProperty));
                 });
         }
 
         [TestMethod]
-        public void TestStringRequiredRuleForEmptyString()
+        public void TestStringRequiredValidatorForEmptyStringShouldBeFailed()
         {
-            RequiredStringRuleTestTemplate(
+            RequiredStringValidatorTestTemplate(
                validationTargetFactory: () => new FakeValidationTargetModel { StringValidationTargetProperty = string.Empty },
                propertyToValidate: x => x.StringValidationTargetProperty,
-                optionsFactory: () => new StringRequiredValidatorOptions(true, StringComparison.InvariantCulture),
+                optionsFactory: () => new BaseStringValidationOptions(true),
                asserts: result =>
                {
                    Assert.IsFalse(result.IsValid());
@@ -44,12 +44,12 @@ namespace FluentValidation.UnitTests.Validators
         }
 
         [TestMethod]
-        public void TestStringRequiredRuleForSpaceString()
+        public void TestStringRequiredValidatorForSpaceStringShouldBeFailedForTrimmedString()
         {
-            RequiredStringRuleTestTemplate(
+            RequiredStringValidatorTestTemplate(
                validationTargetFactory: () => new FakeValidationTargetModel { StringValidationTargetProperty = "        " },
                propertyToValidate: x => x.StringValidationTargetProperty,
-                optionsFactory: () => new StringRequiredValidatorOptions(true, StringComparison.InvariantCulture),
+                optionsFactory: () => new BaseStringValidationOptions(true),
                asserts: result =>
                {
                    Assert.IsFalse(result.IsValid());
@@ -60,28 +60,12 @@ namespace FluentValidation.UnitTests.Validators
         }
 
         [TestMethod]
-        public void TestStringRequiredRuleForInvalidNotEmptyStringInvaliantCulture()
+        public void TestStringRequiredValidatorForSpaceStringShouldBeSucceedForNoneTrimmedString()
         {
-            RequiredStringRuleTestTemplate(
-               validationTargetFactory: () => new FakeValidationTargetModel { StringValidationTargetProperty = "encyclopaedia" },
+            RequiredStringValidatorTestTemplate(
+               validationTargetFactory: () => new FakeValidationTargetModel { StringValidationTargetProperty = "        " },
                propertyToValidate: x => x.StringValidationTargetProperty,
-                optionsFactory: () => new StringRequiredValidatorOptions(true, StringComparison.InvariantCulture),
-               asserts: result =>
-               {
-                   Assert.IsFalse(result.IsValid()); 
-                   Assert.IsInstanceOfType(result, typeof(PropertyValidationResult));
-                   Assert.AreEqual(((PropertyValidationResult)result).PropertyName,
-                       nameof(FakeValidationTargetModel.StringValidationTargetProperty));
-               });
-        }
-
-        [TestMethod]
-        public void TestStringRequiredRuleForInvalidNotEmptyStringOrdinal()
-        {
-            RequiredStringRuleTestTemplate(
-               validationTargetFactory: () => new FakeValidationTargetModel { StringValidationTargetProperty = "encyclopaedia" },
-               propertyToValidate: x => x.StringValidationTargetProperty,
-                optionsFactory: () => new StringRequiredValidatorOptions(true, StringComparison.Ordinal),
+                optionsFactory: () => new BaseStringValidationOptions(false),
                asserts: result =>
                {
                    Assert.IsTrue(result.IsValid());
@@ -91,84 +75,16 @@ namespace FluentValidation.UnitTests.Validators
                });
         }
 
-        [TestMethod]
-        public void TestStringRequiredRuleForInvalidNotEmptyStringInvariantCultureIgnoreCase()
-        {
-            RequiredStringRuleTestTemplate(
-               validationTargetFactory: () => new FakeValidationTargetModel { StringValidationTargetProperty = "Archæology" },
-               propertyToValidate: x => x.StringValidationTargetProperty,
-                optionsFactory: () => new StringRequiredValidatorOptions(true, StringComparison.InvariantCultureIgnoreCase),
-               asserts: result =>
-               {
-                   Assert.IsFalse(result.IsValid());
-                   Assert.IsInstanceOfType(result, typeof(PropertyValidationResult));
-                   Assert.AreEqual(((PropertyValidationResult)result).PropertyName,
-                       nameof(FakeValidationTargetModel.StringValidationTargetProperty));
-               });
-        }
 
-        [TestMethod]
-        public void TestStringRequiredRuleForInvalidNotEmptyStringOrdinalIgnoreCase()
-        {
-            RequiredStringRuleTestTemplate(
-               validationTargetFactory: () => new FakeValidationTargetModel { StringValidationTargetProperty = "Archæology" },
-               propertyToValidate: x => x.StringValidationTargetProperty,
-                optionsFactory: () => new StringRequiredValidatorOptions(true, StringComparison.OrdinalIgnoreCase),
-               asserts: result =>
-               {
-                   Assert.IsFalse(result.IsValid());
-                   Assert.IsInstanceOfType(result, typeof(PropertyValidationResult));
-                   Assert.AreEqual(((PropertyValidationResult)result).PropertyName,
-                       nameof(FakeValidationTargetModel.StringValidationTargetProperty));
-               });
-        }
-
-        [TestMethod]
-        public void TestStringRequiredRuleForInvalidNotEmptyString()
-        {
-            RequiredStringRuleTestTemplate(
-               validationTargetFactory: () => new FakeValidationTargetModel { StringValidationTargetProperty = "Test" },
-               propertyToValidate: x => x.StringValidationTargetProperty,
-                optionsFactory: () => new StringRequiredValidatorOptions(true, StringComparison.InvariantCulture),
-               asserts: result =>
-               {
-                   Assert.IsTrue(result.IsValid());
-                   Assert.IsInstanceOfType(result, typeof(PropertyValidationResult));
-                   Assert.AreEqual(((PropertyValidationResult)result).PropertyName,
-                       nameof(FakeValidationTargetModel.StringValidationTargetProperty));
-               });
-        }
-
-        [TestMethod]
-        public void TestRequiredRuleForSpecifiedInvalidValuesForNotEmptyString()
-        {
-            RequiredStringRuleTestTemplate(
-               validationTargetFactory: () => new FakeValidationTargetModel { StringValidationTargetProperty = "Invalid" },
-               propertyToValidate: x => x.StringValidationTargetProperty,
-                optionsFactory: () => new StringRequiredValidatorOptions(true, StringComparison.InvariantCulture),
-               asserts: result =>
-               {
-                   Assert.IsTrue(result.IsValid());
-                   Assert.IsInstanceOfType(result, typeof(PropertyValidationResult));
-                   Assert.AreEqual(((PropertyValidationResult)result).PropertyName,
-                       nameof(FakeValidationTargetModel.StringValidationTargetProperty));
-               });
-        }
-
-        private ValidatorDescriptor CreateDefaultValidationDescriptor()
-        {
-            return new ValidatorDescriptor(Guid.NewGuid(), "Default", "Deafult Message", "Descriptor");
-        }
-
-        private void RequiredStringRuleTestTemplate<TModel>(
+        private void RequiredStringValidatorTestTemplate<TModel>(
             Func<TModel> validationTargetFactory,
             Expression<Func<TModel, string>> propertyToValidate,
-            Func<StringRequiredValidatorOptions> optionsFactory,
+            Func<BaseStringValidationOptions> optionsFactory,
             Action<ValidationResult> asserts) 
             where TModel: FakeValidationTargetModel
         {
             var validationTarget = validationTargetFactory();
-            var ruleDescriptor = CreateDefaultValidationDescriptor();
+            var ruleDescriptor = ValidatorTestHelper.CreateDefaultValidationDescriptor();
             var targetRule = new StringRequiredValidator<TModel>(ruleDescriptor, propertyToValidate, optionsFactory());
 
             ValidationResult result = targetRule.Validate(validationTarget);

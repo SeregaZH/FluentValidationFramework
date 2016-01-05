@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 using FluentValidation.Validation.Models;
 using FluentValidation.Validation.Models.Options;
-using FluentValidation.Validation.Models.Results;
 
 namespace FluentValidation.Validation.Validators
 {
@@ -15,7 +13,7 @@ namespace FluentValidation.Validation.Validators
     /// <seealso cref="RequiredValidator{TModel, System.String}" />
     public sealed class StringRequiredValidator<TModel> : RequiredValidator<TModel, string>
     {
-        private readonly StringRequiredValidatorOptions _options;
+        private readonly BaseStringValidationOptions _options;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StringRequiredValidator{TModel}"/> class.
@@ -23,11 +21,11 @@ namespace FluentValidation.Validation.Validators
         /// <param name="descriptor">The validator descriptor <see cref="ValidatorDescriptor"/> (nested <see cref="RequiredValidator{TModel, string}" />).</param>
         /// <param name="propertyGetter">The property getter (nested <see cref="RequiredValidator{TModel, TValue}" />).</param>
         /// <param name="invalidValues">The invalid values (nested <see cref="RequiredValidator{TModel, TValue}" />).</param>
-        /// <param name="options">The string required options <see cref="StringValidatorOptions" />.</param>
+        /// <param name="options">The string required options <see cref="BaseStringValidationOptions" />.</param>
         public StringRequiredValidator(
             ValidatorDescriptor descriptor,
             Expression<Func<TModel, string>> propertyGetter,
-            StringRequiredValidatorOptions options)
+            BaseStringValidationOptions options)
             : base(descriptor, propertyGetter)
         {
             _options = options;
@@ -44,7 +42,10 @@ namespace FluentValidation.Validation.Validators
         protected override PropertyValidationResult ValidateProperty(string value, TModel context,
             string propertyName)
         {
-            throw new NotImplementedException();
+            return new PropertyValidationResult(
+                !string.IsNullOrEmpty(_options.IsTrimmed ? value?.Trim() : value),
+                Descriptor,
+                propertyName);
         }
     }
 }

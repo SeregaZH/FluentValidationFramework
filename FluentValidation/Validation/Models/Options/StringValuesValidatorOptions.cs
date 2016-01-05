@@ -15,6 +15,20 @@ namespace FluentValidation.Validation.Models.Options
             Values = values;
         }
 
+        public StringValuesValidatorOptions(bool isTrimmed, HashSet<string> values)
+           : base(isTrimmed)
+        {
+            Comparer = StringComparer.CurrentCulture;
+            Values = values;
+        }
+
+        public StringValuesValidatorOptions(bool isTrimmed)
+            :base(isTrimmed)
+        {
+            Comparer = StringComparer.CurrentCulture;
+            Values = new HashSet<string>();
+        }
+
         public IEqualityComparer<string> Comparer { get; }
 
         public HashSet<string> Values { get; }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq.Expressions;
-using System.Reflection;
 using FluentValidation.Validation.Models;
 using FluentValidation.Validation.Models.Results;
 using FluentValidation.Helpers;
@@ -56,26 +55,5 @@ namespace FluentValidation.Validation.Validators
         /// Specific validation result which include property name.
         /// </returns>
         protected abstract PropertyValidationResult ValidateProperty(TValue value, TModel context, string propertyName);
-
-
-        /// <summary>
-        /// Resolves the name of the property.
-        /// </summary>
-        /// <param name="propertyGetter">The property getter.</param>
-        /// <returns>Property name.</returns>
-        /// <exception cref="System.ArgumentException">Expression is not refered to property</exception>
-        private string ResolvePropertyName(Expression<Func<TModel, TValue>> propertyGetter)
-        {
-            var memberExpr = propertyGetter.Body as MemberExpression;
-
-            var propertyInfo = memberExpr?.Member as PropertyInfo;
-            
-            if (propertyInfo != null)
-            {
-                return propertyInfo.Name;
-            }
-
-            throw new ArgumentException("Expression is not refered to property");
-        }
     }
 }

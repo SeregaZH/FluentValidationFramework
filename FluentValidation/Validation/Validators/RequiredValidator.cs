@@ -39,7 +39,8 @@ namespace FluentValidation.Validation.Validators
         protected override PropertyValidationResult ValidateProperty(TValue value, TModel context,
             string propertyName)
         {
-            throw new NotImplementedException();
+            var validationResult = Equals(value, default(TValue));
+            return new PropertyValidationResult(!validationResult, Descriptor, propertyName);
         }
     }
 }

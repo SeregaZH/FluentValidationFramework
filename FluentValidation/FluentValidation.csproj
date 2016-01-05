@@ -74,7 +74,6 @@
     <Compile Include="Validation\Models\Options\IValueValidatorOptions.cs" />
     <Compile Include="Validation\Models\Results\PropertyValidationResult.cs" />
     <Compile Include="Validation\Models\Options\StringValuesValidatorOptions.cs" />
-    <Compile Include="Validation\Models\Options\StringRequiredValidatorOptions.cs" />
     <Compile Include="Validation\Models\Results\ValidationResult.cs" />
     <Compile Include="Validation\Models\ValidatorContainer.cs" />
     <Compile Include="Validation\Models\ValidatorContainerAsync.cs" />

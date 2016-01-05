@@ -6,24 +6,24 @@ using FluentValidation.Validation.Models.Results;
 
 namespace FluentValidation.Validation.Validators
 {
-    public abstract class BaseValueValidator<TModel, TProperty> : PropertyValidator<TModel, TProperty>
+    public abstract class BaseValueValidator<TModel, TValue> : PropertyValidator<TModel, TValue>
     {
         protected BaseValueValidator
             (ValidatorDescriptor descriptor, 
-            Expression<Func<TModel, TProperty>> propertyGetter,
-            ValueValidationOptions<TProperty> options) 
+            Expression<Func<TModel, TValue>> propertyGetter,
+            ValueValidationOptions<TValue> options) 
             : base(descriptor, propertyGetter)
         {
             Options = options;
         }
 
-        protected ValueValidationOptions<TProperty> Options { get; private set; }
+        protected ValueValidationOptions<TValue> Options { get; private set; }
 
-        protected override PropertyValidationResult ValidateProperty(TProperty property, TModel context, string propertyName)
+        protected override PropertyValidationResult ValidateProperty(TValue value, TModel context, string propertyName)
         {
-            return ValidateValue(property, context, propertyName);
+            return ValidateValue(value, context, propertyName);
         }
 
-        protected abstract PropertyValidationResult ValidateValue(TProperty property, TModel context, string propertyName);
+        protected abstract PropertyValidationResult ValidateValue(TValue property, TModel context, string propertyName);
     }
 }

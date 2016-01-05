@@ -62,6 +62,9 @@
     <Compile Include="Validators\CollectionRequiredValidatorTests.cs" />
     <Compile Include="FakeValidationTargetModel.cs" />
     <Compile Include="GenericValidationModelTests.cs" />
+    <Compile Include="Validators\DeniedStringValuesValidatorTests.cs" />
+    <Compile Include="Validators\DeniedValuesValidatorTests.cs" />
+    <Compile Include="Validators\RequiredValidatorTests.cs" />
     <Compile Include="Validators\StringRequiredValidatorTest.cs" />
     <Compile Include="Executors\ValidatorExecutorTest.cs" />
     <Compile Include="ValidatorTestHelper.cs" />
