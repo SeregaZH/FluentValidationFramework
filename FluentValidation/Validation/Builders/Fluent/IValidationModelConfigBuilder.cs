@@ -8,7 +8,5 @@ namespace FluentValidation.Validation.Fluent
         ValidationModelConfig<TModel> Build();
 
         IValidationModelConfigBuilder<TModel> AddValidator(ValidatorContainer<TModel> validatorContainer);
-
-        IValidationModelConfigBuilder<TModel> AddAsyncValidator(ValidatorContainerAsync<TModel> asyncValidatorContainer);
     }
 }

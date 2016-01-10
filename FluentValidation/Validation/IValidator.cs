@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Validation.Models;
 using FluentValidation.Validation.Models.Results;
+using System.Threading.Tasks;
 
 namespace FluentValidation.Validation
 {
@@ -15,5 +16,7 @@ namespace FluentValidation.Validation
         /// <param name="model">The model to validate.</param>
         /// <returns>Validation result <see cref="ValidationResult"/>.</returns>
         ValidationResult Validate(TModel model);
+
+        Task<ValidationResult> ValidateAsync(TModel model);
     }
 }

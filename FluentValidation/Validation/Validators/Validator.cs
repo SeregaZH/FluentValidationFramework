@@ -1,4 +1,6 @@
-﻿using FluentValidation.Validation.Models;
+﻿using System;
+using System.Threading.Tasks;
+using FluentValidation.Validation.Models;
 using FluentValidation.Validation.Models.Results;
 
 namespace FluentValidation.Validation.Validators
@@ -25,8 +27,15 @@ namespace FluentValidation.Validation.Validators
         /// Validates the model. Override to implement custom validation logic.
         /// </summary>
         /// <param name="model">The model to validate.</param>
-        /// <returns></returns>
+        /// <returns>The validation result.</returns>
         protected abstract ValidationResult ValidateModel(TModel model);
+
+        /// <summary>
+        /// Validates the model asynchronous. Override to implement custom asynchronous validation logic.
+        /// </summary>
+        /// <param name="model">The model to validate.</param>
+        /// <returns>The validation result.</returns>
+        protected abstract Task<ValidationResult> ValidateModelAsync(TModel model);
 
         /// <summary>
         /// Gets the validator descriptor <see cref="ValidatorDescriptor">.
@@ -47,6 +56,16 @@ namespace FluentValidation.Validation.Validators
         public ValidationResult Validate(TModel model)
         {
             return ValidateModel(model);
+        }
+
+        /// <summary>
+        /// Validates the asynchronous.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        public async Task<ValidationResult> ValidateAsync(TModel model)
+        {
+            return await ValidateModelAsync(model);
         }
     }
 }

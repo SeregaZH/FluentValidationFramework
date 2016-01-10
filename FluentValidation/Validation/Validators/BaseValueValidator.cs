@@ -2,11 +2,10 @@
 using System.Linq.Expressions;
 using FluentValidation.Validation.Models;
 using FluentValidation.Validation.Models.Options;
-using FluentValidation.Validation.Models.Results;
 
 namespace FluentValidation.Validation.Validators
 {
-    public abstract class BaseValueValidator<TModel, TValue> : PropertyValidator<TModel, TValue>
+    public abstract class BaseValueValidator<TModel, TValue> : SyncPropertyValidator<TModel, TValue>
     {
         protected BaseValueValidator
             (ValidatorDescriptor descriptor, 

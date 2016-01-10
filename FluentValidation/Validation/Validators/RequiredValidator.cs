@@ -9,14 +9,14 @@ namespace FluentValidation.Validation.Validators
     /// </summary>
     /// <typeparam name="TModel">The type of the model to vaildate.</typeparam>
     /// <typeparam name="TValue">The type of the property value to validate.</typeparam>
-    /// <seealso cref="PropertyValidator{TModel, TValue}" />
-    public class RequiredValidator<TModel, TValue> : PropertyValidator<TModel, TValue>
+    /// <seealso cref="SyncPropertyValidator{TModel, TValue}" />
+    public class RequiredValidator<TModel, TValue> : SyncPropertyValidator<TModel, TValue>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RequiredValidator{TModel, TValue}"/> class.
         /// </summary>
         /// <param name="descriptor">The validator descriptor <see cref="ValidatorDescriptor" /> (nested <see cref="PropertyValidator{TModel, TValue}" />).</param>
-        /// <param name="propertyGetter">The property getter (nested <see cref="PropertyValidator{TModel, TValue}" />).</param>
+        /// <param name="propertyGetter">The property getter (nested <see cref="SyncPropertyValidator{TModel, TValue}" />).</param>
         /// <param name="invalidValues">The set of invalid values.</param>
         public RequiredValidator(
             ValidatorDescriptor descriptor,

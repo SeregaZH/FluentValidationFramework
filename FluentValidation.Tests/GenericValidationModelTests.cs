@@ -21,9 +21,9 @@ namespace FluentValidation.UnitTests
         {
             ValidationModelTestTemplate(
                 null,
-                arrange: (model, mockExecutor, mockAsyncexecutor) => { },
+                arrange: (model, mockExecutor) => { },
                 act: SyncValidationModelAct,
-                assert: (result, mockExecutor, mockAsyncexecutor) =>
+                assert: (result, mockExecutor) =>
                 {
                     //expected exception
                 });
@@ -35,198 +35,129 @@ namespace FluentValidation.UnitTests
         {
             ValidationModelTestTemplate(
                 null,
-                arrange: (model, mockExecutor, mockAsyncexecutor) => { },
+                arrange: (model, mockExecutor) => { },
                 act: AsyncValidationModelAct,
-                assert: (result, mockExecutor, mockAsyncexecutor) =>
+                assert: (result, mockExecutor) =>
                 {
                     //expected exception
                 });
         }
 
         [TestMethod]
-        public void TestSyncValidationModelForInvalidSyncEmptyAsyncResults()
+        public void TestSyncValidationModelForInvalidValidatorShouldBeFailed()
         {
             var targetModel = new FakeValidationTargetModel();
             var failedRuleId = Guid.NewGuid();
             ValidationModelTestTemplate(
                 targetModel,
-                arrange: (model, mockExecutor, mockAsyncExecutor) =>
+                arrange: (model, mockExecutor) =>
                 {
                     mockExecutor
                     .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
                     .Returns(() => new List<ValidationResult> { CreateValidationResult(false, failedRuleId) });
-
-                    mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
-                    .Returns(() => Task.FromResult(Enumerable.Empty<ValidationResult>()));
                 },
                 act: SyncValidationModelAct,
-                assert: (result, mockExecutor, mockAsyncExecutor) => CreateGenericAssert(false, CreateSingleResultAssertion(failedRuleId))(result, mockExecutor, mockAsyncExecutor));
+                assert: (result, mockExecutor) => CreateGenericAssert(false, CreateSingleResultAssertion(failedRuleId))(result, mockExecutor));
                 
         }
 
         [TestMethod]
-        public void TestSyncValidationModelForInvalidAsyncEmptySyncResults()
+        public void TestSyncValidationModelForEmptyResultsShouldBeSucceed()
         {
             var targetModel = new FakeValidationTargetModel();
-            var failedRuleId = Guid.NewGuid();
             ValidationModelTestTemplate(
                 targetModel,
-                arrange: (model, mockExecutor, mockAsyncExecutor) =>
+                arrange: (model, mockExecutor) =>
                 {
                     mockExecutor
                     .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
                     .Returns(() => Enumerable.Empty<ValidationResult>());
-
-                    mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
-                    .Returns(() => Task.FromResult(new List<ValidationResult> { CreateValidationResult(false, failedRuleId) }.AsEnumerable()));
                 },
                 act: SyncValidationModelAct,
-                assert: (result, mockExecutor, mockAsyncExecutor) => CreateGenericAssert(false, CreateSingleResultAssertion(failedRuleId))(result, mockExecutor, mockAsyncExecutor));
+                assert: (result, mockExecutor) => CreateGenericAssert(true)(result, mockExecutor));
         }
 
         [TestMethod]
-        public void TestSyncValidationModelForValidAsyncEmptySyncResults()
+        public void TestSyncValidationModelForValidResultsShouldBeSucceed()
         {
             var targetModel = new FakeValidationTargetModel();
             ValidationModelTestTemplate(
                 targetModel,
-                arrange: (model, mockExecutor, mockAsyncExecutor) =>
-                {
-                    mockExecutor
-                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
-                    .Returns(() => Enumerable.Empty<ValidationResult>());
-
-                    mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
-                    .Returns(() => Task.FromResult(new List<ValidationResult> { CreateValidationResult(true) }.AsEnumerable()));
-                },
-                act: SyncValidationModelAct,
-                assert: (result, mockExecutor, mockAsyncExecutor) => CreateGenericAssert(true)(result, mockExecutor, mockAsyncExecutor));
-        }
-
-        [TestMethod]
-        public void TestSyncValidationModelForValidAsyncAndSyncResults()
-        {
-            var targetModel = new FakeValidationTargetModel();
-            ValidationModelTestTemplate(
-                targetModel,
-                arrange: (model, mockExecutor, mockAsyncExecutor) =>
+                arrange: (model, mockExecutor) =>
                 {
                     mockExecutor
                     .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
                     .Returns(() => new List<ValidationResult> { CreateValidationResult(true) });
-
-                    mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
-                    .Returns(() => Task.FromResult(new List<ValidationResult> { CreateValidationResult(true) }.AsEnumerable()));
                 },
                 act: SyncValidationModelAct,
-                assert: (result, mockExecutor, mockAsyncExecutor) => CreateGenericAssert(true)(result, mockExecutor, mockAsyncExecutor));
+                assert: (result, mockExecutor) => CreateGenericAssert(true)(result, mockExecutor));
         }
 
         [TestMethod]
-        public void TestAsyncValidationModelForValidAsyncAndSyncResults()
+        public void TestAsyncValidationModelForValidValidatorShouldBeSucceed()
         {
             var targetModel = new FakeValidationTargetModel();
             ValidationModelTestTemplate(
                 targetModel,
-                arrange: (model, mockExecutor, mockAsyncExecutor) =>
+                arrange: (model, mockExecutor) =>
                 {
                     mockExecutor
-                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
-                    .Returns(() => new List<ValidationResult> { CreateValidationResult(true) });
-
-                    mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
-                    .Returns(() => Task.FromResult(new List<ValidationResult> { CreateValidationResult(true) }.AsEnumerable()));
+                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
+                    .Returns(() => Task.FromResult(new List<ValidationResult> { CreateValidationResult(true) } as IEnumerable<ValidationResult>));
                 },
                 act: AsyncValidationModelAct,
-                assert: (result, mockExecutor, mockAsyncExecutor) => CreateGenericAssert(true)(result, mockExecutor, mockAsyncExecutor));
+                assert: (result, mockExecutor) => CreateGenericAssert(true)(result, mockExecutor));
         }
 
         [TestMethod]
-        public void TestAsyncValidationModelForValidAsyncEmptySyncResults()
-        {
-            var targetModel = new FakeValidationTargetModel();
-            ValidationModelTestTemplate(
-                targetModel,
-                arrange: (model, mockExecutor, mockAsyncExecutor) =>
-                {
-                    mockExecutor
-                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
-                    .Returns(() => Enumerable.Empty<ValidationResult>());
-
-                    mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
-                    .Returns(() => Task.FromResult(new List<ValidationResult> { CreateValidationResult(true) }.AsEnumerable()));
-                },
-                act: AsyncValidationModelAct,
-                assert: (result, mockExecutor, mockAsyncExecutor) => CreateGenericAssert(true)(result, mockExecutor, mockAsyncExecutor));
-        }
-
-        [TestMethod]
-        public void TestAsyncValidationModelForInvalidAsyncEmptySyncResults()
+        public void TestAsyncValidationModelForEmptyResultsShouldBeSucceed()
         {
             var targetModel = new FakeValidationTargetModel();
             var failedRuleId = Guid.NewGuid();
             ValidationModelTestTemplate(
                 targetModel,
-                arrange: (model, mockExecutor, mockAsyncExecutor) =>
+                arrange: (model, mockExecutor) =>
                 {
                     mockExecutor
-                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
-                    .Returns(() => Enumerable.Empty<ValidationResult>());
-
-                    mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
-                    .Returns(() => Task.FromResult(new List<ValidationResult> { CreateValidationResult(false, failedRuleId) }.AsEnumerable()));
+                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
+                    .Returns(() => Task.FromResult(Enumerable.Empty<ValidationResult>() as IEnumerable<ValidationResult>));
                 },
                 act: AsyncValidationModelAct,
-                assert: (result, mockExecutor, mockAsyncExecutor) => CreateGenericAssert(false, CreateSingleResultAssertion(failedRuleId))(result, mockExecutor, mockAsyncExecutor));
+                assert: (result, mockExecutor) => CreateGenericAssert(true)(result, mockExecutor));
         }
 
         [TestMethod]
-        public void TestAsyncValidationModelForInvalidSyncEmptyAsyncResults()
+        public void TestAsyncValidationModelForInvalidResultsShouldBeFailed()
         {
             var targetModel = new FakeValidationTargetModel();
             var failedRuleId = Guid.NewGuid();
             ValidationModelTestTemplate(
                 targetModel,
-                arrange: (model, mockExecutor, mockAsyncExecutor) =>
+                arrange: (model, mockExecutor) =>
                 {
                     mockExecutor
-                    .Setup(x => x.Execute(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
-                    .Returns(() => new List<ValidationResult> { CreateValidationResult(false, failedRuleId) });
-
-                    mockAsyncExecutor
-                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainerAsync<FakeValidationTargetModel>>>()))
-                    .Returns(() => Task.FromResult(Enumerable.Empty<ValidationResult>()));
+                    .Setup(x => x.ExecuteAsync(model, It.IsAny<IEnumerable<ValidatorContainer<FakeValidationTargetModel>>>()))
+                    .Returns(() =>Task.FromResult(new List<ValidationResult> { CreateValidationResult(false, failedRuleId) } as IEnumerable<ValidationResult>));
                 },
                 act: AsyncValidationModelAct,
-                assert: (result, mockExecutor, mockAsyncExecutor) => CreateGenericAssert(false, CreateSingleResultAssertion(failedRuleId))(result, mockExecutor, mockAsyncExecutor));
+                assert: (result, mockExecutor) => CreateGenericAssert(false, CreateSingleResultAssertion(failedRuleId))(result, mockExecutor));
 
         }
 
         private void ValidationModelTestTemplate(
             FakeValidationTargetModel model,
             Action<FakeValidationTargetModel,
-                Mock<IValidatorExecutor<FakeValidationTargetModel>>,
-                Mock<IValidatorExecutorAsync<FakeValidationTargetModel>>> arrange,
+                Mock<IValidatorExecutor<FakeValidationTargetModel>>> arrange,
             Func<FakeValidationTargetModel,
                 IValidatorExecutor<FakeValidationTargetModel>,
-                IValidatorExecutorAsync<FakeValidationTargetModel>,
                 AggregateValidationResult> act,
             Action<AggregateValidationResult,
-                Mock<IValidatorExecutor<FakeValidationTargetModel>>,
-                Mock<IValidatorExecutorAsync<FakeValidationTargetModel>>> assert)
+                Mock<IValidatorExecutor<FakeValidationTargetModel>>> assert)
         {
             var mockValidatorExecutor = new Mock<IValidatorExecutor<FakeValidationTargetModel>>();
-            var mockAsyncValidatorExecutor = new Mock<IValidatorExecutorAsync<FakeValidationTargetModel>>();
-            arrange(model, mockValidatorExecutor, mockAsyncValidatorExecutor);
-            var result = act(model, mockValidatorExecutor.Object, mockAsyncValidatorExecutor.Object);
-            assert(result, mockValidatorExecutor, mockAsyncValidatorExecutor);
+            arrange(model, mockValidatorExecutor);
+            var result = act(model, mockValidatorExecutor.Object);
+            assert(result, mockValidatorExecutor);
         }
 
         private ValidationResult CreateValidationResult(bool isValid, Guid? ruleId = null)
@@ -241,16 +172,13 @@ namespace FluentValidation.UnitTests
 
         private ValidationModelConfig<FakeValidationTargetModel> CreateFakeConfig()
         {
-            return new ValidationModelConfig<FakeValidationTargetModel>(
-                Enumerable.Empty<ValidatorContainer<FakeValidationTargetModel>>(),
-                Enumerable.Empty<ValidatorContainerAsync<FakeValidationTargetModel>>());
+            return new ValidationModelConfig<FakeValidationTargetModel>(Enumerable.Empty<ValidatorContainer<FakeValidationTargetModel>>());
         }
 
         private Action<AggregateValidationResult,
-                Mock<IValidatorExecutor<FakeValidationTargetModel>>,
-                Mock<IValidatorExecutorAsync<FakeValidationTargetModel>>> CreateGenericAssert(bool isValid, Action<AggregateValidationResult> resultAssertion = null)
+                Mock<IValidatorExecutor<FakeValidationTargetModel>>> CreateGenericAssert(bool isValid, Action<AggregateValidationResult> resultAssertion = null)
         {
-            return (result, mockExecutor, mockAsyncExecutor) =>
+            return (result, mockExecutor) =>
             {
                 Assert.IsNotNull(result);
                 Assert.AreEqual(isValid, result.IsValid());
@@ -261,7 +189,6 @@ namespace FluentValidation.UnitTests
                 }
 
                 mockExecutor.VerifyAll();
-                mockAsyncExecutor.VerifyAll();
             };
         }
 
@@ -277,19 +204,17 @@ namespace FluentValidation.UnitTests
 
         private AggregateValidationResult SyncValidationModelAct(
             FakeValidationTargetModel model, 
-            IValidatorExecutor<FakeValidationTargetModel> executor, 
-            IValidatorExecutorAsync<FakeValidationTargetModel> asyncExecutor)
+            IValidatorExecutor<FakeValidationTargetModel> executor)
         {
-            var target = new GenericValidationModel<FakeValidationTargetModel>(executor, asyncExecutor, CreateFakeConfig());
+            var target = new GenericValidationModel<FakeValidationTargetModel>(executor, CreateFakeConfig());
             return target.Validate(model);
         }
 
         private AggregateValidationResult AsyncValidationModelAct(
            FakeValidationTargetModel model,
-           IValidatorExecutor<FakeValidationTargetModel> executor,
-           IValidatorExecutorAsync<FakeValidationTargetModel> asyncExecutor)
+           IValidatorExecutor<FakeValidationTargetModel> executor)
         {
-            var target = new GenericValidationModel<FakeValidationTargetModel>(executor, asyncExecutor, CreateFakeConfig());
+            var target = new GenericValidationModel<FakeValidationTargetModel>(executor, CreateFakeConfig());
             return target.ValidateAsync(model).Result;
         }
     }

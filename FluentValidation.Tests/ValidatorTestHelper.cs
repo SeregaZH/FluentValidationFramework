@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FluentValidation.Validation.Models;
 
 namespace FluentValidation.UnitTests.Validators
@@ -11,7 +7,12 @@ namespace FluentValidation.UnitTests.Validators
     {
         public static ValidatorDescriptor CreateDefaultValidationDescriptor()
         {
-            return new ValidatorDescriptor(Guid.NewGuid(), "TestRule", "Error", "Descriptor");
+            return CreateDefaultValidationDescriptor(Guid.NewGuid());
+        }
+
+        public static ValidatorDescriptor CreateDefaultValidationDescriptor(Guid validatorId)
+        {
+            return new ValidatorDescriptor(validatorId, "TestRule", "Error", "Descriptor");
         }
     }
 }

@@ -44,8 +44,7 @@ namespace FluentValidation.Validation.Factories
 
             var config = (ValidatorsConfig<TModel>)_validatorsConfigContainer[key];
             return new GenericValidationModel<TModel>(
-                config.ValidatorExecutorsConfig.Executor,
-                config.ValidatorExecutorsConfig.ExecutorAsync,
+                config.ValidatorExecutorsConfig.ExecutorFactory.Create(config.ValidatorExecutorsConfig.ExecutorType),
                 config.ValidationModelConfig);
         }
 

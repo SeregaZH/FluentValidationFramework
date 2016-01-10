@@ -7,19 +7,11 @@ namespace FluentValidation.Validation.Builders.Fluent
 {
     public class ValidationModelConfigBuilder<TModel> : IValidationModelConfigBuilder<TModel>
     {
-        private readonly List<ValidatorContainerAsync<TModel>> _asyncValidatorContainers;
         private readonly List<ValidatorContainer<TModel>> _validatorContainers;
 
         public ValidationModelConfigBuilder()
         {
-            _asyncValidatorContainers = new List<ValidatorContainerAsync<TModel>>();
             _validatorContainers = new List<ValidatorContainer<TModel>>();
-        }
-
-        public IValidationModelConfigBuilder<TModel> AddAsyncValidator(ValidatorContainerAsync<TModel> asyncValidatorContainer)
-        {
-            _asyncValidatorContainers.Add(asyncValidatorContainer);
-            return this;
         }
 
         public IValidationModelConfigBuilder<TModel> AddValidator(ValidatorContainer<TModel> validatorContainer)
@@ -30,7 +22,7 @@ namespace FluentValidation.Validation.Builders.Fluent
 
         public ValidationModelConfig<TModel> Build()
         {
-            return new ValidationModelConfig<TModel>(_validatorContainers, _asyncValidatorContainers);
+            return new ValidationModelConfig<TModel>(_validatorContainers);
         }
     }
 }

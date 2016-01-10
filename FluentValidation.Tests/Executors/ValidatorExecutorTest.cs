@@ -1,4 +1,5 @@
-﻿using FluentValidation.Validation;
+﻿using FluentValidation.Tests.Executors;
+using FluentValidation.Validation;
 using FluentValidation.Validation.Executors;
 using FluentValidation.Validation.Models;
 using FluentValidation.Validation.Models.Results;
@@ -19,7 +20,7 @@ namespace FluentValidation.UnitTests.Executors
         {
             var fakeModel = new FakeValidationTargetModel();
             var validators = new List<ValidatorContainer<FakeValidationTargetModel>>();
-            var target = new ValidatorExecutor<FakeValidationTargetModel>();
+            var target = new PlainValidatorExecutor<FakeValidationTargetModel>();
 
             IEnumerable<ValidationResult> validationResults = target.Execute(fakeModel, validators);
 
@@ -32,7 +33,7 @@ namespace FluentValidation.UnitTests.Executors
         public void TestExecuteWithNullModel()
         {
             var validators = new List<ValidatorContainer<FakeValidationTargetModel>>();
-            var target = new ValidatorExecutor<FakeValidationTargetModel>();
+            var target = new PlainValidatorExecutor<FakeValidationTargetModel>();
 
             IEnumerable<ValidationResult> validationResults = target.Execute(null, validators);
 
@@ -44,7 +45,7 @@ namespace FluentValidation.UnitTests.Executors
         public void TestExecuteWithNullValidatorsCollection()
         {
             var fakeModel = new FakeValidationTargetModel();
-            var target = new ValidatorExecutor<FakeValidationTargetModel>();
+            var target = new PlainValidatorExecutor<FakeValidationTargetModel>();
 
             IEnumerable<ValidationResult> validationResults = target.Execute(fakeModel, null);
 
@@ -55,8 +56,12 @@ namespace FluentValidation.UnitTests.Executors
         public void TestExecuteWithInvalidValidator()
         {
             var fakeModel = new FakeValidationTargetModel();
-            var validators = new List<ValidatorContainer<FakeValidationTargetModel>> { CreateValidatorContainer(false, 0, Guid.NewGuid()) };
-            var target = new ValidatorExecutor<FakeValidationTargetModel>();
+            var mockValidator = ValidatorExecutorTestHelper.CreateMockValidator(false, Guid.NewGuid());
+            var validators = new List<ValidatorContainer<FakeValidationTargetModel>>
+            {
+                ValidatorExecutorTestHelper.CreateValidatorContainer(mockValidator.Object, 0)
+            };
+            var target = new PlainValidatorExecutor<FakeValidationTargetModel>();
 
             IEnumerable<ValidationResult> validationResults = target.Execute(fakeModel, validators);
 
@@ -64,14 +69,19 @@ namespace FluentValidation.UnitTests.Executors
             var failedValidator = validationResults.SingleOrDefault();
             Assert.IsNotNull(failedValidator);
             Assert.IsFalse(failedValidator.IsValid());
+            mockValidator.Verify();
         }
 
         [TestMethod]
         public void TestExecuteWithValidValidator()
         {
             var fakeModel = new FakeValidationTargetModel();
-            var validators = new List<ValidatorContainer<FakeValidationTargetModel>> { CreateValidatorContainer(true, 0, Guid.NewGuid()) };
-            var target = new ValidatorExecutor<FakeValidationTargetModel>();
+            var mockValidator = ValidatorExecutorTestHelper.CreateMockValidator(true, Guid.NewGuid());
+            var validators = new List<ValidatorContainer<FakeValidationTargetModel>>
+            {
+                ValidatorExecutorTestHelper.CreateValidatorContainer(mockValidator.Object, 0)
+            };
+            var target = new PlainValidatorExecutor<FakeValidationTargetModel>();
 
             IEnumerable<ValidationResult> validationResults = target.Execute(fakeModel, validators);
 
@@ -79,14 +89,19 @@ namespace FluentValidation.UnitTests.Executors
             var failedValidator = validationResults.SingleOrDefault();
             Assert.IsNotNull(failedValidator);
             Assert.IsTrue(failedValidator.IsValid());
+            mockValidator.Verify();
         }
 
         [TestMethod]
         public void TestExecuteAsyncWithValidValidator()
         {
             var fakeModel = new FakeValidationTargetModel();
-            var validators = new List<ValidatorContainerAsync<FakeValidationTargetModel>> { CreateAsyncValidatorContainer(true, 0, Guid.NewGuid()) };
-            var target = new ValidatorExecutorAsync<FakeValidationTargetModel>();
+            var mockValidator = ValidatorExecutorTestHelper.CreateMockValidator(true, Guid.NewGuid());
+            var validators = new List<ValidatorContainer<FakeValidationTargetModel>>
+            {
+                ValidatorExecutorTestHelper.CreateValidatorContainer(mockValidator.Object, 0)
+            };
+            var target = new PlainValidatorExecutor<FakeValidationTargetModel>();
 
             var validationResults = target.ExecuteAsync(fakeModel, validators).Result;
 
@@ -96,14 +111,19 @@ namespace FluentValidation.UnitTests.Executors
             var failedValidator = failedValidatorTask;
             Assert.IsNotNull(failedValidator);
             Assert.IsTrue(failedValidator.IsValid());
+            mockValidator.Verify();
         }
 
         [TestMethod]
         public void TestExecuteAsyncWithFailedValidator()
         {
             var fakeModel = new FakeValidationTargetModel();
-            var validators = new List<ValidatorContainerAsync<FakeValidationTargetModel>> { CreateAsyncValidatorContainer(false, 0, Guid.NewGuid()) };
-            var target = new ValidatorExecutorAsync<FakeValidationTargetModel>();
+            var mockValidator = ValidatorExecutorTestHelper.CreateMockValidator(false, Guid.NewGuid());
+            var validators = new List<ValidatorContainer<FakeValidationTargetModel>>
+            {
+                ValidatorExecutorTestHelper.CreateValidatorContainer(mockValidator.Object, 0)
+            };
+            var target = new PlainValidatorExecutor<FakeValidationTargetModel>();
 
             var validationResults = target.ExecuteAsync(fakeModel, validators).Result;
 
@@ -113,14 +133,15 @@ namespace FluentValidation.UnitTests.Executors
             var failedValidator = failedValidatorTask;
             Assert.IsNotNull(failedValidator);
             Assert.IsFalse(failedValidator.IsValid());
+            mockValidator.Verify();
         }
 
         [TestMethod]
         public void TestExecuteAsyncWithEmptyValidatorsCollection()
         {
             var fakeModel = new FakeValidationTargetModel();
-            var validators = new List<ValidatorContainerAsync<FakeValidationTargetModel>>();
-            var target = new ValidatorExecutorAsync<FakeValidationTargetModel>();
+            var validators = new List<ValidatorContainer<FakeValidationTargetModel>>();
+            var target = new PlainValidatorExecutor<FakeValidationTargetModel>();
 
             var validationResults = target.ExecuteAsync(fakeModel, validators).Result;
 
@@ -132,8 +153,8 @@ namespace FluentValidation.UnitTests.Executors
         [ExpectedException(typeof(AggregateException))]
         public void TestExecuteAsyncWithNullModel()
         {
-            var validators = new List<ValidatorContainerAsync<FakeValidationTargetModel>>();
-            var target = new ValidatorExecutorAsync<FakeValidationTargetModel>();
+            var validators = new List<ValidatorContainer<FakeValidationTargetModel>>();
+            var target = new PlainValidatorExecutor<FakeValidationTargetModel>();
 
             var validationResults = target.ExecuteAsync(null, validators).Result;
 
@@ -144,7 +165,7 @@ namespace FluentValidation.UnitTests.Executors
         [ExpectedException(typeof(AggregateException))]
         public void TestExecuteAsyncWithNullCollection()
         {
-            var target = new ValidatorExecutorAsync<FakeValidationTargetModel>();
+            var target = new PlainValidatorExecutor<FakeValidationTargetModel>();
 
             var validationResults = target.ExecuteAsync(new FakeValidationTargetModel(), null).Result;
 
@@ -156,13 +177,15 @@ namespace FluentValidation.UnitTests.Executors
         {
             var fakeModel = new FakeValidationTargetModel();
             var failedValidatorId = Guid.NewGuid();
+            var firstMockValidator = ValidatorExecutorTestHelper.CreateMockValidator(false, Guid.NewGuid());
+            var secondMockValidator = ValidatorExecutorTestHelper.CreateMockValidator(false, failedValidatorId);
             var validators = new List<ValidatorContainer<FakeValidationTargetModel>>
             {
-                CreateValidatorContainer(false, 1, Guid.NewGuid()),
-                CreateValidatorContainer(false, 0, failedValidatorId)
+                ValidatorExecutorTestHelper.CreateValidatorContainer(firstMockValidator.Object, 1),
+                ValidatorExecutorTestHelper.CreateValidatorContainer(secondMockValidator.Object, 0)
             };
 
-            var target = new ValidatorExecutor<FakeValidationTargetModel>();
+            var target = new PlainValidatorExecutor<FakeValidationTargetModel>();
 
             IEnumerable<ValidationResult> validationResults = target.Execute(fakeModel, validators);
 
@@ -171,6 +194,8 @@ namespace FluentValidation.UnitTests.Executors
             Assert.IsNotNull(failedValidator);
             Assert.IsFalse(failedValidator.IsValid());
             Assert.AreEqual(failedValidatorId, failedValidator.Id);
+            firstMockValidator.Verify();
+            secondMockValidator.Verify();
         }
 
         [TestMethod]
@@ -178,13 +203,15 @@ namespace FluentValidation.UnitTests.Executors
         {
             var fakeModel = new FakeValidationTargetModel();
             var failedValidatorId = Guid.NewGuid();
-            var validators = new List<ValidatorContainerAsync<FakeValidationTargetModel>>
+            var firstMockValidator = ValidatorExecutorTestHelper.CreateMockValidator(false, Guid.NewGuid());
+            var secondMockValidator = ValidatorExecutorTestHelper.CreateMockValidator(false, failedValidatorId);
+            var validators = new List<ValidatorContainer<FakeValidationTargetModel>>
             {
-                CreateAsyncValidatorContainer(false, 1, Guid.NewGuid()),
-                CreateAsyncValidatorContainer(false, 0, failedValidatorId)
+                ValidatorExecutorTestHelper.CreateValidatorContainer(firstMockValidator.Object, 1),
+                ValidatorExecutorTestHelper.CreateValidatorContainer(secondMockValidator.Object, 0)
             };
 
-            var target = new ValidatorExecutorAsync<FakeValidationTargetModel>();
+            var target = new PlainValidatorExecutor<FakeValidationTargetModel>();
 
             IEnumerable<ValidationResult> validationResults = target.ExecuteAsync(fakeModel, validators).Result;
 
@@ -193,29 +220,8 @@ namespace FluentValidation.UnitTests.Executors
             Assert.IsNotNull(failedValidator);
             Assert.IsFalse(failedValidator.IsValid());
             Assert.AreEqual(failedValidatorId, failedValidator.Id);
-        }
-
-        private ValidatorContainer<FakeValidationTargetModel> CreateValidatorContainer(bool isValid, long priority, Guid id)
-        {
-            var mockValidator = new Mock<IValidator<FakeValidationTargetModel>>();
-            mockValidator.Setup(x => x.Validate(It.IsAny<FakeValidationTargetModel>()))
-                .Returns(new ValidationResult(isValid, CreateDefaultValidationDescriptor(id)));
-
-            return new ValidatorContainer<FakeValidationTargetModel>(mockValidator.Object, priority);
-        }
-
-        private ValidatorContainerAsync<FakeValidationTargetModel> CreateAsyncValidatorContainer(bool isValid, long priority, Guid id)
-        {
-            var mockValidator = new Mock<IValidatorAsync<FakeValidationTargetModel>>();
-            mockValidator.Setup(x => x.ValidateAsync(It.IsAny<FakeValidationTargetModel>()))
-                .Returns(Task.FromResult(new ValidationResult(isValid, CreateDefaultValidationDescriptor(id))));
-
-            return new ValidatorContainerAsync<FakeValidationTargetModel>(mockValidator.Object, priority);
-        }
-
-        private ValidatorDescriptor CreateDefaultValidationDescriptor(Guid id)
-        {
-            return new ValidatorDescriptor(id, "Default", "Deafult Message", "Descriptor");
+            firstMockValidator.Verify();
+            secondMockValidator.Verify();
         }
     }
 }

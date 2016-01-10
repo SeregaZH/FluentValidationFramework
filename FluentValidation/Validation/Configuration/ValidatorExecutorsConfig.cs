@@ -1,4 +1,5 @@
-﻿using FluentValidation.Validation.Executors;
+﻿using FluentValidation.Validation.Configuration.Enums;
+using FluentValidation.Validation.Factories;
 
 namespace FluentValidation.Validation.Configuration
 {
@@ -6,21 +7,21 @@ namespace FluentValidation.Validation.Configuration
         where TModel: class
     {
         public ValidatorExecutorsConfig(
-            IValidatorExecutor<TModel> executor,
-            IValidatorExecutorAsync<TModel> executorAsync)
+            ValidatorExecutorFactory<TModel> executorFactory,
+            ValidatorExecutorTypes executorType)
         {
-            Executor = executor;
-            ExecutorAsync = executorAsync;
+            ExecutorFactory = executorFactory;
+            ExecutorType = executorType;
         }
 
         public ValidatorExecutorsConfig()
         {
-            Executor = new ValidatorExecutor<TModel>();
-            ExecutorAsync = new ValidatorExecutorAsync<TModel>();
+            ExecutorFactory = new ValidatorExecutorFactory<TModel>();
+            ExecutorType = ValidatorExecutorTypes.Plain;
         }
 
-        public IValidatorExecutor<TModel> Executor { get; private set; }
+        public IValidatorExecutorFactory<TModel> ExecutorFactory { get; private set; }
 
-        public IValidatorExecutorAsync<TModel> ExecutorAsync { get; private set; }
+        public ValidatorExecutorTypes ExecutorType { get; private set; }
     }
 }

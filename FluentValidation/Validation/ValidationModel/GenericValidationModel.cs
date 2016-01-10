@@ -10,16 +10,13 @@ namespace FluentValidation.Validation.ValidationModel
         where TModel: class
     {
         private readonly IValidatorExecutor<TModel> _validatorExecutor;
-        private readonly IValidatorExecutorAsync<TModel> _asyncValidatorExecutor;
         private readonly ValidationModelConfig<TModel> _configuration;
 
         public GenericValidationModel(
             IValidatorExecutor<TModel> validatorExecutor,
-            IValidatorExecutorAsync<TModel> asyncValidatorExecutor,
             ValidationModelConfig<TModel> configuration)
         {
             _validatorExecutor = validatorExecutor;
-            _asyncValidatorExecutor = asyncValidatorExecutor;
             _configuration = configuration;
         }
 
@@ -27,16 +24,14 @@ namespace FluentValidation.Validation.ValidationModel
         {
             Guard.ArgumentNull(model, nameof(model));
             var syncValidatorResults = _validatorExecutor.Execute(model, _configuration.Validators);
-            var asyncValidatorResults = _asyncValidatorExecutor.ExecuteAsync(model, _configuration.AsyncValidators).Result;
-            return new AggregateValidationResult(syncValidatorResults, asyncValidatorResults);
+            return new AggregateValidationResult(syncValidatorResults);
         }
 
         public async Task<AggregateValidationResult> ValidateAsync(TModel model)
         {
             Guard.ArgumentNull(model, nameof(model));
-            var syncValidatorResults = _validatorExecutor.Execute(model, _configuration.Validators);
-            var asyncValidatorResults = await _asyncValidatorExecutor.ExecuteAsync(model, _configuration.AsyncValidators);
-            return new AggregateValidationResult(syncValidatorResults, asyncValidatorResults);
+            var asyncValidatorResults = await _validatorExecutor.ExecuteAsync(model, _configuration.Validators);
+            return new AggregateValidationResult(asyncValidatorResults);
         }
     }
 }
