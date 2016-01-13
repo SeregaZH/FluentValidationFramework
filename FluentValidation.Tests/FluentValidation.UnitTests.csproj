@@ -57,7 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Builders\ValidatorDescriptorBuilderTests.cs" />
-    <Compile Include="Executors\HierarchicalValidatorExecutorTest.cs" />
+    <Compile Include="Executors\HierarchicalValidatorExecutorTests.cs" />
     <Compile Include="Executors\ValidatorExecutorTestHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AggregateValidationResultTests.cs" />
@@ -68,7 +68,7 @@
     <Compile Include="Validators\DeniedValuesValidatorTests.cs" />
     <Compile Include="Validators\RequiredValidatorTests.cs" />
     <Compile Include="Validators\StringRequiredValidatorTest.cs" />
-    <Compile Include="Executors\ValidatorExecutorTest.cs" />
+    <Compile Include="Executors\ValidatorExecutorTests.cs" />
     <Compile Include="ValidatorTestHelper.cs" />
   </ItemGroup>
   <ItemGroup>

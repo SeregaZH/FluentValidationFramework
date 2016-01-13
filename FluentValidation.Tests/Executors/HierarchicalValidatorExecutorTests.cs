@@ -11,7 +11,7 @@ using System.Linq;
 namespace FluentValidation.Tests.Executors
 {
     [TestClass]
-    public class HierarchicalValidatorExecutorTest
+    public class HierarchicalValidatorExecutorTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
