@@ -60,7 +60,7 @@ namespace FluentValidation.IntegrationTests
                                                  .WithValidationModel(modelBuilder =>
                                                               modelBuilder
                                                               .Required(x => x.RequiredProperty, desc => desc
-                                                                        .Key(RequiredKey)
+                                                                        .WithKey(RequiredKey)
                                                                         .Build())
                                                               .Build())
                                                           .Build());
@@ -74,7 +74,7 @@ namespace FluentValidation.IntegrationTests
                                                  .WithValidationModel(modelBuilder =>
                                                               modelBuilder
                                                               .CollectionRequired(x => x.RequiredCollection, desc => desc
-                                                                        .Key(CollectionRequiredKey)
+                                                                        .WithKey(CollectionRequiredKey)
                                                                         .Build())
                                                               .Build())
                                                           .Build());

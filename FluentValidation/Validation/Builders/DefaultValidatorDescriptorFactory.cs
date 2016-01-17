@@ -1,5 +1,6 @@
-﻿using FluentValidation.Validation.Models;
-using System;
+﻿using System;
+using LazyPropValidationDescriptor = FluentValidation.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidation.Validation.Models.PropertyName, string>>;
+using LazyValValidationDescriptor = FluentValidation.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidation.Validation.Models.PropertyName, FluentValidation.Validation.Models.ValidationValue, string>>;
 
 namespace FluentValidation.Validation.Builders
 {
@@ -7,25 +8,25 @@ namespace FluentValidation.Validation.Builders
     {
         private const string RuleKeyPrefix = "Key";
 
-        internal static ValidatorDescriptor Required =>
-            new ValidatorDescriptor(
-                Guid.NewGuid(),
-                $"{ RuleKeyPrefix }:Required",
-                "Required",
-                "Entity is required");
-
-        internal static Func<string, ValidatorDescriptor> CollectionPropertyRequired =>
-            (propertyName) => new ValidatorDescriptor(
-                Guid.NewGuid(),
-                $"{ RuleKeyPrefix }:CollectionRequired",
-                $"Collection { propertyName } required",
-                $"The { propertyName } collection is required");
-
-        internal static Func<string, ValidatorDescriptor> PropertyRequired =>
-            (propertyName) => new ValidatorDescriptor(
+        internal static LazyPropValidationDescriptor PropertyRequired =>
+            new LazyPropValidationDescriptor(
                 Guid.NewGuid(),
                 $"{ RuleKeyPrefix }:PropertyRequired",
-                $"{ propertyName } Required",
-                $"The { propertyName } is required");
+                propertyName => $"{ propertyName.Name } Required",
+                propertyName => $"The { propertyName.Name } is required");
+
+        internal static LazyPropValidationDescriptor CollectionPropertyRequired =>
+            new LazyPropValidationDescriptor(
+                Guid.NewGuid(),
+                $"{ RuleKeyPrefix }:CollectionRequired",
+                propertyName => $"Collection { propertyName.Name } required",
+                propertyName => $"The { propertyName.Name } collection is required");
+
+        internal static LazyValValidationDescriptor DeniedValues =>
+            new LazyValValidationDescriptor(
+                Guid.NewGuid(),
+                $"{ RuleKeyPrefix }:DeniedValue",
+                (propName, propValue) => $"The value: { propValue.Value } is denied for property: { propName.Name }",
+                (propName, propValue) => $"The value: { propValue.Value } is denied for property: { propName.Name }");
     }
 }

@@ -25,9 +25,7 @@ namespace FluentValidation.Validation.Validators
         /// </summary>
         /// <param name="descriptor">The validator descriptor <see cref="ValidatorDescriptor" /> (nested <see cref="Validator{TModel}" />).</param>
         /// <param name="propertyGetter">The property value getter.</param>
-        protected PropertyValidator(ValidatorDescriptor descriptor,
-            Expression<Func<TModel, TValue>> propertyGetter)
-            : base(descriptor)
+        protected PropertyValidator(Expression<Func<TModel, TValue>> propertyGetter)
         {
             _propertyGetter = propertyGetter;
             _valueResolver = propertyGetter.Compile();

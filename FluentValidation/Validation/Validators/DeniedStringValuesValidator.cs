@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using FluentValidation.Validation.Models;
 using FluentValidation.Validation.Models.Options;
+using LazyValValidationDescriptor = FluentValidation.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidation.Validation.Models.PropertyName, FluentValidation.Validation.Models.ValidationValue, string>>;
 
 namespace FluentValidation.Validation.Validators
 {
@@ -11,8 +12,11 @@ namespace FluentValidation.Validation.Validators
     {
         private readonly StringValuesValidatorOptions _stringOptions;
 
-        public DeniedStringValuesValidator(ValidatorDescriptor descriptor, Expression<Func<TModel, string>> propertyGetter, StringValuesValidatorOptions options) 
-            : base(descriptor, propertyGetter, new ValueValidationOptions<string>(new HashSet<string>(options.Values.Select(x => options.IsTrimmed ? x?.Trim() : x)), options.Comparer))
+        public DeniedStringValuesValidator(
+            LazyValValidationDescriptor lazyValueDescriptor,
+            Expression<Func<TModel, string>> propertyGetter,
+            StringValuesValidatorOptions options) 
+            : base(lazyValueDescriptor, propertyGetter, new ValueValidationOptions<string>(new HashSet<string>(options.Values.Select(x => options.IsTrimmed ? x?.Trim() : x)), options.Comparer))
         {
             _stringOptions = options;
         }

@@ -1,18 +1,40 @@
 ﻿using System;
 using FluentValidation.Validation.Models;
+using LazyPropValidationDescriptor = FluentValidation.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidation.Validation.Models.PropertyName, string>>;
+using LazyValValidationDescriptor = FluentValidation.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidation.Validation.Models.PropertyName, FluentValidation.Validation.Models.ValidationValue, string>>;
 
 namespace FluentValidation.UnitTests.Validators
 {
     public static class ValidatorTestHelper
     {
-        public static ValidatorDescriptor CreateDefaultValidationDescriptor()
+        public static LazyPropValidationDescriptor CreateDefaultLazyPropertyValidationDescriptor()
         {
-            return CreateDefaultValidationDescriptor(Guid.NewGuid());
+            return CreateDefaultLazyPropertyValidationDescriptor(Guid.NewGuid());
+        }
+
+        public static LazyPropValidationDescriptor CreateDefaultLazyPropertyValidationDescriptor(Guid validatorId)
+        {
+            return new LazyPropValidationDescriptor(validatorId, "TestRule", p => "Error", p => "Descriptor");
         }
 
         public static ValidatorDescriptor CreateDefaultValidationDescriptor(Guid validatorId)
         {
             return new ValidatorDescriptor(validatorId, "TestRule", "Error", "Descriptor");
+        }
+
+        public static ValidatorDescriptor CreateDefaultValidationDescriptor()
+        {
+            return CreateDefaultValidationDescriptor(Guid.NewGuid());
+        }
+
+        public static LazyValValidationDescriptor CreateDefaultLazyValueValidatorDescriptor(Guid validatorId)
+        {
+            return new LazyValValidationDescriptor(validatorId, "TestRule", (p, v) => "Error", (p, v) => "Descriptor");
+        }
+
+        public static LazyValValidationDescriptor CreateDefaultLazyValueValidatorDescriptor()
+        {
+            return CreateDefaultLazyValueValidatorDescriptor(Guid.NewGuid());
         }
     }
 }

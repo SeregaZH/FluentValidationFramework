@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using FluentValidation.Validation.Models;
 using FluentValidation.Validation.Models.Options;
+using LazyPropValidationDescriptor = FluentValidation.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidation.Validation.Models.PropertyName, string>>;
 
 namespace FluentValidation.Validation.Validators
 {
@@ -23,10 +24,10 @@ namespace FluentValidation.Validation.Validators
         /// <param name="invalidValues">The invalid values (nested <see cref="RequiredValidator{TModel, TValue}" />).</param>
         /// <param name="options">The string required options <see cref="BaseStringValidationOptions" />.</param>
         public StringRequiredValidator(
-            ValidatorDescriptor descriptor,
+            LazyPropValidationDescriptor lazyPropertyDescriptor,
             Expression<Func<TModel, string>> propertyGetter,
             BaseStringValidationOptions options)
-            : base(descriptor, propertyGetter)
+            : base(lazyPropertyDescriptor, propertyGetter)
         {
             _options = options;
         }
@@ -44,7 +45,7 @@ namespace FluentValidation.Validation.Validators
         {
             return new PropertyValidationResult(
                 !string.IsNullOrEmpty(_options.IsTrimmed ? value?.Trim() : value),
-                Descriptor,
+                DescriptorResolver.Resolve(propertyName, LazyValidatorDescriptor),
                 propertyName);
         }
     }

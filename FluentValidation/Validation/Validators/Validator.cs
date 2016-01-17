@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using FluentValidation.Validation.Models;
+﻿using System.Threading.Tasks;
 using FluentValidation.Validation.Models.Results;
 
 namespace FluentValidation.Validation.Validators
@@ -15,15 +13,6 @@ namespace FluentValidation.Validation.Validators
     public abstract class Validator<TModel> : IValidator<TModel>
     {
         /// <summary>
-        /// Initializes a part of the <see cref="Validator{TModel}"/> class.
-        /// </summary>
-        /// <param name="descriptor">The validator descriptor <see cref="ValidatorDescriptor" />.</param>
-        protected Validator(ValidatorDescriptor descriptor)
-        {
-            Descriptor = descriptor;
-        }
-
-        /// <summary>
         /// Validates the model. Override to implement custom validation logic.
         /// </summary>
         /// <param name="model">The model to validate.</param>
@@ -36,15 +25,6 @@ namespace FluentValidation.Validation.Validators
         /// <param name="model">The model to validate.</param>
         /// <returns>The validation result.</returns>
         protected abstract Task<ValidationResult> ValidateModelAsync(TModel model);
-
-        /// <summary>
-        /// Gets the validator descriptor <see cref="ValidatorDescriptor">.
-        /// </summary>
-        /// <value>
-        /// The validator descriptor.
-        /// </value>
-        public ValidatorDescriptor Descriptor { get; private set; }
-
 
         /// <summary>
         /// Validates the specified model.

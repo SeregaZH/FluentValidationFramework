@@ -2,19 +2,23 @@
 using System.Linq.Expressions;
 using FluentValidation.Validation.Models;
 using FluentValidation.Validation.Models.Options;
+using LazyValValidationDescriptor = FluentValidation.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidation.Validation.Models.PropertyName, FluentValidation.Validation.Models.ValidationValue, string>>;
 
 namespace FluentValidation.Validation.Validators
 {
     public abstract class BaseValueValidator<TModel, TValue> : SyncPropertyValidator<TModel, TValue>
     {
         protected BaseValueValidator
-            (ValidatorDescriptor descriptor, 
+            (LazyValValidationDescriptor lazyDescriptor, 
             Expression<Func<TModel, TValue>> propertyGetter,
             ValueValidationOptions<TValue> options) 
-            : base(descriptor, propertyGetter)
+            : base(propertyGetter)
         {
             Options = options;
+            LazyValueDescriptor = lazyDescriptor;
         }
+
+        protected LazyValValidationDescriptor LazyValueDescriptor { get; private set; }
 
         protected ValueValidationOptions<TValue> Options { get; private set; }
 

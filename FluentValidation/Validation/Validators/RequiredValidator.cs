@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using FluentValidation.Validation.Models;
+using LazyPropValidationDescriptor = FluentValidation.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidation.Validation.Models.PropertyName, string>>;
 
 namespace FluentValidation.Validation.Validators
 {
@@ -19,11 +20,14 @@ namespace FluentValidation.Validation.Validators
         /// <param name="propertyGetter">The property getter (nested <see cref="SyncPropertyValidator{TModel, TValue}" />).</param>
         /// <param name="invalidValues">The set of invalid values.</param>
         public RequiredValidator(
-            ValidatorDescriptor descriptor,
-            Expression<Func<TModel, TValue>> propertyGetter)
-            : base(descriptor, propertyGetter)
+            LazyPropValidationDescriptor lazyValidatorDescriptor,
+            Expression<Func<TModel, TValue>> propertyGetter):
+            base(propertyGetter)
         {
+            LazyValidatorDescriptor = lazyValidatorDescriptor;
         }
+
+        protected LazyPropValidationDescriptor LazyValidatorDescriptor { get; private set; }
 
         /// <summary>
         /// Validates the particular property in the model.
@@ -40,7 +44,7 @@ namespace FluentValidation.Validation.Validators
             string propertyName)
         {
             var validationResult = Equals(value, default(TValue));
-            return new PropertyValidationResult(!validationResult, Descriptor, propertyName);
+            return new PropertyValidationResult(!validationResult, DescriptorResolver.Resolve(propertyName, LazyValidatorDescriptor), propertyName);
         }
     }
 }

@@ -63,7 +63,7 @@ namespace FluentValidation.UnitTests.Validators
             Action<ValidationResult> asserts)
         {
             var validationTarget = validationTargetFactory();
-            var validatorDescriptor = ValidatorTestHelper.CreateDefaultValidationDescriptor();
+            var validatorDescriptor = ValidatorTestHelper.CreateDefaultLazyPropertyValidationDescriptor();
             var validator = new CollectionRequiredValidator<TModel, TProperty>(validatorDescriptor, propertyToValidate);
             var validationResult = validator.Validate(validationTarget);
             asserts(validationResult);

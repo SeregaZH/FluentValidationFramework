@@ -84,7 +84,7 @@ namespace FluentValidation.UnitTests.Validators
             where TModel: FakeValidationTargetModel
         {
             var validationTarget = validationTargetFactory();
-            var ruleDescriptor = ValidatorTestHelper.CreateDefaultValidationDescriptor();
+            var ruleDescriptor = ValidatorTestHelper.CreateDefaultLazyPropertyValidationDescriptor();
             var targetRule = new StringRequiredValidator<TModel>(ruleDescriptor, propertyToValidate, optionsFactory());
 
             ValidationResult result = targetRule.Validate(validationTarget);

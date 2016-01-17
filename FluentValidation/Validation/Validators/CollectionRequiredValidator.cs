@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using FluentValidation.Validation.Models;
-using FluentValidation.Validation.Models.Results;
+using LazyPropValidationDescriptor = FluentValidation.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidation.Validation.Models.PropertyName, string>>;
 
 namespace FluentValidation.Validation.Validators
 {
-    public sealed class CollectionRequiredValidator<TModel, TCollection> : RequiredValidator<TModel, IEnumerable<TCollection>>
+    public sealed class CollectionRequiredValidator<TModel, TCollection> : SyncPropertyValidator<TModel, IEnumerable<TCollection>>
     {
-        public CollectionRequiredValidator(ValidatorDescriptor descriptor, Expression<Func<TModel, IEnumerable<TCollection>>> propertyGetter) 
-            : base(descriptor, propertyGetter)
+        private readonly LazyPropValidationDescriptor _lazyPropertyDescriptor;
+
+        public CollectionRequiredValidator(
+            LazyPropValidationDescriptor lazyPropertyDescriptor,
+            Expression<Func<TModel, IEnumerable<TCollection>>> propertyGetter) 
+            : base(propertyGetter)
         {
+            _lazyPropertyDescriptor = lazyPropertyDescriptor;
         }
 
         protected override PropertyValidationResult ValidateProperty(IEnumerable<TCollection> property, TModel context, string propertyName)
@@ -20,11 +25,11 @@ namespace FluentValidation.Validation.Validators
             {
                 if (property.Any())
                 {
-                    return new PropertyValidationResult(true, Descriptor, propertyName);
+                    return new PropertyValidationResult(true, DescriptorResolver.Resolve(propertyName, _lazyPropertyDescriptor), propertyName);
                 }
             }
 
-            return new PropertyValidationResult(false, Descriptor, propertyName);
+            return new PropertyValidationResult(false, DescriptorResolver.Resolve(propertyName, _lazyPropertyDescriptor), propertyName);
         }
     }
 }

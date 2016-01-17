@@ -1,4 +1,5 @@
 ﻿using FluentValidation.UnitTests;
+using FluentValidation.UnitTests.Validators;
 using FluentValidation.Validation.Models;
 using FluentValidation.Validation.Models.Results;
 using FluentValidation.Validation.Validators;
@@ -48,17 +49,12 @@ namespace FluentValidation.Tests.Validators
             where TModel : FakeValidationTargetModel
         {
             var validationTarget = validationTargetFactory();
-            var validatorDescriptor = CreateDefaultValidationDescriptor();
+            var validatorDescriptor = ValidatorTestHelper.CreateDefaultLazyPropertyValidationDescriptor();
             var targetValidator = new RequiredValidator<TModel, TValue>(validatorDescriptor, propertyToValidate);
 
             ValidationResult result = targetValidator.Validate(validationTarget);
 
             asserts(result);
-        }
-
-        private ValidatorDescriptor CreateDefaultValidationDescriptor()
-        {
-            return new ValidatorDescriptor(Guid.NewGuid(), "Key:Required", "Message", "Desc");
         }
     }
 }

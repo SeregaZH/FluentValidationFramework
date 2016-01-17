@@ -6,7 +6,7 @@ namespace FluentValidation.Validation.Models
     /// The validator descriptor.
     /// Described basic validator properties.
     /// </summary>
-    public sealed class ValidatorDescriptor
+    public sealed class ValidatorDescriptor : BaseValidatorDescriptor
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidatorDescriptor"/> class.
@@ -15,31 +15,13 @@ namespace FluentValidation.Validation.Models
         /// <param name="key">The validator key.</param>
         /// <param name="errorMessage">The error message.</param>
         /// <param name="description">The validator description.</param>
-        public ValidatorDescriptor(Guid id, string key, string errorMessage, string description)
+        public ValidatorDescriptor
+            (Guid id, string key, string errorMessage, string description)
+            : base(id, key)
         {
-            Id = id;
-            Key = key;
             ErrorMessage = errorMessage;
             Description = description;
         }
-
-        /// <summary>
-        /// Gets the validator identifier.
-        /// </summary>
-        /// <value>
-        /// The validator identifier.
-        /// Each validator instance should have unique identifier.
-        /// </value>
-        public Guid Id { get; private set; }
-
-        /// <summary>
-        /// Gets the validator key.
-        /// </summary>
-        /// <value>
-        /// The validator key.
-        /// Each group of validator should have same key.
-        /// </value>
-        public string Key { get; private set; }
 
         /// <summary>
         /// Gets the error message.

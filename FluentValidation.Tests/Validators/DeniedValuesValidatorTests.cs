@@ -102,7 +102,7 @@ namespace FluentValidation.Tests.Validators
                                         Action<ValidationResult> asserts)
         {
             var validationTarget = validationTargetFactory();
-            var validatorDescriptor = ValidatorTestHelper.CreateDefaultValidationDescriptor();
+            var validatorDescriptor = ValidatorTestHelper.CreateDefaultLazyValueValidatorDescriptor();
             var targetValidator = new DeniedValuesValidator<TModel, TProperty>(validatorDescriptor, propertyToValidate, optionsFactory());
 
             ValidationResult result = targetValidator.Validate(validationTarget);

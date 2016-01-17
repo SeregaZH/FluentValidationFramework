@@ -1,11 +1,12 @@
 ﻿using FluentValidation.Helpers;
+using FluentValidation.Validation.Builders.Fluent;
 using FluentValidation.Validation.Models;
 using FluentValidation.Validation.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using DescBuilder = FluentValidation.Validation.Fluent.Builders.ValidatorDescriptorBuilder;
 using DescFactory = FluentValidation.Validation.Builders.DefaultValidatorDescriptorFactory;
+using LazyPropValidationDescriptor = FluentValidation.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidation.Validation.Models.PropertyName, string>>;
 
 namespace FluentValidation.Validation.Fluent.Builders
 {
@@ -18,10 +19,10 @@ namespace FluentValidation.Validation.Fluent.Builders
         public static IValidationModelConfigBuilder<TModel> Required<TModel, TProperty>(
             this IValidationModelConfigBuilder<TModel> @this,
             Expression<Func<TModel,TProperty>> property,
-            Func<DescBuilder, ValidatorDescriptor> descFactory = null)
+            Func<PropertyValidatorDescriptorBuilder, LazyPropValidationDescriptor> descFactory = null)
         {
-            var baseDescriptor = DescFactory.PropertyRequired(property.ResolvePropertyName());
-            var sourceDescriptor = CreateDescriptor(baseDescriptor, descFactory);
+            var baseDescriptor = DescFactory.PropertyRequired;
+            var sourceDescriptor = CreatePropDescriptor(baseDescriptor, descFactory);
             var validatorContainer = new ValidatorContainer<TModel>(
                 new RequiredValidator<TModel, TProperty>(sourceDescriptor, property), LowestPriority);
             @this.AddValidator(validatorContainer);
@@ -31,24 +32,28 @@ namespace FluentValidation.Validation.Fluent.Builders
         public static IValidationModelConfigBuilder<TModel> CollectionRequired<TModel, TProperty>(
             this IValidationModelConfigBuilder<TModel> @this,
             Expression<Func<TModel, IEnumerable<TProperty>>> property,
-            Func<DescBuilder, ValidatorDescriptor> descFactory = null)
+            Func<PropertyValidatorDescriptorBuilder, LazyPropValidationDescriptor> descFactory = null)
         {
-            var baseDescriptor = DescFactory.CollectionPropertyRequired(property.ResolvePropertyName());
-            var sourceDescriptor = CreateDescriptor(baseDescriptor, descFactory);
+            var baseDescriptor = DescFactory.CollectionPropertyRequired;
+            var sourceDescriptor = CreatePropDescriptor(baseDescriptor, descFactory);
             var validatorContainer = new ValidatorContainer<TModel>(
                 new CollectionRequiredValidator<TModel, TProperty>(sourceDescriptor, property), LowestPriority);
             @this.AddValidator(validatorContainer);
             return @this;
         }
 
-        private static ValidatorDescriptor CreateDescriptor(ValidatorDescriptor baseDescriptor, Func<DescBuilder, ValidatorDescriptor> descFactory)
+        private static LazyPropValidationDescriptor CreatePropDescriptor(
+            LazyPropValidationDescriptor baseDescriptor, 
+            Func<PropertyValidatorDescriptorBuilder, LazyPropValidationDescriptor> descFactory)
         {
-            var descriptorBuilder = new DescBuilder();
-            return MergeValidatorsDescriptors(baseDescriptor, descFactory != null
+            var descriptorBuilder = new PropertyValidatorDescriptorBuilder();
+            return MergePropValidatorsDescriptors(baseDescriptor, descFactory != null
                 ? descFactory(descriptorBuilder) : null);
         }
 
-        private static ValidatorDescriptor MergeValidatorsDescriptors(ValidatorDescriptor @base, ValidatorDescriptor source)
+        private static LazyPropValidationDescriptor MergePropValidatorsDescriptors(
+            LazyPropValidationDescriptor @base,
+            LazyPropValidationDescriptor source)
         {
             Guard.ArgumentNull(@base, nameof(@base));
             if (source == null)
@@ -56,11 +61,11 @@ namespace FluentValidation.Validation.Fluent.Builders
                 return @base;
             }
 
-            return new ValidatorDescriptor(
+            return new LazyPropValidationDescriptor(
                 source.Id,
                 source.Key ?? @base.Key,
-                source.ErrorMessage ?? @base.ErrorMessage,
-                source.Description ?? @base.Description);
+                source.ErrorMessageResolver ?? @base.ErrorMessageResolver,
+                source.DescriptionResolver ?? @base.DescriptionResolver);
         }
     }
 }
