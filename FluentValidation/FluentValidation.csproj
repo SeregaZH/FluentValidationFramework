@@ -47,11 +47,13 @@
     <Compile Include="Validation\Builders\DefaultValidatorDescriptorFactory.cs" />
     <Compile Include="Validation\Builders\Fluent\BaseValidatorDescriptorBuilder.cs" />
     <Compile Include="Validation\Builders\Fluent\IValidatorExecutorsConfigBuilder.cs" />
+    <Compile Include="Validation\Builders\Fluent\IValueValidatorOptionsBuilder.cs" />
     <Compile Include="Validation\Builders\Fluent\PropertyValidatorDescriptorBuilder.cs" />
     <Compile Include="Validation\Builders\Fluent\ValidationModelConfigBuilder.cs" />
     <Compile Include="Validation\Builders\Fluent\ValidatorConfigBuilderExtensions.cs" />
     <Compile Include="Validation\Builders\Fluent\ValidatorExecutorsConfigBuilder.cs" />
     <Compile Include="Validation\Builders\Fluent\ValidatorsConfigBuilder.cs" />
+    <Compile Include="Validation\Builders\Fluent\ValueValidatorOptionsBuilder.cs" />
     <Compile Include="Validation\Builders\Fluent\ValueValidatorDescriptorBuilder.cs" />
     <Compile Include="Validation\Configuration\Enums\ExecutorTypeMapper.cs" />
     <Compile Include="Validation\Configuration\Enums\ExecutorTypes.cs" />

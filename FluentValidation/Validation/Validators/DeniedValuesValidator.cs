@@ -11,8 +11,8 @@ namespace FluentValidation.Validation.Validators
     {
         public DeniedValuesValidator(
             LazyValValidationDescriptor lazyValueDescriptor, 
-            Expression<Func<TModel, TValue>> propertyGetter, 
-            ValueValidationOptions<TValue> options) 
+            Expression<Func<TModel, TValue>> propertyGetter,
+            IValueValidatorOptions<TValue> options) 
              : base(lazyValueDescriptor, propertyGetter, options)
         {
         }

@@ -11,7 +11,7 @@ namespace FluentValidation.Validation.Validators
         protected BaseValueValidator
             (LazyValValidationDescriptor lazyDescriptor, 
             Expression<Func<TModel, TValue>> propertyGetter,
-            ValueValidationOptions<TValue> options) 
+            IValueValidatorOptions<TValue> options) 
             : base(propertyGetter)
         {
             Options = options;
@@ -20,7 +20,7 @@ namespace FluentValidation.Validation.Validators
 
         protected LazyValValidationDescriptor LazyValueDescriptor { get; private set; }
 
-        protected ValueValidationOptions<TValue> Options { get; private set; }
+        protected IValueValidatorOptions<TValue> Options { get; private set; }
 
         protected override PropertyValidationResult ValidateProperty(TValue value, TModel context, string propertyName)
         {

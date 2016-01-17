@@ -28,5 +28,12 @@ namespace FluentValidation.Validation.Builders
                 $"{ RuleKeyPrefix }:DeniedValue",
                 (propName, propValue) => $"The value: { propValue.Value } is denied for property: { propName.Name }",
                 (propName, propValue) => $"The value: { propValue.Value } is denied for property: { propName.Name }");
+
+        internal static LazyValValidationDescriptor DeniedStringValues =>
+            new LazyValValidationDescriptor(
+                Guid.NewGuid(),
+                $"{ RuleKeyPrefix }:DeniedStringValue",
+                (propName, propValue) => $"The string value: { propValue.Value } is denied for property: { propName.Name }",
+                (propName, propValue) => $"The string value: { propValue.Value } is denied for property: { propName.Name }");
     }
 }
