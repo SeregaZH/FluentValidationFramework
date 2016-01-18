@@ -20,7 +20,7 @@ namespace FluentValidation.Tests.Validators
             DeniedValuesValidatorTestTemplate(
                 validationTargetFactory: () => new FakeValidationTargetModel(),
                 propertyToValidate: x => x.ReferenceTypeValidationTargetProperty,
-                optionsFactory: () => new ValueValidationOptions<object>(),
+                optionsFactory: () => new ValueValidatorOptions<object>(),
                 asserts: result =>
                 {
                     Assert.IsTrue(result.IsValid());
@@ -36,7 +36,7 @@ namespace FluentValidation.Tests.Validators
             DeniedValuesValidatorTestTemplate(
                 validationTargetFactory: () => new FakeValidationTargetModel { NumericValidationTargetProperty = 1 },
                 propertyToValidate: x => x.NumericValidationTargetProperty,
-                optionsFactory: () => new ValueValidationOptions<int>(new HashSet<int>(new int[] { 1 })),
+                optionsFactory: () => new ValueValidatorOptions<int>(new HashSet<int>(new int[] { 1 })),
                 asserts: result =>
                 {
                     Assert.IsFalse(result.IsValid());
@@ -52,7 +52,7 @@ namespace FluentValidation.Tests.Validators
             DeniedValuesValidatorTestTemplate(
                 validationTargetFactory: () => new FakeValidationTargetModel { NumericValidationTargetProperty = 1 },
                 propertyToValidate: x => x.NumericValidationTargetProperty,
-                optionsFactory: () => new ValueValidationOptions<int>(new HashSet<int>(new int[] { 2, 3 })),
+                optionsFactory: () => new ValueValidatorOptions<int>(new HashSet<int>(new int[] { 2, 3 })),
                 asserts: result =>
                 {
                     Assert.IsTrue(result.IsValid());
@@ -69,7 +69,7 @@ namespace FluentValidation.Tests.Validators
             DeniedValuesValidatorTestTemplate(
                 validationTargetFactory: () => new FakeCompareTargetModel { ComparationProperty = new CompationModel { PropToCompare = invalidValues } },
                 propertyToValidate: x => x.ComparationProperty,
-                optionsFactory: () => new ValueValidationOptions<CompationModel>(new HashSet<CompationModel>(new CompationModel[] { new CompationModel { PropToCompare = invalidValues } }), new TestComparer()),
+                optionsFactory: () => new ValueValidatorOptions<CompationModel>(new HashSet<CompationModel>(new CompationModel[] { new CompationModel { PropToCompare = invalidValues } }), new TestComparer()),
                 asserts: result =>
                 {
                     Assert.IsFalse(result.IsValid());
@@ -85,7 +85,7 @@ namespace FluentValidation.Tests.Validators
             DeniedValuesValidatorTestTemplate(
                 validationTargetFactory: () => new FakeCompareTargetModel { ComparationProperty = new CompationModel { PropToCompare = Guid.NewGuid().ToString() } },
                 propertyToValidate: x => x.ComparationProperty,
-                optionsFactory: () => new ValueValidationOptions<CompationModel>(new HashSet<CompationModel>(new CompationModel[] { new CompationModel { PropToCompare = Guid.NewGuid().ToString() } }), new TestComparer()),
+                optionsFactory: () => new ValueValidatorOptions<CompationModel>(new HashSet<CompationModel>(new CompationModel[] { new CompationModel { PropToCompare = Guid.NewGuid().ToString() } }), new TestComparer()),
                 asserts: result =>
                 {
                     Assert.IsTrue(result.IsValid());
@@ -98,7 +98,7 @@ namespace FluentValidation.Tests.Validators
         private void DeniedValuesValidatorTestTemplate<TModel, TProperty>(
                                         Func<TModel> validationTargetFactory,
                                         Expression<Func<TModel, TProperty>> propertyToValidate,
-                                        Func<ValueValidationOptions<TProperty>> optionsFactory,
+                                        Func<ValueValidatorOptions<TProperty>> optionsFactory,
                                         Action<ValidationResult> asserts)
         {
             var validationTarget = validationTargetFactory();

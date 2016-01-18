@@ -2,22 +2,22 @@
 
 namespace FluentValidation.Validation.Models.Options
 {
-    public sealed class ValueValidationOptions<TType> : IValueValidatorOptions<TType>
+    public sealed class ValueValidatorOptions<TType> : IValueValidatorOptions<TType>
     {
-        public ValueValidationOptions()
+        public ValueValidatorOptions()
         {
             Values = new HashSet<TType>();
             Comparer = EqualityComparer<TType>.Default;
         }
 
-        public ValueValidationOptions(
+        public ValueValidatorOptions(
             HashSet<TType> values)
         {
             Values = values;
             Comparer = EqualityComparer<TType>.Default;
         }
 
-        public ValueValidationOptions(
+        public ValueValidatorOptions(
             HashSet<TType> values,
             IEqualityComparer<TType> comparer)
         {

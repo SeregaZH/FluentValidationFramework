@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Builders\BaseValidatorDescriptorBuilderTests.cs" />
+    <Compile Include="Builders\ValueValidatorOptionsBuilderTests.cs" />
     <Compile Include="Executors\HierarchicalValidatorExecutorTests.cs" />
     <Compile Include="Executors\ValidatorExecutorTestHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

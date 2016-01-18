@@ -60,7 +60,7 @@ namespace FluentValidation.Validation.Fluent.Builders
                 new DeniedValuesValidator<TModel, TProperty>(
                     sourceDescriptor, 
                     property,
-                    optionsBuilderFactory != null ? optionsBuilderFactory(optionsBuilder) : new ValueValidationOptions<TProperty>()),
+                    optionsBuilderFactory != null ? optionsBuilderFactory(optionsBuilder) : new ValueValidatorOptions<TProperty>()),
                 priority ?? LowestPriority);
             @this.AddValidator(validatorContainer);
             return @this;

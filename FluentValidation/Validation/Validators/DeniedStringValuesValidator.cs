@@ -16,7 +16,7 @@ namespace FluentValidation.Validation.Validators
             LazyValValidationDescriptor lazyValueDescriptor,
             Expression<Func<TModel, string>> propertyGetter,
             StringValuesValidatorOptions options) 
-            : base(lazyValueDescriptor, propertyGetter, new ValueValidationOptions<string>(new HashSet<string>(options.Values.Select(x => options.IsTrimmed ? x?.Trim() : x)), options.Comparer))
+            : base(lazyValueDescriptor, propertyGetter, new ValueValidatorOptions<string>(new HashSet<string>(options.Values.Select(x => options.IsTrimmed ? x?.Trim() : x)), options.Comparer))
         {
             _stringOptions = options;
         }

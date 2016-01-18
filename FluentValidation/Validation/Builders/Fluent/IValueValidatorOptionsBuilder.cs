@@ -9,6 +9,8 @@ namespace FluentValidation.Validation.Builders.Fluent
 
         IValueValidatorOptionsBuilder<TType> WithValues(HashSet<TType> values);
 
+        IValueValidatorOptionsBuilder<TType> WithValues(IEnumerable<TType> values);
+
         IValueValidatorOptions<TType> Build();
     }
 }

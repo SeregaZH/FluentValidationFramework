@@ -79,7 +79,7 @@
     <Compile Include="Validation\Models\DescriptorResolver.cs" />
     <Compile Include="Validation\Models\Options\BaseStringValidationOptions.cs" />
     <Compile Include="Validation\Models\Options\StringValidationOptions.cs" />
-    <Compile Include="Validation\Models\Options\ValueValidationOptions.cs" />
+    <Compile Include="Validation\Models\Options\ValueValidatorOptions.cs" />
     <Compile Include="Validation\Models\PropertyName.cs" />
     <Compile Include="Validation\Models\Results\AggregateValidationResult.cs" />
     <Compile Include="Validation\Models\Results\IValidationResult.cs" />

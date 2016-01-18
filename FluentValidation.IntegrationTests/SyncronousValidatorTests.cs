@@ -11,6 +11,8 @@ namespace FluentValidation.IntegrationTests
     {
         private const string RequiredKey = "Key:FakeRequired";
         private const string CollectionRequiredKey = "Key:CollectionRequired";
+        private const string DeniedValuesKey = "Key:DeniedValues";
+        private const int DeniedValue = 1;
 
         [TestMethod]
         public void TestRequiredValidatorShouldBeFailed()
@@ -52,6 +54,20 @@ namespace FluentValidation.IntegrationTests
             Assert.IsNotNull(failedValidator);
         }
 
+        [TestMethod]
+        public void TestDeniedValueValidatorShouldBeFailedForDeniedValue()
+        {
+            var modelToValidate = new FakeModel();
+            modelToValidate.DeniedValueProperty = DeniedValue;
+            var validator = CreateDeniedValuesFactory().ResolveModel<FakeModel>();
+            var result = validator.Validate(modelToValidate);
+
+            Assert.IsNotNull(result);
+            Assert.IsFalse(result.IsValid());
+            var failedValidator = result.FailedValidators.SingleOrDefault(x => x.Key.Equals(DeniedValuesKey));
+            Assert.IsNotNull(failedValidator);
+        }
+
         private IValidationModelFactory CreateRequiredFactory()
         {
             return ValidationFactoryResolver
@@ -75,6 +91,24 @@ namespace FluentValidation.IntegrationTests
                                                               modelBuilder
                                                               .CollectionRequired(x => x.RequiredCollection, desc => desc
                                                                         .WithKey(CollectionRequiredKey)
+                                                                        .Build())
+                                                              .Build())
+                                                          .Build());
+        }
+
+        private IValidationModelFactory CreateDeniedValuesFactory()
+        {
+            return ValidationFactoryResolver
+                .ResolveInstance()
+                .RegisterConfig<FakeModel>(builder => builder
+                                                 .WithValidationModel(modelBuilder =>
+                                                              modelBuilder
+                                                              .DeniedValue(x => x.DeniedValueProperty,
+                                                                         opt => opt
+                                                                         .WithValues(new[] { DeniedValue })
+                                                                         .Build(),
+                                                                         desc => desc
+                                                                        .WithKey(DeniedValuesKey)
                                                                         .Build())
                                                               .Build())
                                                           .Build());
