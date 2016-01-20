@@ -60,6 +60,7 @@
     <Compile Include="Builders\ValueValidatorOptionsBuilderTests.cs" />
     <Compile Include="Executors\HierarchicalValidatorExecutorTests.cs" />
     <Compile Include="Executors\ValidatorExecutorTestHelper.cs" />
+    <Compile Include="HelpersTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AggregateValidationResultTests.cs" />
     <Compile Include="Validators\CollectionRequiredValidatorTests.cs" />
