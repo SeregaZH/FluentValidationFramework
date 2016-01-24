@@ -66,6 +66,15 @@ namespace FluentValidation.Validation.Fluent.Builders
             return @this;
         }
 
+        public static IValidationModelConfigBuilder<TModel> Custom<TModel>(
+            this IValidationModelConfigBuilder<TModel> @this,
+            IValidator<TModel> validator,
+            int? priority = null)
+        {
+            @this.AddValidator(new ValidatorContainer<TModel>(validator, priority ?? LowestPriority));
+            return @this;
+        }
+
         private static BaseLazyValidatorDescriptor<TResolver> CreatePropDescriptor<TResolver>(
             BaseLazyValidatorDescriptor<TResolver> baseDescriptor,
             Func<PropertyValidatorDescriptorBuilder, BaseLazyValidatorDescriptor<TResolver>> descFactory)

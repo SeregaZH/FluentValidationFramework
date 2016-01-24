@@ -17,7 +17,6 @@ namespace FluentValidation.Helpers
         {
             private readonly ExclusiveSynchronizationContext _currentContext;
             private SynchronizationContext _oldContext;
-            private int _taskCount;
 
             internal AsyncBridge()
             {
@@ -36,7 +35,6 @@ namespace FluentValidation.Helpers
                     try
                     {
                         var cur = SynchronizationContext.Current;
-                        Interlocked.Increment(ref _taskCount);
                         result = await task();
                     }
                     catch (Exception e)
@@ -46,15 +44,10 @@ namespace FluentValidation.Helpers
                     }
                     finally
                     {
-                        Interlocked.Decrement(ref _taskCount);
-
-                        if (_taskCount == 0)
-                        {
-                            _currentContext.EndMessageLoop();
-                        }
+                        _currentContext.EndSyncMessageLoop();
                     }
                 }, null);
-                _currentContext.BeginMessageLoop();
+                _currentContext.BeginSyncMessageLoop();
 
                 return result;
             }
@@ -78,7 +71,7 @@ namespace FluentValidation.Helpers
             }
         }
 
-        public static AsyncBridge Wait()
+        public static AsyncBridge Sync()
         {
             return new AsyncBridge();
         }
@@ -88,7 +81,7 @@ namespace FluentValidation.Helpers
             private readonly AutoResetEvent _workItemsWaiting =
                 new AutoResetEvent(false);
 
-            private bool _done;
+            private bool _doneSync;
             private readonly EventQueue _items;
 
             public Exception InnerException { get; set; }
@@ -120,14 +113,14 @@ namespace FluentValidation.Helpers
                 _workItemsWaiting.Set();
             }
 
-            public void EndMessageLoop()
+            public void EndSyncMessageLoop()
             {
-                Post(_ => _done = true, null);
+                _doneSync = true;
             }
 
-            public void BeginMessageLoop()
+            public void BeginSyncMessageLoop()
             {
-                while (!_done)
+                while (!_doneSync)
                 {
                     EventTask task = null;
 
@@ -151,6 +144,7 @@ namespace FluentValidation.Helpers
                         _workItemsWaiting.WaitOne();
                     }
                 }
+                _doneSync = false;
             }
 
             public override SynchronizationContext CreateCopy()

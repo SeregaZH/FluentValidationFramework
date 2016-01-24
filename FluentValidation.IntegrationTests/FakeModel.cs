@@ -2,12 +2,14 @@
 
 namespace FluentValidation.IntegrationTests
 {
-    internal class FakeModel
+    public class FakeModel
     {
-        internal string RequiredProperty { get; set; }
+        public string RequiredProperty { get; set; }
 
-        internal int DeniedValueProperty { get; set; }
+        public int DeniedValueProperty { get; set; }
 
-        internal IEnumerable<string> RequiredCollection { get; set; }
+        public IEnumerable<string> RequiredCollection { get; set; }
+
+        public int CustomProperty { get; set; }
     }
 }

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation.Validation.Models.Results;
-using System.Threading;
+﻿using FluentValidation.Validation.Models.Results;
+using FluentValidation.Helpers;
 
 namespace FluentValidation.Validation.Validators
 {
@@ -12,19 +7,10 @@ namespace FluentValidation.Validation.Validators
     {
         protected sealed override ValidationResult ValidateModel(TModel model)
         {
-            var validationTask = ValidateModelAsync(model);
-            var suncContext = SynchronizationContext.Current;
-            bool flag = false;
-
-            Task.Factory.StartNew(() =>
+            using (var syncWaiter = AsyncHelper.Sync())
             {
-                suncContext.Post(delegate 
-                {
-                    var result = validationTask.Result;
-
-
-                }, null);
-            });
+                return syncWaiter.RunSync(() => ValidateModelAsync(model));
+            }
         }
     }
 }

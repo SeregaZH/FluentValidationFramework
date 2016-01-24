@@ -91,6 +91,8 @@
     <Compile Include="Validation\Models\ValidationValue.cs" />
     <Compile Include="Validation\Models\ValidatorContainer.cs" />
     <Compile Include="Validation\ValidationModel\GenericValidationModel.cs" />
+    <Compile Include="Validation\Validators\AsyncPropertyValidator.cs" />
+    <Compile Include="Validation\Validators\AsyncValidator.cs" />
     <Compile Include="Validation\Validators\BaseValueValidator.cs" />
     <Compile Include="Validation\Validators\CollectionRequiredValidator.cs" />
     <Compile Include="Validation\Validators\DeniedValuesValidator.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="Validation\Validators\PropertyValidator.cs" />
     <Compile Include="Validation\Validators\RequiredValidator.cs" />
     <Compile Include="Validation\Validators\SyncPropertyValidator.cs" />
+    <Compile Include="Validation\Validators\SyncValidator.cs" />
     <Compile Include="Validation\Validators\Validator.cs" />
     <Compile Include="Validation\Models\ValidatorDescriptor.cs" />
   </ItemGroup>
