@@ -113,7 +113,7 @@ namespace FluentValidation.IntegrationTests
         }
 
         [TestMethod]
-        public void TestSyncValidatorWithRulesetOneShouldBeFailed()
+        public void TestSyncValidatorWithRulesetOneValidatorShouldBeFailed()
         {
             string rulesetName = "customRuleset";
             var validator = CreateRulesetValidatorFactory(rulesetName).ResolveModel<FakeModel>(rulesetName);
