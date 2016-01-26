@@ -1,7 +1,7 @@
-﻿using FluentValidation.Validation.Configuration.Enums;
-using FluentValidation.Validation.Factories;
+﻿using FluentValidationFramework.Validation.Configuration.Enums;
+using FluentValidationFramework.Validation.Factories;
 
-namespace FluentValidation.Validation.Configuration
+namespace FluentValidationFramework.Validation.Configuration
 {
     public sealed class ValidatorExecutorsConfig<TModel>
         where TModel: class

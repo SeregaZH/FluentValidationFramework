@@ -1,4 +1,4 @@
-﻿namespace FluentValidation.Validation.Configuration
+﻿namespace FluentValidationFramework.Validation.Configuration
 {
     public abstract class ValidatorsConfigBase
     {

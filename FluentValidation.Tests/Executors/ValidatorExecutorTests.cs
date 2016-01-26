@@ -1,8 +1,8 @@
-﻿using FluentValidation.Tests.Executors;
-using FluentValidation.Validation;
-using FluentValidation.Validation.Executors;
-using FluentValidation.Validation.Models;
-using FluentValidation.Validation.Models.Results;
+﻿using FluentValidationFramework.Tests.Executors;
+using FluentValidationFramework.Validation;
+using FluentValidationFramework.Validation.Executors;
+using FluentValidationFramework.Validation.Models;
+using FluentValidationFramework.Validation.Models.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FluentValidation.UnitTests.Executors
+namespace FluentValidationFramework.UnitTests.Executors
 {
     [TestClass]
     public class ValidatorExecutorTest

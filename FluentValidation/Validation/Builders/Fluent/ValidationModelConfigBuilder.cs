@@ -1,9 +1,9 @@
-﻿using FluentValidation.Validation.Configuration;
-using FluentValidation.Validation.Fluent;
-using FluentValidation.Validation.Models;
+﻿using FluentValidationFramework.Validation.Configuration;
+using FluentValidationFramework.Validation.Fluent;
+using FluentValidationFramework.Validation.Models;
 using System.Collections.Generic;
 
-namespace FluentValidation.Validation.Builders.Fluent
+namespace FluentValidationFramework.Validation.Builders.Fluent
 {
     public class ValidationModelConfigBuilder<TModel> : IValidationModelConfigBuilder<TModel>
     {

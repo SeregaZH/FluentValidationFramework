@@ -1,16 +1,16 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentValidation.Validation;
-using FluentValidation.Validation.Models.Results;
+using FluentValidationFramework.Validation;
+using FluentValidationFramework.Validation.Models.Results;
 using Moq;
-using FluentValidation.Validation.ValidationModel;
+using FluentValidationFramework.Validation.ValidationModel;
 using System.Collections.Generic;
-using FluentValidation.Validation.Models;
+using FluentValidationFramework.Validation.Models;
 using System.Threading.Tasks;
 using System.Linq;
-using FluentValidation.Validation.Configuration;
+using FluentValidationFramework.Validation.Configuration;
 
-namespace FluentValidation.UnitTests
+namespace FluentValidationFramework.UnitTests
 {
     [TestClass]
     public class GenericValidationModelTests

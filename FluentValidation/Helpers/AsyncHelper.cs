@@ -4,7 +4,7 @@ using EventTask = System.Tuple<System.Threading.SendOrPostCallback, object>;
 using EventQueue = System.Collections.Concurrent.ConcurrentQueue<System.Tuple<System.Threading.SendOrPostCallback, object>>;
 using System.Threading;
 
-namespace FluentValidation.Helpers
+namespace FluentValidationFramework.Helpers
 {
     /// <summary>
     /// References: 

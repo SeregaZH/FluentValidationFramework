@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FluentValidation.Validation.Configuration
+namespace FluentValidationFramework.Validation.Configuration
 {
     public sealed class ValidatorsConfig<TModel> : ValidatorsConfigBase
         where TModel : class

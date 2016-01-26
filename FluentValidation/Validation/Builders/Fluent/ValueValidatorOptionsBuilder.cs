@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using FluentValidation.Validation.Models.Options;
-using FluentValidation.Helpers;
+using FluentValidationFramework.Validation.Models.Options;
+using FluentValidationFramework.Helpers;
 
-namespace FluentValidation.Validation.Builders.Fluent
+namespace FluentValidationFramework.Validation.Builders.Fluent
 {
     public sealed class ValueValidatorOptionsBuilder<TType> : IValueValidatorOptionsBuilder<TType>
     {

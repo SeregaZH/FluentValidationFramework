@@ -1,8 +1,8 @@
-﻿using FluentValidation.Helpers;
-using FluentValidation.Validation.Models;
+﻿using FluentValidationFramework.Helpers;
+using FluentValidationFramework.Validation.Models;
 using System;
 
-namespace FluentValidation.Validation.Builders.Fluent
+namespace FluentValidationFramework.Validation.Builders.Fluent
 {
     public class BaseValidatorDescriptorBuilder<TBuilder, TResolver>
         where TBuilder: BaseValidatorDescriptorBuilder<TBuilder, TResolver>

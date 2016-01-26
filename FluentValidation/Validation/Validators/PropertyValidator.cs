@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq.Expressions;
-using FluentValidation.Validation.Models;
-using FluentValidation.Validation.Models.Results;
-using FluentValidation.Helpers;
+using FluentValidationFramework.Validation.Models;
+using FluentValidationFramework.Validation.Models.Results;
+using FluentValidationFramework.Helpers;
 using System.Threading.Tasks;
 
-namespace FluentValidation.Validation.Validators
+namespace FluentValidationFramework.Validation.Validators
 {
     /// <summary>
     /// Base class for property validators.

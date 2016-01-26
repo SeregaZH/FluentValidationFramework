@@ -1,16 +1,16 @@
 ﻿using System;
-using FluentValidation.Validation.Models;
+using FluentValidationFramework.Validation.Models;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace FluentValidation.Validation.Validators
+namespace FluentValidationFramework.Validation.Validators
 {
     /// <summary>
     /// Base class for sunchronous property validator.
     /// </summary>
     /// <typeparam name="TModel">The type of the model.</typeparam>
     /// <typeparam name="TValue">The type of the value.</typeparam>
-    /// <seealso cref="FluentValidation.Validation.Validators.PropertyValidator{TModel, TValue}" />
+    /// <seealso cref="FluentValidationFramework.Validation.Validators.PropertyValidator{TModel, TValue}" />
     public abstract class SyncPropertyValidator<TModel, TValue> : PropertyValidator<TModel, TValue>
     {
         /// <summary>

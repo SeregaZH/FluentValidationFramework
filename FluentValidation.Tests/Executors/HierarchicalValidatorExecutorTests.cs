@@ -1,14 +1,14 @@
-﻿using FluentValidation.UnitTests;
-using FluentValidation.Validation.Executors;
-using FluentValidation.Validation.Models;
-using FluentValidation.Validation.Models.Results;
+﻿using FluentValidationFramework.UnitTests;
+using FluentValidationFramework.Validation.Executors;
+using FluentValidationFramework.Validation.Models;
+using FluentValidationFramework.Validation.Models.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FluentValidation.Tests.Executors
+namespace FluentValidationFramework.Tests.Executors
 {
     [TestClass]
     public class HierarchicalValidatorExecutorTests

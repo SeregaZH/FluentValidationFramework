@@ -1,4 +1,4 @@
-﻿namespace FluentValidation.Validation.Models.Options
+﻿namespace FluentValidationFramework.Validation.Models.Options
 {
     /// <summary>
     /// Validation options which are common for all string validators.

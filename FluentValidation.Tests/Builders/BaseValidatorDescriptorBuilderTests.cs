@@ -1,9 +1,9 @@
-﻿using FluentValidation.Validation.Builders.Fluent;
-using FluentValidation.Validation.Models;
+﻿using FluentValidationFramework.Validation.Builders.Fluent;
+using FluentValidationFramework.Validation.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace FluentValidation.Tests.Builders
+namespace FluentValidationFramework.Tests.Builders
 {
     [TestClass]
     public class BaseValidatorDescriptorBuilderTests

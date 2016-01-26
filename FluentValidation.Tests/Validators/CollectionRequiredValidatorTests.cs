@@ -2,12 +2,12 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using FluentValidation.Validation.Models.Results;
-using FluentValidation.Validation.Validators;
+using FluentValidationFramework.Validation.Models.Results;
+using FluentValidationFramework.Validation.Validators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentValidation.Validation.Models;
+using FluentValidationFramework.Validation.Models;
 
-namespace FluentValidation.UnitTests.Validators
+namespace FluentValidationFramework.UnitTests.Validators
 {
     [TestClass]
     public class CollectionRequiredValidatorTests

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentValidation.Validation;
-using FluentValidation.Validation.Fluent.Builders;
+using FluentValidationFramework.Validation;
+using FluentValidationFramework.Validation.Fluent.Builders;
 using System.Linq;
-using FluentValidation.Validation.Models.Results;
-using FluentValidation.Validation.Models;
+using FluentValidationFramework.Validation.Models.Results;
+using FluentValidationFramework.Validation.Models;
 using Moq;
 using System.Threading.Tasks;
 
-namespace FluentValidation.IntegrationTests
+namespace FluentValidationFramework.IntegrationTests
 {
     [TestClass]
     public class SyncronousValidatorTests

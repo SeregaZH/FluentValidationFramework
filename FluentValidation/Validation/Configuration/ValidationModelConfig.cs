@@ -1,7 +1,7 @@
-﻿using FluentValidation.Validation.Models;
+﻿using FluentValidationFramework.Validation.Models;
 using System.Collections.Generic;
 
-namespace FluentValidation.Validation.Configuration
+namespace FluentValidationFramework.Validation.Configuration
 {
     public sealed class ValidationModelConfig<TModel>
     {

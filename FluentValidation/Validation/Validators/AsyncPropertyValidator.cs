@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
-using FluentValidation.Validation.Models;
-using FluentValidation.Helpers;
+using FluentValidationFramework.Validation.Models;
+using FluentValidationFramework.Helpers;
 
-namespace FluentValidation.Validation.Validators
+namespace FluentValidationFramework.Validation.Validators
 {
     public abstract class AsyncPropertyValidator<TModel, TValue> : PropertyValidator<TModel, TValue>
     {

@@ -1,12 +1,12 @@
-﻿using FluentValidation.Helpers;
-using FluentValidation.Validation.Builders.Fluent;
-using FluentValidation.Validation.Configuration;
-using FluentValidation.Validation.Fluent;
-using FluentValidation.Validation.ValidationModel;
+﻿using FluentValidationFramework.Helpers;
+using FluentValidationFramework.Validation.Builders.Fluent;
+using FluentValidationFramework.Validation.Configuration;
+using FluentValidationFramework.Validation.Fluent;
+using FluentValidationFramework.Validation.ValidationModel;
 using System;
 using System.Collections.Generic;
 
-namespace FluentValidation.Validation.Factories
+namespace FluentValidationFramework.Validation.Factories
 {
     public class ValidationModelFactory : IValidationModelFactory
     {

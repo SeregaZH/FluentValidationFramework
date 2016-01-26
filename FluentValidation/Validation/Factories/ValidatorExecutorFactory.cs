@@ -1,8 +1,8 @@
 ﻿using System;
-using FluentValidation.Validation.Configuration.Enums;
-using FluentValidation.Validation.Executors;
+using FluentValidationFramework.Validation.Configuration.Enums;
+using FluentValidationFramework.Validation.Executors;
 
-namespace FluentValidation.Validation.Factories
+namespace FluentValidationFramework.Validation.Factories
 {
     public sealed class ValidatorExecutorFactory<TModel> : IValidatorExecutorFactory<TModel>
         where TModel : class

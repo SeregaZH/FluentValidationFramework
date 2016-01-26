@@ -1,8 +1,8 @@
-﻿using FluentValidation.Validation.Builders.Fluent;
-using FluentValidation.Validation.Configuration;
+﻿using FluentValidationFramework.Validation.Builders.Fluent;
+using FluentValidationFramework.Validation.Configuration;
 using System;
 
-namespace FluentValidation.Validation.Fluent
+namespace FluentValidationFramework.Validation.Fluent
 {
     public interface IValidatorsConfigBuilder<TModel>
         where TModel : class

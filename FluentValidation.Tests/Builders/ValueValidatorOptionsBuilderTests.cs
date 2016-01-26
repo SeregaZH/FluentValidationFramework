@@ -1,11 +1,11 @@
-﻿using FluentValidation.Validation.Builders.Fluent;
-using FluentValidation.Validation.Models.Options;
+﻿using FluentValidationFramework.Validation.Builders.Fluent;
+using FluentValidationFramework.Validation.Models.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FluentValidation.Tests.Builders
+namespace FluentValidationFramework.Tests.Builders
 {
     [TestClass]
     public class ValueValidatorOptionsBuilderTests

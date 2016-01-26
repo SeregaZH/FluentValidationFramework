@@ -1,9 +1,9 @@
 ﻿using System;
-using FluentValidation.Validation.Configuration;
-using FluentValidation.Validation.Configuration.Enums;
-using FluentValidation.Validation.Factories;
+using FluentValidationFramework.Validation.Configuration;
+using FluentValidationFramework.Validation.Configuration.Enums;
+using FluentValidationFramework.Validation.Factories;
 
-namespace FluentValidation.Validation.Builders.Fluent
+namespace FluentValidationFramework.Validation.Builders.Fluent
 {
     public class ValidatorExecutorsConfigBuilder<TModel> : IValidatorExecutorsConfigBuilder<TModel>
         where TModel : class

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FluentValidation.Helpers
+namespace FluentValidationFramework.Helpers
 {
     /// <summary>
     /// The parameters guard.

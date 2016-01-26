@@ -2,15 +2,16 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{35F44877-0AA8-4175-9B30-E219C7D87D90}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FluentValidation</RootNamespace>
-    <AssemblyName>FluentValidation</AssemblyName>
+    <RootNamespace>FluentValidationFramework</RootNamespace>
+    <AssemblyName>FluentValidationFramework</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AssemblyVersion>0.1.1.1</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,6 +29,14 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PrimaryVersionType>AssemblyVersionAttribute</PrimaryVersionType>
+    <AssemblyInfoFilePath>Properties\AssemblyInfo.cs</AssemblyInfoFilePath>
+    <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>True</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
+    <AssemblyVersionSettings>None.None.IncrementOnDemand.Increment</AssemblyVersionSettings>
+    <AssemblyFileVersionSettings>None.None.IncrementOnDemand.Increment</AssemblyFileVersionSettings>
+    <AssemblyInfoVersionSettings>None.None.IncrementOnDemand.Increment</AssemblyInfoVersionSettings>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -116,9 +125,12 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
+  
   <Target Name="BeforeBuild">
+    
+  </Target>-->
+  <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release'">
+    <Exec Command="nuget pack $(ProjectFileName) -OutputDirectory $(SolutionDir)\Nuget -Symbols -ExcludeEmptyDirectories -Prop Configuration=Release">
+    </Exec>
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

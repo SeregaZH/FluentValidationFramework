@@ -1,6 +1,6 @@
-﻿using FluentValidation.Validation.Models.Results;
+﻿using FluentValidationFramework.Validation.Models.Results;
 
-namespace FluentValidation.Validation.Models
+namespace FluentValidationFramework.Validation.Models
 {
     /// <summary>
     /// Specific validation result for property validators

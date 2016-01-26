@@ -1,13 +1,13 @@
-﻿using FluentValidation.UnitTests;
-using FluentValidation.UnitTests.Validators;
-using FluentValidation.Validation.Models;
-using FluentValidation.Validation.Models.Results;
-using FluentValidation.Validation.Validators;
+﻿using FluentValidationFramework.UnitTests;
+using FluentValidationFramework.UnitTests.Validators;
+using FluentValidationFramework.Validation.Models;
+using FluentValidationFramework.Validation.Models.Results;
+using FluentValidationFramework.Validation.Validators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq.Expressions;
 
-namespace FluentValidation.Tests.Validators
+namespace FluentValidationFramework.Tests.Validators
 {
     [TestClass]
     public class RequiredValidatorTests

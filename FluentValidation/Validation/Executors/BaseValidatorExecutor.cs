@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FluentValidation.Validation.Models;
-using FluentValidation.Validation.Models.Results;
-using FluentValidation.Helpers;
+using FluentValidationFramework.Validation.Models;
+using FluentValidationFramework.Validation.Models.Results;
+using FluentValidationFramework.Helpers;
 
-namespace FluentValidation.Validation.Executors
+namespace FluentValidationFramework.Validation.Executors
 {
     /// <summary>
     /// Perform any collection of validators against the validation model.

@@ -1,16 +1,16 @@
-﻿using FluentValidation.Helpers;
-using FluentValidation.Validation.Builders.Fluent;
-using FluentValidation.Validation.Models;
-using FluentValidation.Validation.Models.Options;
-using FluentValidation.Validation.Validators;
+﻿using FluentValidationFramework.Helpers;
+using FluentValidationFramework.Validation.Builders.Fluent;
+using FluentValidationFramework.Validation.Models;
+using FluentValidationFramework.Validation.Models.Options;
+using FluentValidationFramework.Validation.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using DescFactory = FluentValidation.Validation.Builders.DefaultValidatorDescriptorFactory;
-using LazyPropValidationDescriptor = FluentValidation.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidation.Validation.Models.PropertyName, string>>;
-using LazyValValidationDescriptor = FluentValidation.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidation.Validation.Models.PropertyName, FluentValidation.Validation.Models.ValidationValue, string>>;
+using DescFactory = FluentValidationFramework.Validation.Builders.DefaultValidatorDescriptorFactory;
+using LazyPropValidationDescriptor = FluentValidationFramework.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidationFramework.Validation.Models.PropertyName, string>>;
+using LazyValValidationDescriptor = FluentValidationFramework.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidationFramework.Validation.Models.PropertyName, FluentValidationFramework.Validation.Models.ValidationValue, string>>;
 
-namespace FluentValidation.Validation.Fluent.Builders
+namespace FluentValidationFramework.Validation.Fluent.Builders
 {
     public static class ValidatorConfigBuilderExtensions
     {

@@ -1,8 +1,8 @@
-﻿using FluentValidation.Validation;
-using FluentValidation.Validation.Factories;
+﻿using FluentValidationFramework.Validation;
+using FluentValidationFramework.Validation.Factories;
 using System;
 
-namespace FluentValidation
+namespace FluentValidationFramework
 {
     public static class ValidationFactoryResolver
     {

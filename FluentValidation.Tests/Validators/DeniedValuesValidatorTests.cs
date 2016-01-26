@@ -1,15 +1,15 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentValidation.UnitTests.Validators;
-using FluentValidation.Validation.Validators;
-using FluentValidation.Validation.Models.Options;
+using FluentValidationFramework.UnitTests.Validators;
+using FluentValidationFramework.Validation.Validators;
+using FluentValidationFramework.Validation.Models.Options;
 using System.Linq.Expressions;
-using FluentValidation.Validation.Models.Results;
-using FluentValidation.UnitTests;
+using FluentValidationFramework.Validation.Models.Results;
+using FluentValidationFramework.UnitTests;
 using System.Collections.Generic;
-using FluentValidation.Validation.Models;
+using FluentValidationFramework.Validation.Models;
 
-namespace FluentValidation.Tests.Validators
+namespace FluentValidationFramework.Tests.Validators
 {
     [TestClass]
     public class DeniedValuesValidatorTests

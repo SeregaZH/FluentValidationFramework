@@ -1,4 +1,4 @@
-﻿namespace FluentValidation
+﻿namespace FluentValidationFramework
 {
     internal static class Constants
     {

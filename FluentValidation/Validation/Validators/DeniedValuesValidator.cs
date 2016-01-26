@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using FluentValidation.Validation.Models;
-using FluentValidation.Validation.Models.Options;
-using LazyValValidationDescriptor = FluentValidation.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidation.Validation.Models.PropertyName, FluentValidation.Validation.Models.ValidationValue, string>>;
+using FluentValidationFramework.Validation.Models;
+using FluentValidationFramework.Validation.Models.Options;
+using LazyValValidationDescriptor = FluentValidationFramework.Validation.Models.BaseLazyValidatorDescriptor<System.Func<FluentValidationFramework.Validation.Models.PropertyName, FluentValidationFramework.Validation.Models.ValidationValue, string>>;
 
-namespace FluentValidation.Validation.Validators
+namespace FluentValidationFramework.Validation.Validators
 {
     public class DeniedValuesValidator<TModel, TValue> : BaseValueValidator<TModel, TValue>
     {

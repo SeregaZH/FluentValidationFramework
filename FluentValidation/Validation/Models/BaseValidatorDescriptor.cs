@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FluentValidation.Validation.Models
+namespace FluentValidationFramework.Validation.Models
 {
     public abstract class BaseValidatorDescriptor
     {

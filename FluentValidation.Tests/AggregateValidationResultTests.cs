@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentValidation.Validation.Models.Results;
-using FluentValidation.Validation.Models;
+using FluentValidationFramework.Validation.Models.Results;
+using FluentValidationFramework.Validation.Models;
 using System.Linq;
 
-namespace FluentValidation.UnitTests
+namespace FluentValidationFramework.UnitTests
 {
     [TestClass]
     public class AggregateValidationResultTests

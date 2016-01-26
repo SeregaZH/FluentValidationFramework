@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FluentValidation.Validation.Models.Options
+namespace FluentValidationFramework.Validation.Models.Options
 {
     public sealed class StringValuesValidatorOptions : BaseStringValidationOptions, IValueValidatorOptions<string>
     {

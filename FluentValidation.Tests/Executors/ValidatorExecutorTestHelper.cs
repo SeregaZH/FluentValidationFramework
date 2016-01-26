@@ -1,13 +1,13 @@
-﻿using FluentValidation.UnitTests;
-using FluentValidation.UnitTests.Validators;
-using FluentValidation.Validation;
-using FluentValidation.Validation.Models;
-using FluentValidation.Validation.Models.Results;
+﻿using FluentValidationFramework.UnitTests;
+using FluentValidationFramework.UnitTests.Validators;
+using FluentValidationFramework.Validation;
+using FluentValidationFramework.Validation.Models;
+using FluentValidationFramework.Validation.Models.Results;
 using Moq;
 using System;
 using System.Threading.Tasks;
 
-namespace FluentValidation.Tests.Executors
+namespace FluentValidationFramework.Tests.Executors
 {
     public static class ValidatorExecutorTestHelper
     {

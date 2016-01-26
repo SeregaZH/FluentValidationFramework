@@ -1,9 +1,9 @@
-﻿using FluentValidation.Validation;
-using FluentValidation.Validation.Configuration;
-using FluentValidation.Validation.Fluent;
+﻿using FluentValidationFramework.Validation;
+using FluentValidationFramework.Validation.Configuration;
+using FluentValidationFramework.Validation.Fluent;
 using System;
 
-namespace FluentValidation.Validation
+namespace FluentValidationFramework.Validation
 {
     public interface IValidationModelFactory
     {

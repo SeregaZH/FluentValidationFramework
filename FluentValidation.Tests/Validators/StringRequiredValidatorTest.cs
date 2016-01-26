@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq.Expressions;
-using FluentValidation.Validation.Models;
-using FluentValidation.Validation.Validators;
+using FluentValidationFramework.Validation.Models;
+using FluentValidationFramework.Validation.Validators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentValidation.Validation.Models.Options;
-using FluentValidation.Validation.Models.Results;
+using FluentValidationFramework.Validation.Models.Options;
+using FluentValidationFramework.Validation.Models.Results;
 
-namespace FluentValidation.UnitTests.Validators
+namespace FluentValidationFramework.UnitTests.Validators
 {
     [TestClass]
     public sealed class StringRequiredValidatorTest

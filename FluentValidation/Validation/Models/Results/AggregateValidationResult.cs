@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FluentValidation.Validation.Models.Results
+namespace FluentValidationFramework.Validation.Models.Results
 {
     [Serializable]
     public sealed class AggregateValidationResult : IValidationResult

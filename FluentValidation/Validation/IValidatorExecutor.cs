@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using FluentValidation.Validation.Models.Results;
-using FluentValidation.Validation.Models;
+using FluentValidationFramework.Validation.Models.Results;
+using FluentValidationFramework.Validation.Models;
 using System.Threading.Tasks;
 
-namespace FluentValidation.Validation
+namespace FluentValidationFramework.Validation
 {
     /// <summary>
     /// Generic interface for all classes which is able to validate model through collection of validators.

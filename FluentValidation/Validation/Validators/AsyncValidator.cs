@@ -1,7 +1,7 @@
-﻿using FluentValidation.Validation.Models.Results;
-using FluentValidation.Helpers;
+﻿using FluentValidationFramework.Validation.Models.Results;
+using FluentValidationFramework.Helpers;
 
-namespace FluentValidation.Validation.Validators
+namespace FluentValidationFramework.Validation.Validators
 {
     public abstract class AsyncValidator<TModel> : Validator<TModel>
     {

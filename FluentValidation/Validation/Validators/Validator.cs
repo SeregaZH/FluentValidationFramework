@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using FluentValidation.Validation.Models.Results;
+using FluentValidationFramework.Validation.Models.Results;
 
-namespace FluentValidation.Validation.Validators
+namespace FluentValidationFramework.Validation.Validators
 {
     /// <summary>
     /// Base class for validators. 

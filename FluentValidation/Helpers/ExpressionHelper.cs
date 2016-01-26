@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace FluentValidation.Helpers
+namespace FluentValidationFramework.Helpers
 {
     internal static class ExpressionHelper
     {

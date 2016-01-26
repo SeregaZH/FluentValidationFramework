@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FluentValidation.IntegrationTests
+namespace FluentValidationFramework.IntegrationTests
 {
     public class FakeModel
     {

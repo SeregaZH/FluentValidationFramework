@@ -1,7 +1,7 @@
-﻿using FluentValidation.Validation.Configuration;
-using FluentValidation.Validation.Configuration.Enums;
+﻿using FluentValidationFramework.Validation.Configuration;
+using FluentValidationFramework.Validation.Configuration.Enums;
 
-namespace FluentValidation.Validation.Builders.Fluent
+namespace FluentValidationFramework.Validation.Builders.Fluent
 {
     public interface IValidatorExecutorsConfigBuilder<TModel>
         where TModel : class

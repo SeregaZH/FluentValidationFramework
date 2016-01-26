@@ -1,7 +1,7 @@
-﻿using FluentValidation.Validation.Models;
+﻿using FluentValidationFramework.Validation.Models;
 using System;
 
-namespace FluentValidation.Validation.Builders.Fluent
+namespace FluentValidationFramework.Validation.Builders.Fluent
 {
     public sealed class PropertyValidatorDescriptorBuilder : BaseValidatorDescriptorBuilder<PropertyValidatorDescriptorBuilder, Func<PropertyName,string>>
     {

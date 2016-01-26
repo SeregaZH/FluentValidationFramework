@@ -1,9 +1,9 @@
-﻿using FluentValidation.Helpers;
+﻿using FluentValidationFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace FluentValidation.Tests
+namespace FluentValidationFramework.Tests
 {
     [TestClass]
     public class HelpersTest

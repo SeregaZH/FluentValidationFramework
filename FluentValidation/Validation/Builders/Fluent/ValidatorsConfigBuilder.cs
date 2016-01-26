@@ -1,11 +1,11 @@
 ﻿using System;
-using FluentValidation.Validation.Configuration;
-using FluentValidation.Helpers;
-using FluentValidation.Validation.Fluent;
+using FluentValidationFramework.Validation.Configuration;
+using FluentValidationFramework.Helpers;
+using FluentValidationFramework.Validation.Fluent;
 using System.Collections.Generic;
-using FluentValidation.Validation.Models;
+using FluentValidationFramework.Validation.Models;
 
-namespace FluentValidation.Validation.Builders.Fluent
+namespace FluentValidationFramework.Validation.Builders.Fluent
 {
     public class ValidatorsConfigBuilder<TModel> : IValidatorsConfigBuilder<TModel>
         where TModel : class

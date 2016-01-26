@@ -1,4 +1,4 @@
-﻿namespace FluentValidation.Validation.Configuration.Enums
+﻿namespace FluentValidationFramework.Validation.Configuration.Enums
 {
     internal static class ExecutorTypeMapper
     {

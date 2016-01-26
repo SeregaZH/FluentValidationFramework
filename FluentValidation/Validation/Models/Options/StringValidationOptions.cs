@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FluentValidation.Validation.Models.Options
+namespace FluentValidationFramework.Validation.Models.Options
 {
     /// <summary>
     /// String validator options.

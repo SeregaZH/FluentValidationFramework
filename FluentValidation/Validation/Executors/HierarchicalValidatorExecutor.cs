@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using FluentValidation.Validation.Models;
-using FluentValidation.Validation.Models.Results;
-using FluentValidation.Helpers;
+using FluentValidationFramework.Validation.Models;
+using FluentValidationFramework.Validation.Models.Results;
+using FluentValidationFramework.Helpers;
 using System.Linq;
 
-namespace FluentValidation.Validation.Executors
+namespace FluentValidationFramework.Validation.Executors
 {
     public sealed class HierarchicalValidatorExecutor<TModel> : IValidatorExecutor<TModel>
         where TModel: class

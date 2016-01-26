@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using FluentValidation.Validation.Models.Results;
-using FluentValidation.Helpers;
-using FluentValidation.Validation.Configuration;
+using FluentValidationFramework.Validation.Models.Results;
+using FluentValidationFramework.Helpers;
+using FluentValidationFramework.Validation.Configuration;
 
-namespace FluentValidation.Validation.ValidationModel
+namespace FluentValidationFramework.Validation.ValidationModel
 {
     public class GenericValidationModel<TModel> : IValidationModel<TModel>
         where TModel: class

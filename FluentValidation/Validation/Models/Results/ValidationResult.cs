@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FluentValidation.Validation.Models.Results
+namespace FluentValidationFramework.Validation.Models.Results
 {
     /// <summary>
     /// The validation result.

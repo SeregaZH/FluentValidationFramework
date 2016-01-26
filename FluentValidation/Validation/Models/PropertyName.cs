@@ -1,4 +1,4 @@
-﻿namespace FluentValidation.Validation.Models
+﻿namespace FluentValidationFramework.Validation.Models
 {
     public sealed class PropertyName
     {

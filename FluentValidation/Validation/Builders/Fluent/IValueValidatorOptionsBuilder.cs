@@ -1,7 +1,7 @@
-﻿using FluentValidation.Validation.Models.Options;
+﻿using FluentValidationFramework.Validation.Models.Options;
 using System.Collections.Generic;
 
-namespace FluentValidation.Validation.Builders.Fluent
+namespace FluentValidationFramework.Validation.Builders.Fluent
 {
     public interface IValueValidatorOptionsBuilder<TType>
     {

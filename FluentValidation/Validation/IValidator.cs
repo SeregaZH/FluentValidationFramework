@@ -1,8 +1,8 @@
-﻿using FluentValidation.Validation.Models;
-using FluentValidation.Validation.Models.Results;
+﻿using FluentValidationFramework.Validation.Models;
+using FluentValidationFramework.Validation.Models.Results;
 using System.Threading.Tasks;
 
-namespace FluentValidation.Validation
+namespace FluentValidationFramework.Validation
 {
     /// <summary>
     /// Interface for synchronous validators. 
