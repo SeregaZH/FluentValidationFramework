@@ -61,7 +61,7 @@
     <Compile Include="SyncronousValidatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FluentValidation\FluentValidationFramework.csproj">
+    <ProjectReference Include="..\FluentValidationFramework\FluentValidationFramework.csproj">
       <Project>{35f44877-0aa8-4175-9b30-e219c7d87d90}</Project>
       <Name>FluentValidationFramework</Name>
     </ProjectReference>

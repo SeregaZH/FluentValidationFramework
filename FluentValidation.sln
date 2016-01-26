@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidationFramework", "FluentValidation\FluentValidationFramework.csproj", "{35F44877-0AA8-4175-9B30-E219C7D87D90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidationFramework", "FluentValidationFramework\FluentValidationFramework.csproj", "{35F44877-0AA8-4175-9B30-E219C7D87D90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidationFramework.IntegrationTests", "FluentValidation.IntegrationTests\FluentValidationFramework.IntegrationTests.csproj", "{A2CED00C-69B8-45D0-86A6-7F0BD98EF4B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidationFramework.IntegrationTests", "FluentValidationFramework.IntegrationTests\FluentValidationFramework.IntegrationTests.csproj", "{A2CED00C-69B8-45D0-86A6-7F0BD98EF4B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidationFramework.UnitTests", "FluentValidation.Tests\FluentValidationFramework.UnitTests.csproj", "{9069B323-56CF-497A-A849-D7822B1D29FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidationFramework.UnitTests", "FluentValidationFramework.Tests\FluentValidationFramework.UnitTests.csproj", "{9069B323-56CF-497A-A849-D7822B1D29FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
