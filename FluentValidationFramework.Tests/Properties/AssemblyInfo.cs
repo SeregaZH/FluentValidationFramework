@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -8,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("FluentValidationFramework.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("EPAM Systems")]
-[assembly: AssemblyProduct("FluentValidationFramework.Tests")]
-[assembly: AssemblyCopyright("Copyright © EPAM Systems 2015")]
+[assembly: AssemblyCompany("MIT")]
+[assembly: AssemblyProduct("FluentValidationFramework")]
+[assembly: AssemblyCopyright("Copyright © 2016 Siarhei Zhalezka")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
