@@ -12,7 +12,7 @@
 [assembly: AssemblyConfiguration("Release")]
 #endif 
 
-[assembly: AssemblyCompany("MIT")]
+[assembly: AssemblyCompany("Siarhei Zhalezka")]
 [assembly: AssemblyProduct("FluentValidationFramework")]
 [assembly: AssemblyCopyright("Copyright © 2016 Siarhei Zhalezka")]
 [assembly: AssemblyTrademark("")]
